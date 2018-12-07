@@ -1,0 +1,16 @@
+<li class="list-group-item list-group-striped"
+    [routerLink] = "['/', 'discussions', 'topic', topic.topicId]"
+    routerLinkActive="active">
+  <p class="topic-heading"><strong>{{ topic.topicHeading}}</strong></p>
+  <div class="topic topic-main">
+    <p>13 minutes ago by {{topic.topicByUserId}}</p>
+  </div>
+  <div class="topic topic-views">
+    <p>1300</p>
+    <p>views</p>
+  </div>
+  <div class="topic topic-comments">
+    <p>63</p>
+    <p>Replies</p>
+  </div>
+</li>

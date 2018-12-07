@@ -1,0 +1,18 @@
+<div *ngIf="postLoaded" class="jumbotron post-details-tab">
+  <div class="pull-left">
+    <img class="post-details-user-img" src="assets/images/seeth.jpg">
+  </div>
+  <h3 class="display-4">{{ post.postedByUserId }}</h3>
+  <hr class="my-4">
+  <p class="lead">
+    {{ post.postDetails }}
+  </p>
+  <p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+  <hr>
+  <ul>
+    <li><img class="like-icon" src="https://png.icons8.com/ios/24/B9B9B9/facebook-like.png">Like</li>
+    <li><img class="comment-icon" src="https://png.icons8.com/windows/24/B9B9B9/topic.png">Comment</li>
+  </ul>
+</div>

@@ -1,0 +1,22 @@
+.error-details{
+  color: red;
+  font-size: 11px;
+  font-family: "Trebuchet MS", "Verdana", "sans-serif";
+  font-style: italic;
+}
+
+.modal-body {
+  padding: 15px 150px;
+}
+
+.modal-dialog{
+  margin-top: 50px;
+}
+
+.btn-success {
+  margin-left: 120px;
+}
+
+.btn:focus {
+  outline: none;
+}

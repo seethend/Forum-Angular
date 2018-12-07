@@ -1,0 +1,16 @@
+.show-posts{
+    background: #1e2642;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.posts-container{
+    padding-top: 20px;
+}
+
+.show-posts:hover {
+    overflow-y: scroll;
+}

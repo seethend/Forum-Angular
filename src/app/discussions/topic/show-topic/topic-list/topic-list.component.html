@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row topic-list-rows">
+        <div class="col-md-11 topic-list">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <p class="topic-headings topic-info">Forum</p>
+                    <!--<p class="topic-headings topic-sort">General Discussion</p>-->
+                    <select class="topic-select" (change)="showSelectedTopics(selectedValue.value)" #selectedValue>
+                      <option value="general">General Discussion</option>
+                      <option value="o2">Option 2</option>
+                      <option value="o3">Option 3</option>
+                      <option value="o4">Option 4</option>
+                    </select>
+                </div>
+                <div class="pull-right">
+                    <p class="topic-headings topic-sort">Most Recent</p>
+                    <p class="topic-headings topic-sort">Popular</p>
+                    <p class="topic-headings topic-sort">Top</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row topic-list-rows">
+        <div class="col-md-10 col-md-offset-1 topic-list">
+            <div class="col-md-12">
+                <app-topic-item *ngFor="let topic of topics" [topic]="topic"></app-topic-item>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+.list-group-item{
+    height: 125px;
+    background: transparent;
+    color: #adadad;
+    padding: 10px 60px 40px 40px;
+    border: 1px solid #464646;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+
+.list-group-item hr{
+    border: 1px solid #464646;
+}
+
+.user-name{
+    display: inline;
+}
+
+.user-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
+}
+
+.post-teaser{
+    padding: 5px 40px;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  border: 1px solid #464646;
+}

@@ -1,0 +1,71 @@
+li{
+    margin-top: 20px;
+    color: #adadad;
+    background: #1e2642;
+    height: 100px;
+    cursor: pointer;
+    border: 1px groove #1e2642;
+    outline: none;
+}
+
+li:last-child hr{
+    display: none;
+}
+
+li:hover {
+  background: #28355f;
+}
+
+li:active {
+  background: #1c233c;
+  border: 1px groove #666567;
+}
+
+.topic-heading {
+    color: #cecece;
+    font-size: 25px;
+}
+
+.topic {
+    float: left;
+}
+
+.topic-views {
+    margin-left: 550px;
+    margin-top: -30px;
+}
+
+.topic-comments {
+    margin-left: 50px;
+    margin-top: -30px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .topic-views {
+        margin-left: 400px;
+    }
+
+    .topic-comments {
+        margin-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .topic-views {
+        margin-left: 350px;
+    }
+
+    .topic-comments {
+        margin-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .topic-views {
+        display: none;
+    }
+
+    .topic-comments {
+        display: none;
+    }
+}

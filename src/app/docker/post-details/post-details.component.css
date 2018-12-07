@@ -1,0 +1,50 @@
+.post-details-tab{
+    background: #1e2642;
+    border-radius: 10px;
+    padding: 20px 40px;
+    height: 370px;
+    overflow: hidden;
+    max-height: 515px;
+}
+
+h3 {
+    color: #adadad;
+}
+
+p.lead {
+  color: #adadad;
+  padding: 10px 20px;
+}
+
+.post-details-user-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-right: 10px;
+}
+
+.post-details-tab:hover {
+  overflow-y: scroll;
+}
+
+li{
+  display: inline;
+  color: #9e9e9e;
+  margin-right: 80px;
+  cursor: pointer;
+  padding: 10px 40px;
+  border-radius: 5px;
+}
+
+li:hover{
+    background: #dcdcdc0a;
+}
+
+.like-icon {
+    margin-right: 5px;
+    margin-bottom: 7px;
+}
+
+.comment-icon {
+    margin-right: 5px;
+}

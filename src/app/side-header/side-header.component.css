@@ -1,0 +1,42 @@
+.side-header{
+    height: 100%;
+    background-color: #1e2642;
+    border: none;
+}
+
+.side-header-logo{
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.list-group {
+    padding-left: 15px;
+}
+
+ul li{
+    background: transparent;
+    border: none;
+    color: #adadad;
+    cursor: pointer;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+.li-icon{
+  width: 14px;
+}
+
+ul li:hover{
+    color: white;
+}
+
+@media only screen and (max-width: 1050px) {
+    .side-header {
+        display: none;
+    }
+}
