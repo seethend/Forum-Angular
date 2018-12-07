@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import { User } from '../user-details/user.model';
 
 @Injectable()
 export class AuthenticateService {
@@ -11,18 +11,24 @@ export class AuthenticateService {
 
   isUserLoggedIn: boolean;
 
+  loggedInUser: User;
+
   constructor(private http: HttpClient) {}
 
   login(credentials: { username: string; password: string }) {
     return this.http.post('login', credentials, {responseType: 'text'});
   }
 
-  checkUser() {
+  checkUser(fire: boolean) {
     if (this.token != null) {
       const httpHeaders = new HttpHeaders({'Authorization': this.token});
       this.http.get('v1/secured/user', {headers: httpHeaders}).subscribe(
-        (response: Response) => {
-          this.logout();
+        (response: User) => {
+          if (fire) {
+              this.isUserLogged.next(true);
+          }
+          this.isUserLoggedIn = true;
+          this.loggedInUser = response;
           console.log('response while checking user logged in ', response);
         },
         error => {

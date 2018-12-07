@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         }
       }
     );
-    this.authService.checkUser();
+    this.authService.checkUser(true);
   }
 
 
@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
           (response: string) => {
             this.authService.token = response;
             this.authService.isUserLoggedIn = true;
+            this.authService.checkUser(false);
             console.log('User Logged in with ', this.credentials, 'api returned token ', this.authService.token);
             this.router.navigate(['posts'])
               .then(
