@@ -1,8 +1,8 @@
-<textarea cols="30" rows="10" placeholder="Write something....!!!" class="post-textarea" #postMsg></textarea>
+<textarea cols="30" rows="10" placeholder="Write something....!!!" class="post-textarea" [(ngModel)]="postMessage"></textarea>
 <div class="post-send">
   <ul>
     <li><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;Add Photo</li>
     <li><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Link Address</li>
-    <li><img src="assets/images/post-send2.png" class="post-send-img" (click)="addPost(postMsg)"></li>
+    <li><img src="assets/images/post-send2.png" class="post-send-img" (click)="addPost()"></li>
   </ul>
 </div>

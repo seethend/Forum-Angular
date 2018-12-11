@@ -12,8 +12,8 @@ import { AuthenticateService } from 'src/app/authenticate/authenticate.service';
 export class PostDetailsComponent implements OnInit {
 
   post: Post;
-  postLoaded = false;
-  id: number;
+  postLoaded = false; // flag to avoid null exception for post in template
+  id: number; // Id recieved from URL
 
   constructor(
     private postServices: PostServices,
@@ -22,6 +22,8 @@ export class PostDetailsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    // Gets post id from URL and calls postService.getPostById(id) for post object response
+    // If anything goes wrong authService.logout() is called
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];

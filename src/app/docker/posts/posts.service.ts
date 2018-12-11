@@ -7,8 +7,9 @@ import {AuthenticateService} from '../../authenticate/authenticate.service';
 @Injectable()
 export class PostServices {
 
-    postsAPI = 'v1/secured/posts/';
+    postsAPI = 'v1/secured/posts/'; // Posts module API URL
 
+    // Stores all posts from API in an array to use for future references
     posts: Post[] = [
       /*new Post("1",
         "154",
@@ -18,11 +19,15 @@ export class PostServices {
       ),*/
     ];
     singlePost: Post;
-    postAdded = new Subject<Post[]>();
-    postsFetched = new Subject<boolean>();
+    postAdded = new Subject<Post[]>(); // arms to fire when a new post is added
+    postsFetched = new Subject<boolean>(); // arms to fire when all posts are fetched
 
     constructor(private http: HttpClient, private authService: AuthenticateService) {}
 
+
+    // Saves the post received through parameter
+    // On save success calls fetchPosts()
+    // If anything goes wrong authService.logout() is called
     savePost(post: Post) {
         console.log(post);
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
@@ -46,6 +51,9 @@ export class PostServices {
 
     }
 
+
+    // fetches all posts from API and saves in posts array locally
+    // If anything goes wrong authService.logout() is called
     fetchPosts() {
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
         this.http.get(this.postsAPI + 'all', {headers: httpHeaders}).subscribe(
@@ -61,15 +69,18 @@ export class PostServices {
         );
     }
 
+    // Returns all posts slice
     getAllPosts() {
       return this.posts.slice();
     }
 
+    // Fetches single posts based on its postId from API server
     getPostById(id: number) {
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
         return this.http.get(this.postsAPI + 'post/' + id, {headers: httpHeaders});
     }
 
+    // Returns total number of posts count
     getTotalPostCount() {
       return this.posts.length;
     }

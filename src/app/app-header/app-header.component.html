@@ -9,9 +9,29 @@
       <span class="glyphicon glyphicon-search"></span><input id="home-search" type="text" placeholder="Search....">
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" [routerLink] = "['auth', 'signup']" class="right-nav-icons"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#" [routerLink] = "['auth', 'login']" class="right-nav-icons"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <ul class="nav navbar-nav navbar-right" *ngIf="!isUserLogged">
+        <li>
+            <a href="#" [routerLink] = "['auth', 'signup']" class="right-nav-icons">
+                <span class="glyphicon glyphicon-user"></span> Sign Up
+            </a>
+        </li>
+        <li>
+            <a href="#" [routerLink] = "['auth', 'login']" class="right-nav-icons">
+                <span class="glyphicon glyphicon-log-in"></span> Login
+            </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="isUserLogged">
+        <li>
+            <a href="#" [routerLink] = "['/']" class="right-nav-icons">
+                <span class="glyphicon glyphicon-user"></span> {{ userLoggedIn.last_name }} {{ userLoggedIn.first_name }} 
+            </a>
+        </li>
+        <li>
+            <a href="#" [routerLink] = "['/']" class="right-nav-icons">
+                <span class="glyphicon glyphicon-log-in"></span> Logout
+            </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -10,7 +10,7 @@ import { Post } from '../../posts.model';
 })
 export class PostListComponent implements OnInit {
 
-  posts = [];
+  posts = []; // Stores all Posts fetched from post service
   postAddedSubscription: Subscription;
   postFetchedSubscription: Subscription;
 
@@ -18,7 +18,7 @@ export class PostListComponent implements OnInit {
   constructor(private postServices: PostServices) { }
 
   ngOnInit() {
-    this.postServices.fetchPosts();
+    // Works when postFetched is fired when all posts are loaded from API
     this.postFetchedSubscription = this.postServices.postsFetched.subscribe(
       (postsFetched: boolean) => {
         if (postsFetched) {
@@ -28,11 +28,16 @@ export class PostListComponent implements OnInit {
         }
       }
     );
+
+    // Works when a new post added to API. Refresh the posts array locally
     this.postAddedSubscription = this.postServices.postAdded.subscribe(
       (posts: Post[]) => {
         this.posts = posts;
       }
     );
+
+    // Call service to fetch posts from API
+    this.postServices.fetchPosts();
   }
 
 }
