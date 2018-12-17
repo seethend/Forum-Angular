@@ -12,6 +12,8 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class TopicListComponent implements OnInit {
 
   topics: Topic[] = [];
+  topicTags = new Set<string>();
+
   topicSubscription: Subscription;
   selectedTopicType = 'general';
   constructor(private topicService: TopicService, private route: ActivatedRoute, private router: Router) { }
@@ -24,11 +26,16 @@ export class TopicListComponent implements OnInit {
       }
     );
     this.topics = this.topicService.getAllTopicsByType(this.selectedTopicType);
+    this.topicTags = this.topicService.getAllTags();
   }
 
   showSelectedTopics(selectedValue: string) {
     console.log('Selected Option ' + selectedValue);
     this.router.navigate(['../', selectedValue], {relativeTo: this.route});
+  }
+
+  getTagNameToDisplay(tag: string){
+    return tag.substring(0,1).toUpperCase() + tag.substring(1,tag.length);
   }
 
 }

@@ -1,0 +1,35 @@
+.topic-main-header{
+    color: #ececec;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 50px;
+}
+
+.topic-sub-headers{
+    color: #c1c1c1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#topic-title{
+    height: 35px;
+    width: 800px;
+}
+
+#topic-body{
+    height: 250px;
+    width: 800px;
+    max-width: 800px;
+    min-width: 800px;
+    min-height: 250px;
+    overflow: scroll;
+}
+
+#topic-tags{
+    height: 35px;
+    width: 800px;
+}
+
+#btn-post-topic{
+    position: absolute;
+    right: 100px;
+    bottom: 80px;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TopicService } from '../topic.service';
 
 @Component({
   selector: 'app-write-topic',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WriteTopicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private topicService: TopicService) { }
 
   ngOnInit() {
+  }
+
+  showAllTopicTagsMatches(){
+    let topicTags = this.topicService.getAllTags();
+    console.log(topicTags)
   }
 
 }

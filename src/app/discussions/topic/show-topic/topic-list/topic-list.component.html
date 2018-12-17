@@ -6,10 +6,7 @@
                     <p class="topic-headings topic-info">Forum</p>
                     <!--<p class="topic-headings topic-sort">General Discussion</p>-->
                     <select class="topic-select" (change)="showSelectedTopics(selectedValue.value)" #selectedValue>
-                      <option value="general">General Discussion</option>
-                      <option value="o2">Option 2</option>
-                      <option value="o3">Option 3</option>
-                      <option value="o4">Option 4</option>
+                      <option *ngFor="let tag of topicTags" [value]="tag">{{ getTagNameToDisplay(tag) }}</option>
                     </select>
                 </div>
                 <div class="pull-right">

@@ -56,4 +56,12 @@ export class TopicService {
         }
         return this.topicsByType.slice();
     }
+
+    getAllTags() {
+        let tagsList = new Set<string>()
+        for(const topic of this.topics){
+            tagsList.add(topic.topicType)
+        }
+        return tagsList;
+    }
 }

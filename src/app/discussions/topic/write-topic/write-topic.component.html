@@ -1,3 +1,12 @@
-<p>
-  write-topic works!
-</p>
+<h2 class="topic-main-header">Start a Topic !!!</h2>
+
+<h4 class="topic-sub-headers">Title</h4>
+<input id="topic-title" class="form-control" type="text" >
+
+<h4 class="topic-sub-headers">Body</h4>
+<textarea id="topic-body" class="form-control"></textarea>
+
+<h4 class="topic-sub-headers">Tags</h4>
+<input id="topic-tags" class="form-control" type="text" (change)="showAllTopicTagsMatches()">
+
+<button id="btn-post-topic" class="btn btn-primary">Post your Topic</button>
