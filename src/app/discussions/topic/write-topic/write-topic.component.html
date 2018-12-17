@@ -7,6 +7,6 @@
 <textarea id="topic-body" class="form-control"></textarea>
 
 <h4 class="topic-sub-headers">Tags</h4>
-<input id="topic-tags" class="form-control" type="text" (change)="showAllTopicTagsMatches()">
+<input id="topic-tags" class="form-control" type="text" (keypress)="showAllTopicTagsMatches()" [(ngModel)]="topicTagInput" >
 
 <button id="btn-post-topic" class="btn btn-primary">Post your Topic</button>

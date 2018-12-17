@@ -8,14 +8,27 @@ import { TopicService } from '../topic.service';
 })
 export class WriteTopicComponent implements OnInit {
 
-  constructor(private topicService: TopicService) { }
+    topicTagInput = '';
+    topicTagOptions = [];
 
-  ngOnInit() {
-  }
+    constructor(private topicService: TopicService) { }
 
-  showAllTopicTagsMatches(){
-    let topicTags = this.topicService.getAllTags();
-    console.log(topicTags)
-  }
+    ngOnInit() {
+    }
+
+    showAllTopicTagsMatches() {
+        this.topicTagOptions = [];
+        if (this.topicTagInput.length > 2) {
+            const topicTags = this.topicService.getAllTags();
+            // console.log(topicTags, this.topicTag);
+            for (const tag of topicTags) {
+                let tagMatches = [];
+                tagMatches = tag.match(this.topicTagInput);
+                if (tagMatches != null && tagMatches.length > 0) {
+                    this.topicTagOptions.push(tag);
+                }
+            }
+        }
+    }
 
 }
