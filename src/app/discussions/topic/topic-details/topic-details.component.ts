@@ -16,6 +16,7 @@ export class TopicDetailsComponent implements OnInit {
   constructor(private topicService: TopicService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // Fires everytime id changes in url and gets new topic based on Id from topicService
     this.route.params.subscribe(
       (params: Params) => {
         this.topicId = params['id'];

@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 export class TopicService {
     topics: Topic[] = [
-        new Topic('121', 'General Analog Clock Example to ui Example - help', 'general', new Date(), '154', `
+        new Topic('121', 'General Analog Clock Example to ui Example - help', ['general'], new Date(), '154', `
         I was interested in making a type of world display in ui. Of course a digital version not so challenging esp.
         with the new update method for custom views. I statered butchering omz's analog Example to get it to draw inside
          a custom ui.View class. I just don't understand the math well enough. I know basic for some, just not me. I am just
@@ -13,7 +13,7 @@ export class TopicService {
         I think if it can be written nice and clean to PEP8 @omz might consider adding it to his examples as it would show the use
         of the new update method, imagecontexts, custom drawing.
         Besides that we get a neat Analog Clock class we can use. Anyway, was just an idea`),
-        new Topic('123', 'O2 Analog Clock Example to ui Example - help', 'option2', new Date(), '154', `I was interested in making a
+        new Topic('123', 'O2 Analog Clock Example to ui Example - help', ['option2'], new Date(), '154', `I was interested in making a
         type of world display in ui. Of course a digital version not so challenging esp. with the new update method for custom views.
         I statered butchering omz's analog Example to get it to draw inside a custom ui.View class. I just don't understand the math
          well enough. I know basic for some, just not me. I am just guessing at the transformations I have to do. One thing I also
@@ -26,18 +26,22 @@ export class TopicService {
     ];
 
     singleTopic: Topic;
-    topicsByType: Topic[] = [];
-    topicAdded = new Subject<Topic[]>();
+    topicsByType: Topic[] = []; // Stores topic by type
+    topicAdded = new Subject<Topic[]>(); // Subject fires when a new topic is added
 
+
+    // Gets all the topics
     getAllTopics() {
         return this.topics.slice();
     }
 
+    // Adds new topic to all topics list
     addTopic(topic: Topic) {
         this.topics.push(topic);
         this.topicAdded.next(this.topics.slice());
     }
 
+    // Returns single topic based on Id
     getTopicById(topicId: string) {
         for (const topic of this.topics) {
             if (topic.topicId === topicId) {
@@ -47,20 +51,25 @@ export class TopicService {
         return this.singleTopic;
     }
 
+    // Returns all topics based on type
     getAllTopicsByType(topicType: string) {
       this.topicsByType = [];
       for (const topic of this.topics) {
-            if  (topic.topicType === topicType) {
+            if  (topic.topicType.indexOf(topicType) >= 0) {
                 this.topicsByType.push(topic);
             }
         }
         return this.topicsByType.slice();
     }
 
+
+    // Returns all topics types
     getAllTags() {
         const tagsList = new Set<string>();
         for (const topic of this.topics) {
-            tagsList.add(topic.topicType);
+            for (const type of topic.topicType) {
+                tagsList.add(type);
+            }
         }
         return tagsList;
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TopicService } from '../topic.service';
+import { Topic } from '../topic.model';
 
 @Component({
   selector: 'app-write-topic',
@@ -8,19 +9,19 @@ import { TopicService } from '../topic.service';
 })
 export class WriteTopicComponent implements OnInit {
 
-    @ViewChild("topicTagsList")
-    topicTagsList: ElementRef;
+    @ViewChild('topicTagsList')
+    topicTagsList: ElementRef; // all tags ul li ref
 
-    topicTitleInput = '';
-    topicBodyInput = '';
-    topicTagInput = '';
+    topicTitleInput = ''; // topic title field two way binding
+    topicBodyInput = ''; // topic body field two way binding
+    topicTagInput = ''; // topic tag field two way binding
 
-    isTopicTitleInputNull = false;
-    isTopicBodyInputNull = false;
-    isTopicTagInputNull = false;
+    isTopicTitleInputNull = false; // Check if topic title field is empty
+    isTopicBodyInputNull = false; // Check if topic body field is empty
+    isTopicTagInputNull = false; // Check if topic tag field is empty
 
-    allTopicTagOptions = [];
-    selectedTopicTags = [];
+    allTopicTagOptions = []; // stores all matched tags
+    selectedTopicTags = []; // stores all selected tags
 
 
     constructor(private topicService: TopicService) { }
@@ -28,10 +29,11 @@ export class WriteTopicComponent implements OnInit {
     ngOnInit() {
     }
 
+    // Method to get all matched tags
     showAllTopicTagsMatches() {
         this.allTopicTagOptions = [];
-        if (this.topicTagInput.length > 2) {
-            this.topicTagsList.nativeElement.style.display = 'block';
+        if (this.topicTagInput.length > 2) { // doesn't allow to perform the matching action until atleast 3 letters are entered
+            this.topicTagsList.nativeElement.style.display = 'block'; // shows the matched list
             const topicTags = this.topicService.getAllTags();
             // console.log(topicTags, this.topicTag);
             for (const tag of topicTags) {
@@ -42,62 +44,62 @@ export class WriteTopicComponent implements OnInit {
                 }
             }
             // console.log(this.allTopicTagOptions);
-        }
-        else{
-            this.topicTagsList.nativeElement.style.display = 'none';
+        } else {
+            this.topicTagsList.nativeElement.style.display = 'none'; // hides the matched list
         }
     }
 
-    selectCurrentTag(topicTag){
-        if(this.selectedTopicTags.indexOf(topicTag) < 0){
+    // Triggers when user selects a particular tag and adds to selectedTopicTags
+    selectCurrentTag(topicTag) {
+        if (this.selectedTopicTags.indexOf(topicTag) < 0) {
             this.selectedTopicTags.push(topicTag);
         }
         this.topicTagInput = '';
         document.getElementById('topic-tags').focus();
-        this.showAllTopicTagsMatches()
-        this.checkTopicTagInputField()
+        this.showAllTopicTagsMatches();
+        this.checkTopicTagInputField();
         // console.log(this.selectedTopicTags)
     }
 
-    deleteSelectedTag(selectedCurrentTag){
+    // delete the tag from selectedTopicTags list
+    deleteSelectedTag(selectedCurrentTag) {
         const index = this.selectedTopicTags.indexOf(selectedCurrentTag, 0);
         if (index > -1) {
             this.selectedTopicTags.splice(index, 1);
         }
-        this.checkTopicTagInputField()
+        this.checkTopicTagInputField();
         // console.log(selectedCurrentTag, this.selectedTopicTags)
     }
 
-    checkTopicTagInputField(){
-        if(this.selectedTopicTags.length > 0){
+    // Check if any tag is selected after every entry and removal
+    checkTopicTagInputField() {
+        if (this.selectedTopicTags.length > 0) {
             this.isTopicTagInputNull = false;
-        }
-        else{
+        } else {
             this.isTopicTagInputNull = true;
         }
     }
 
-    saveTopic(){
-        if(this.topicTitleInput.length != null && this.topicTitleInput.length > 0){
+    // Saves new topic after checking all the feilds are not empty
+    saveTopic() {
+        if (this.topicTitleInput.length != null && this.topicTitleInput.length > 0) {
             this.isTopicTitleInputNull = false;
 
-            if(this.topicBodyInput.length != null && this.topicBodyInput.length > 0){
+            if (this.topicBodyInput.length != null && this.topicBodyInput.length > 0) {
                 this.isTopicBodyInputNull = false;
 
-                if(this.selectedTopicTags.length > 0){
+                if (this.selectedTopicTags.length > 0) {
                     this.isTopicTagInputNull = false;
-                    
-                    console.log(this.topicTitleInput, this.topicBodyInput, this.selectedTopicTags)
-                }
-                else{
+                    const topic = new Topic('1252', this.topicTitleInput, this.selectedTopicTags, new Date(), '124', this.topicBodyInput);
+                    this.topicService.addTopic(topic);
+                    // console.log(this.topicTitleInput, this.topicBodyInput, this.selectedTopicTags);
+                } else {
                     this.isTopicTagInputNull = true;
-                }           
-            }
-            else{
+                }
+            } else {
                 this.isTopicBodyInputNull = true;
-            }         
-        }
-        else{
+            }
+        } else {
             this.isTopicTitleInputNull = true;
         }
     }
