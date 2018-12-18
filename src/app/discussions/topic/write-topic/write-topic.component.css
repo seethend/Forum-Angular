@@ -31,5 +31,54 @@
 #btn-post-topic{
     position: absolute;
     right: 100px;
-    bottom: 80px;
+    bottom: 60px;
+}
+
+.selected-topic-tags-list{
+    position: absolute;
+    left: 30px;
+    bottom: 52px;
+}
+
+.selected-topic-tags-item{
+    display: inline;
+    background: green;
+    border-radius: 5px;
+    color: white;
+    padding: 3px 15px;
+    margin: 8px;
+}
+
+.delete-selected-topic-tags{
+    color: white;
+    font-weight: 900;
+    margin-left: 10px;
+    margin-right: -5px;
+    text-decoration: none;
+}
+
+.delete-selected-topic-tags:hover{
+    cursor: pointer;
+    color: blue;
+}
+
+.topic-tags-list-group{
+    display: none;
+    width: 800px;
+}
+
+.topic-tags-list-group-item{
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.topic-tags-list-group-item:hover{
+    cursor: pointer;
+    color: #c1c1c1;
+    background:#0066ff;
+}
+
+.empty-field{
+    color: red;
+    font-style: italic;
 }

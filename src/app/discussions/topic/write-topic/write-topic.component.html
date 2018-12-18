@@ -1,12 +1,31 @@
 <h2 class="topic-main-header">Start a Topic !!!</h2>
 
 <h4 class="topic-sub-headers">Title</h4>
-<input id="topic-title" class="form-control" type="text" >
+<p class="empty-field" *ngIf="isTopicTitleInputNull">Should not be null</p>
+<input id="topic-title" class="form-control" type="text" [(ngModel)]="topicTitleInput">
 
 <h4 class="topic-sub-headers">Body</h4>
-<textarea id="topic-body" class="form-control"></textarea>
+<p class="empty-field" *ngIf="isTopicBodyInputNull">Should not be null</p>
+<textarea id="topic-body" class="form-control" [(ngModel)]="topicBodyInput"></textarea>
 
 <h4 class="topic-sub-headers">Tags</h4>
-<input id="topic-tags" class="form-control" type="text" (keypress)="showAllTopicTagsMatches()" [(ngModel)]="topicTagInput" >
+<ul class="selected-topic-tags-list">
+    <li *ngFor="let selectedCurrentTag of selectedTopicTags" 
+        class="selected-topic-tags-item">
+            {{selectedCurrentTag}} 
+        <a class="delete-selected-topic-tags" (click)="deleteSelectedTag(selectedCurrentTag)">&times;</a>
+    </li>
+</ul>
+<p class="empty-field" *ngIf="isTopicTagInputNull">Should not be null</p>
+<input  id="topic-tags" class="form-control" 
+        type="text"
+        (keydown)="showAllTopicTagsMatches()" 
+        [(ngModel)]="topicTagInput" >
 
-<button id="btn-post-topic" class="btn btn-primary">Post your Topic</button>
+<ul class="list-group topic-tags-list-group" #topicTagsList>
+    <li *ngFor="let topicTag of allTopicTagOptions" 
+        class="list-group-item topic-tags-list-group-item"
+        (click)="selectCurrentTag(topicTag)">{{topicTag}}</li>
+</ul>
+
+<button id="btn-post-topic" class="btn btn-primary" (click)="saveTopic()">Post your Topic</button>
