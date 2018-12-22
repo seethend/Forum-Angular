@@ -31,16 +31,19 @@ li:active {
 }
 
 .topic-views {
-    margin-left: 550px;
+    float: right;
     margin-top: -30px;
+    margin-right: 70px;
 }
 
 .topic-comments {
-    margin-left: 50px;
+    float: right;
     margin-top: -30px;
+    margin-right: 40px;
 }
 
-@media only screen and (max-width: 1200px) {
+ /* Done a lot before now just added float: right */
+/* @media only screen and (max-width: 1200px) {
     .topic-views {
         margin-left: 400px;
     }
@@ -68,4 +71,4 @@ li:active {
     .topic-comments {
         display: none;
     }
-}
+} */

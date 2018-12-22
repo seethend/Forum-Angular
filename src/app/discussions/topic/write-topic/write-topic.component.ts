@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TopicService } from '../topic.service';
 import { Topic } from '../topic.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-write-topic',
@@ -21,10 +22,10 @@ export class WriteTopicComponent implements OnInit {
     isTopicTagInputNull = false; // Check if topic tag field is empty
 
     allTopicTagOptions = []; // stores all matched tags
-    selectedTopicTags = []; // stores all selected tags
+    selectedTopicTags: {typeId: string, typeName: string}[] = []; // stores all selected tags
 
 
-    constructor(private topicService: TopicService) { }
+    constructor(private topicService: TopicService, private router: Router) { }
 
     ngOnInit() {
     }
@@ -49,11 +50,37 @@ export class WriteTopicComponent implements OnInit {
         }
     }
 
+    addTopicTag() {
+        let isTagPresent = false;
+        for (const topicType of this.selectedTopicTags) {
+            if (topicType.typeName === this.topicTagInput) {
+                isTagPresent = true;
+            }
+        }
+
+        if (!isTagPresent) {
+            this.selectedTopicTags.push({typeId: null, typeName: this.topicTagInput});
+        }
+
+        this.topicTagInput = '';
+        document.getElementById('topic-tags').focus();
+        this.showAllTopicTagsMatches();
+        this.checkTopicTagInputField();
+    }
+
     // Triggers when user selects a particular tag and adds to selectedTopicTags
     selectCurrentTag(topicTag) {
-        if (this.selectedTopicTags.indexOf(topicTag) < 0) {
-            this.selectedTopicTags.push(topicTag);
+        let isTagPresent = false;
+        for (const topicType of this.selectedTopicTags) {
+            if (topicType.typeName === topicTag) {
+                isTagPresent = true;
+            }
         }
+
+        if (!isTagPresent) {
+            this.selectedTopicTags.push({typeId: null, typeName: topicTag});
+        }
+
         this.topicTagInput = '';
         document.getElementById('topic-tags').focus();
         this.showAllTopicTagsMatches();
@@ -90,8 +117,21 @@ export class WriteTopicComponent implements OnInit {
 
                 if (this.selectedTopicTags.length > 0) {
                     this.isTopicTagInputNull = false;
-                    const topic = new Topic('1252', this.topicTitleInput, this.selectedTopicTags, new Date(), '124', this.topicBodyInput);
+                    const topic = new Topic(null, this.topicTitleInput, this.selectedTopicTags, new Date(), '1', this.topicBodyInput);
+                    console.log(topic);
                     this.topicService.addTopic(topic);
+                    this.topicService.topicsFetched.subscribe(
+                        (areTopicsLoaded: boolean) => {
+                            if (areTopicsLoaded) {
+                                this.router.navigate(['/', 'discussions', 'topics', 'general']);
+                            } else {
+                                console.log('something went wrong while saving topic');
+                            }
+                        },
+                        error => {
+                            console.log('something went wrong while saving topic ', error);
+                        }
+                    );
                     // console.log(this.topicTitleInput, this.topicBodyInput, this.selectedTopicTags);
                 } else {
                     this.isTopicTagInputNull = true;

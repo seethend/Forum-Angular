@@ -12,7 +12,7 @@
 <ul class="selected-topic-tags-list">
     <li *ngFor="let selectedCurrentTag of selectedTopicTags" 
         class="selected-topic-tags-item">
-            {{selectedCurrentTag}} 
+            {{selectedCurrentTag.typeName}} 
         <a class="delete-selected-topic-tags" (click)="deleteSelectedTag(selectedCurrentTag)">&times;</a>
     </li>
 </ul>
@@ -21,6 +21,7 @@
         type="text"
         (keydown)="showAllTopicTagsMatches()" 
         [(ngModel)]="topicTagInput" >
+<button class="btn btn-primary add-topic" (click)="addTopicTag()">+</button>
 
 <ul class="list-group topic-tags-list-group" #topicTagsList>
     <li *ngFor="let topicTag of allTopicTagOptions" 

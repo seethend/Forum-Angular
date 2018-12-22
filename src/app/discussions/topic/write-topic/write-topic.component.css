@@ -24,8 +24,10 @@
 }
 
 #topic-tags{
+    display: inline-block;
+    margin-right: 15px;
     height: 35px;
-    width: 800px;
+    width: 760px;
 }
 
 #btn-post-topic{

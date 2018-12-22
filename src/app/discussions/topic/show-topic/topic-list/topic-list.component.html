@@ -17,11 +17,14 @@
             </div>
         </div>
     </div>
-    <div class="row topic-list-rows">
+    <div *ngIf="isTopicsLoaded" class="row topic-list-rows">
         <div class="col-md-10 col-md-offset-1 topic-list">
             <div class="col-md-12">
                 <app-topic-item *ngFor="let topic of topics" [topic]="topic"></app-topic-item>
             </div>
         </div>
+    </div>
+    <div *ngIf="!isTopicsLoaded">
+        <p>No topics to load</p>
     </div>
 </div>

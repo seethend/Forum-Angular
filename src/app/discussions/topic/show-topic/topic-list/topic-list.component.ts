@@ -12,6 +12,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class TopicListComponent implements OnInit {
 
   topics: Topic[] = [];
+  isTopicsLoaded = false;
   topicTags = new Set<string>();
 
   topicSubscription: Subscription;
@@ -23,11 +24,24 @@ export class TopicListComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.selectedTopicType = params['topic'];
-        this.topics = this.topicService.getAllTopicsByType(this.selectedTopicType);
+        this.topicService.topicsFetched.subscribe(
+            (topicsLoaded: boolean) => {
+                if (topicsLoaded) {
+                    this.isTopicsLoaded = true;
+                    this.topics = this.topicService.getAllTopicsByType(this.selectedTopicType);
+                    this.topicTags = this.topicService.getAllTags(); // gets all tags to populate dropdown
+                } else {
+                    this.isTopicsLoaded = true;
+                    this.topics = [];
+                }
+            }
+        );
+        this.topics = this.topicService.getAllTopicsByType(this.selectedTopicType); // By default general is selected on first visit to page
+        this.topicTags = this.topicService.getAllTags(); // gets all tags to populate dropdown
       }
     );
-    this.topics = this.topicService.getAllTopicsByType(this.selectedTopicType); // By default general is selected on first visit to page
-    this.topicTags = this.topicService.getAllTags(); // gets all tags to populate dropdown
+    // this.topics = this.topicService.getAllTopicsByType(this.selectedTopicType); // By default general is selected on first visit to page
+    // this.topicTags = this.topicService.getAllTags(); // gets all tags to populate dropdown
   }
 
   // redirect the application when user clicks on topic by appending topic id

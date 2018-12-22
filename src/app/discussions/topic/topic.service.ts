@@ -1,50 +1,69 @@
 import { Topic } from './topic.model';
 import { Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AuthenticateService } from '../../authenticate/authenticate.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+@Injectable()
 export class TopicService {
-    topics: Topic[] = [
-        new Topic('121', 'General Analog Clock Example to ui Example - help', ['general'], new Date(), '154', `
-        I was interested in making a type of world display in ui. Of course a digital version not so challenging esp.
-        with the new update method for custom views. I statered butchering omz's analog Example to get it to draw inside
-         a custom ui.View class. I just don't understand the math well enough. I know basic for some, just not me. I am just
-         guessing at the transformations I have to do. One thing I also should have done was use an ImageContext, I was getting to that.
-        Anyway, I thought maybe a member here a little bored on a Sunday with a few mins :) might be interested in doing the
-        conversion properly. Maybe add a few properties for some of the colours/fonts etc...
-        I think if it can be written nice and clean to PEP8 @omz might consider adding it to his examples as it would show the use
-        of the new update method, imagecontexts, custom drawing.
-        Besides that we get a neat Analog Clock class we can use. Anyway, was just an idea`),
-        new Topic('123', 'O2 Analog Clock Example to ui Example - help', ['option2'], new Date(), '154', `I was interested in making a
-        type of world display in ui. Of course a digital version not so challenging esp. with the new update method for custom views.
-        I statered butchering omz's analog Example to get it to draw inside a custom ui.View class. I just don't understand the math
-         well enough. I know basic for some, just not me. I am just guessing at the transformations I have to do. One thing I also
-          should have done was use an ImageContext, I was getting to that.
-        Anyway, I thought maybe a member here a little bored on a Sunday with a few mins :) might be interested in doing the
-         conversion properly. Maybe add a few properties for some of the colours/fonts etc...
-        I think if it can be written nice and clean to PEP8 @omz might consider adding it to his examples as it would show the
-         use of the new update method, imagecontexts, custom drawing.
-        Besides that we get a neat Analog Clock class we can use. Anyway, was just an idea`),
-    ];
+
+    constructor(private http: HttpClient, private authService: AuthenticateService) {}
+
+    topicsAPI = 'v1/secured/topics/';
+
+    topics: Topic[] = [];
 
     singleTopic: Topic;
     topicsByType: Topic[] = []; // Stores topic by type
-    topicAdded = new Subject<Topic[]>(); // Subject fires when a new topic is added
+
+    topicsFetched = new Subject<boolean>();
+
+    isTopicsLoaded = false;
 
 
     // Gets all the topics
     getAllTopics() {
-        return this.topics.slice();
+        // return this.topics.slice();
+        const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
+        this.http.get(this.topicsAPI + 'all', {headers: httpHeaders}).subscribe(
+            (topics: Topic[]) => {
+                this.topics = topics;
+                this.topicsFetched.next(true);
+                this.isTopicsLoaded = true;
+            },
+            error => {
+                console.log(error);
+                this.topicsFetched.next(false);
+                this.isTopicsLoaded = true;
+                this.authService.logout();
+            }
+        );
     }
 
     // Adds new topic to all topics list
     addTopic(topic: Topic) {
-        this.topics.push(topic);
-        this.topicAdded.next(this.topics.slice());
+        // this.topics.push(topic);
+        topic.topicByUserId = this.authService.getLoggeduser().username;
+        console.log(topic);
+        const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
+
+        this.http.post(this.topicsAPI + 'save', topic, {headers: httpHeaders}).subscribe(
+            (gotTopic: Topic) => {
+                alert('posted topic with id ' + gotTopic.topicId);
+                this.isTopicsLoaded = false;
+                this.getAllTopics();
+            },
+            error => {
+                console.log(error);
+                this.authService.logout();
+            }
+        );
     }
 
     // Returns single topic based on Id
     getTopicById(topicId: string) {
         for (const topic of this.topics) {
-            if (topic.topicId === topicId) {
+            if (topic.topicId.toString() === topicId) {
                 this.singleTopic = topic;
             }
         }
@@ -55,8 +74,10 @@ export class TopicService {
     getAllTopicsByType(topicType: string) {
       this.topicsByType = [];
       for (const topic of this.topics) {
-            if  (topic.topicType.indexOf(topicType) >= 0) {
-                this.topicsByType.push(topic);
+            for (const type of topic.topicType) {
+                if (type.typeName === topicType) {
+                    this.topicsByType.push(topic);
+                }
             }
         }
         return this.topicsByType.slice();
@@ -68,7 +89,7 @@ export class TopicService {
         const tagsList = new Set<string>();
         for (const topic of this.topics) {
             for (const type of topic.topicType) {
-                tagsList.add(type);
+                tagsList.add(type.typeName);
             }
         }
         return tagsList;
