@@ -1,5 +1,5 @@
 .list-group-item{
-    height: 125px;
+    height: 130px;
     background: transparent;
     color: #adadad;
     padding: 10px 60px 40px 40px;
@@ -10,7 +10,9 @@
 }
 
 .list-group-item hr{
-    border: 1px solid #464646;
+    border: 1px solid #464646;    
+    margin-top: 45px;    
+    margin-bottom: 20px;
 }
 
 .user-name{
