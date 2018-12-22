@@ -1,0 +1,11 @@
+<div *ngIf="isPostsLoaded" class="user-posts-container">
+    <div *ngFor="let post of usersPosts" class="posts-div">
+        <p class="post-user">{{post.postedByUserId}}</p>
+        <p class="post-time">{{post.postCreatedOn}}</p>
+        <hr class="post-hr">
+        <p class="post-msg">{{post.postDetails}}</p>
+    </div>
+</div>
+<div *ngIf="!isPostsLoaded">
+    <p>No Posts to Load</p>
+</div>

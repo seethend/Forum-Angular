@@ -1,0 +1,41 @@
+.user-posts-container{
+    margin-top: 20px;
+}
+
+.posts-div{
+    width: 90%;
+    background: white;
+    padding: 20px 50px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px grey;
+}
+
+.post-user{
+    font-size: 20px;
+    font-weight: 900;
+    color: #365899;
+    margin: 0px;
+}
+
+.post-time{
+    font-size: 12px;
+    font-weight: 400;
+    font-family: monospace;
+    margin-left: 1px;
+    color: slategrey;
+}
+
+.post-hr{
+    margin-bottom: 30px;
+    border-top: 1px #cacaca solid;
+    margin-left: -50px;
+    margin-right: -50px;
+}
+
+.post-msg{
+font-size: 20px;
+    padding: 5px 15px;
+    font-weight: 500;
+    color: black;
+}

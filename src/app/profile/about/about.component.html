@@ -1,0 +1,24 @@
+<div *ngIf="loggedUser != null" class="user-details-div">
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td class="all-names">Name</td>
+                <td class="all-names">{{ loggedUser.last_name }}  {{ loggedUser.first_name }}</td>
+            </tr>
+            <tr>
+                <td class="all-names">Email</td>
+                <td class="all-names">{{ loggedUser.email }}</td>
+            </tr>
+            <tr>
+                <td class="all-names">Active</td>
+                <td class="all-names">{{ loggedUser.active }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div *ngIf="loggedUser == null">
+    <p>No User Logged In</p>
+</div>

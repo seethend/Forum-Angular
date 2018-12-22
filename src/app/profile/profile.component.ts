@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+    selectedBlockName = '';
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    selectedBlock(block: string) {
+        this.selectedBlockName = block;
+        console.log(this.selectedBlockName);
+    }
 }

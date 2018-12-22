@@ -1,3 +1,30 @@
-<p>
-  profile works!
-</p>
+<div class="contianer">
+    <div id="wall-paper"></div>
+    <div id="profile-div">
+        <div id="profile-img-div">
+            <img id="profile-img" src="assets/images/seeth.jpg">
+        </div>
+        <p id="user-name">D Seethend Reddy</p>
+        <p id="user-bio">Any Bio</p>
+        <div class="profile-blocks" [ngClass]="{'selected-block' : selectedBlockName === 'posts'}" id="profile-posts" [routerLink]="['posts']" (click)="selectedBlock('posts')">
+            <img class="profile-blocks-img" src="assets/images/logo2.jpg">
+            <p class="profile-block-name">Posts</p>
+        </div>
+        <div class="profile-blocks" [ngClass]="{'selected-block' : selectedBlockName === 'about'}" id="profile-about" [routerLink]="['about']" (click)="selectedBlock('about')">
+            <img class="profile-blocks-img" src="assets/images/logo2.jpg">
+            <p class="profile-block-name">About</p>
+        </div>
+        <div class="profile-blocks" [ngClass]="{'selected-block' : selectedBlockName === 'friends'}" id="profile-friends" [routerLink]="['friends']" (click)="selectedBlock('friends')">
+            <img class="profile-blocks-img" src="assets/images/logo2.jpg">
+            <p class="profile-block-name">Friends</p>
+        </div>
+        <div class="profile-blocks" [ngClass]="{'selected-block' : selectedBlockName === 'photos'}" id="profile-photos" [routerLink]="['photos']" (click)="selectedBlock('photos')">
+            <img class="profile-blocks-img" src="assets/images/logo2.jpg">
+            <p class="profile-block-name">Photos</p>
+        </div>
+        
+        <div id="profile-sub-div">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
