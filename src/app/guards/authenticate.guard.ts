@@ -11,13 +11,13 @@ export class AuthenticateGuard implements CanActivate, CanActivateChild {
   // check whether user is logged in then redirects to request url or else redirects to login
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log('checking is user logged in before going to ', state.url);
-    // if (this.authService.isUserLoggedIn) {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['/', 'auth', 'login']);
-    //   return false;
-    // }
-    return true;
+    if (this.authService.isUserLoggedIn) {
+      return true;
+    } else {
+      this.router.navigate(['/', 'auth', 'login']);
+      return false;
+    }
+    // return true;
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

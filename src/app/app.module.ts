@@ -33,6 +33,11 @@ import { TopicService } from './discussions/topic/topic.service';
 import {AuthenticateService} from './authenticate/authenticate.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthenticateGuard} from './guards/authenticate.guard';
+import { AboutComponent } from './profile/about/about.component';
+import { FriendsComponent } from './profile/friends/friends.component';
+import { PhotosComponent } from './profile/photos/photos.component';
+import { ProfilePostsComponent } from './profile/profile-posts/profile-posts.component';
+import { ProfileService } from './profile/profile.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,11 @@ import {AuthenticateGuard} from './guards/authenticate.guard';
     ShowTopicComponent,
     WriteTopicComponent,
     TopicListComponent,
-    TopicItemComponent
+    TopicItemComponent,
+    AboutComponent,
+    FriendsComponent,
+    PhotosComponent,
+    ProfilePostsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +77,7 @@ import {AuthenticateGuard} from './guards/authenticate.guard';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthenticateService, AuthenticateGuard, PostServices, TopicService],
+  providers: [AuthenticateService, AuthenticateGuard, PostServices, TopicService, ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

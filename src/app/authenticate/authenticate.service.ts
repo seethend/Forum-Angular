@@ -48,6 +48,11 @@ export class AuthenticateService {
     }
   }
 
+  // Returns current logged in User details
+  getLoggeduser() {
+      return this.loggedInUser;
+  }
+
   // Sets all values to default and notifies application that user is logged out when something unexpected happends
   logout() {
     this.loginUserSubject.next(false);

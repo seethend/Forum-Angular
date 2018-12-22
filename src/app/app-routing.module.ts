@@ -12,6 +12,11 @@ import { TopicDetailsComponent } from './discussions/topic/topic-details/topic-d
 import { TopicComponent } from './discussions/topic/topic.component';
 import {TopicListComponent} from './discussions/topic/show-topic/topic-list/topic-list.component';
 import {AuthenticateGuard} from './guards/authenticate.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './profile/about/about.component';
+import { ProfilePostsComponent } from './profile/profile-posts/profile-posts.component';
+import { FriendsComponent } from './profile/friends/friends.component';
+import { PhotosComponent } from './profile/photos/photos.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'auth/login'},
@@ -26,7 +31,13 @@ const appRoutes: Routes = [
           {path: ':topic', component: TopicListComponent}
         ]}
     ]}
-  ]},
+  ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]},
+  {path: 'profile', component: ProfileComponent, children: [
+        {path: 'posts', component: ProfilePostsComponent},
+        {path: 'about', component: AboutComponent},
+        {path: 'friends', component: FriendsComponent},
+        {path: 'photos', component: PhotosComponent}
+    ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]},
   {path: 'auth', component: AuthenticateComponent, children: [
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent}
