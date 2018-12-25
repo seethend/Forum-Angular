@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostServices } from '../posts.service';
 import { Post } from '../posts.model';
 import { AuthenticateService } from '../../../authenticate/authenticate.service';

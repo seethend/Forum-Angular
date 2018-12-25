@@ -13,6 +13,11 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
     }
 
+    /**
+     *
+     * Apply .selected-block CSS for the selected block
+     *
+     */
     selectedBlock(block: string) {
         this.selectedBlockName = block;
         console.log(this.selectedBlockName);

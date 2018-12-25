@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit {
     constructor(private profileService: ProfileService) { }
 
     ngOnInit() {
-        this.loggedUser = this.profileService.getAllUserDetails();
+        this.loggedUser = this.profileService.getAllUserDetails(); // Gets loggedIn user details to display
     }
 
 

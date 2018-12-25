@@ -10,12 +10,14 @@ export class ProfileService {
 
     constructor(private http: HttpClient, private authService: AuthenticateService) {}
 
-    postsApi = 'v1/secured/posts/';
-    userPosts: Post[] = [];
-    isUserPostsLoaded = new Subject<boolean>();
+    postsApi = 'v1/secured/posts/'; // Posts API Url
+    userPosts: Post[] = []; // Stores all posts by user
+    isUserPostsLoaded = new Subject<boolean>(); // To fire when posts are loaded
 
 
     loggedInUser: User = null;
+
+    // API call to get all users posts
     getAllUserPosts(): any {
         const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
         this.http.get(this.postsApi + 'allusers', {headers: httpHeaders}).subscribe(
@@ -32,6 +34,7 @@ export class ProfileService {
         );
     }
 
+    // Gets user model from authServices
     getAllUserDetails(): any {
         this.loggedInUser = this.authService.getLoggeduser();
         return this.loggedInUser;

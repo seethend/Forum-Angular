@@ -11,10 +11,11 @@ export class ProfilePostsComponent implements OnInit {
 
   constructor(private profileService: ProfileService) { }
 
-  usersPosts: Post[] = [];
+  usersPosts: Post[] = []; // Stores posts models made by loggedIn user
   isPostsLoaded = false;
 
   ngOnInit() {
+      // Fires when user posts are loaded
     this.profileService.isUserPostsLoaded.subscribe(
         (postsLoaded: boolean) => {
             if (postsLoaded) {
@@ -26,7 +27,7 @@ export class ProfilePostsComponent implements OnInit {
             }
         }
     );
-    this.profileService.getAllUserPosts();
+    this.profileService.getAllUserPosts(); // Call API using profileService for user posts
   }
 
 }
