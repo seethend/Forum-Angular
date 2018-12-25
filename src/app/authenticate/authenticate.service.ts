@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import { User } from '../user-details/user.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticateService {
@@ -16,7 +17,7 @@ export class AuthenticateService {
 
   loggedInUser: User; // Stores user object on successfull login
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Posts credentials object to API
   login(credentials: { username: string; password: string }) {
@@ -59,5 +60,6 @@ export class AuthenticateService {
     this.appHeaderUserSubject.next(false);
     this.isUserLoggedIn = false;
     this.token = null;
+    this.router.navigate(['auth', 'login']);
   }
 }
