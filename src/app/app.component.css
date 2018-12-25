@@ -15,13 +15,20 @@
     position: relative;
     height: 550px;
     margin-top: 5%;
+    margin-left: 200px;
     border-radius: 20px;
     overflow: auto;
+    width: 85%;
 }
 
 @media only screen and (max-width: 1050px) {
     .top-header {
       width: 100%;
+    }
+
+    .dynamic-window{
+        width: 85%;
+        margin-left: 10px;
     }
 
     .col-md-offset-2 {
