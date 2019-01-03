@@ -1,21 +1,69 @@
-<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+    <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
-<!-- Modal -->
+    <!-- Modal -->
 
-<div class="modal-dialog">
+    <div class="modal-dialog">
 
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" [routerLink] = "['/']">&times;</button>
-      <h4 class="modal-title">Signup</h4>
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" [routerLink] = "['/']">&times;</button>
+        <h4 class="modal-title">Signup</h4>
+        </div>
+        <div class="modal-body">
+            
+
+        <div class="signup__container">
+            <div class="container__child signup__form">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="username">Username*</label>
+                        <input class="my-form-control" type="text" name="username" id="username" placeholder="jamesbond007" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Email*</label>
+                        <input class="my-form-control" type="text" name="email" id="email" placeholder="james.bond007@gmail.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Last Name*</label>
+                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">First Name*</label>
+                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Password*</label>
+                        <input class="my-form-control" type="password" name="password" id="password" placeholder="********" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Confirm Password*</label>
+                        <input class="my-form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" required />
+                    </div>
+                    <div class="m-t-lg">
+                        <ul class="list-inline">
+                            <li>
+                                <input class="btn btn--form" type="submit" value="Register" />
+                            </li>
+                            <li>
+                                <a class="signin__link" [routerLink] = "['/', 'auth', 'login']">I am already a member</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>  
+            </div>
+        </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" [routerLink] = "['/']">Close</button>
+        </div>
     </div>
-    <div class="modal-body">
-      
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal" [routerLink] = "['/']">Close</button>
-    </div>
-  </div>
 
-</div>
+    </div>
