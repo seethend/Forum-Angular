@@ -20,3 +20,10 @@
 .btn:focus {
   outline: none;
 }
+
+.signup__link{
+    font-size: 1rem;
+    font-weight: 900;
+    text-decoration: underline;
+    color: #337ab7;
+}
