@@ -11,12 +11,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right" *ngIf="!isUserLogged">
         <li>
-            <a href="#" [routerLink] = "['auth', 'signup']" class="right-nav-icons">
+            <a href="#" [routerLink] = "['/', 'auth', 'signup']" class="right-nav-icons">
                 <span class="glyphicon glyphicon-user"></span> Sign Up
             </a>
         </li>
         <li>
-            <a href="#" [routerLink] = "['auth', 'login']" class="right-nav-icons">
+            <a href="#" [routerLink] = "['/', 'auth', 'login']" class="right-nav-icons">
                 <span class="glyphicon glyphicon-log-in"></span> Login
             </a>
         </li>
