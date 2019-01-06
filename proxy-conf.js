@@ -10,6 +10,12 @@ const PROXY_CONFIG = {
       "secure": false,
       "changeOrigin": true,
       "logLevel": "debug"
+  },
+  "/v1/jsonsignup" : {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }
 
