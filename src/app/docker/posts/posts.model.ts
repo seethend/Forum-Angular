@@ -3,5 +3,6 @@ export class Post {
                 public postedByUserId: string,
                 public postDetails: string,
                 public postCreatedOn: number,
-                public postUpdatedOn: number) {}
+                public postUpdatedOn: number,
+                public hasImages: boolean) {}
 }

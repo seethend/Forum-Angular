@@ -32,12 +32,13 @@ export class PostListComponent implements OnInit {
     // Works when a new post added to API. Refresh the posts array locally
     this.postAddedSubscription = this.postServices.postAdded.subscribe(
       (posts: Post[]) => {
+        // console.log("Its fired");
         this.posts = posts;
       }
     );
 
     // Call service to fetch posts from API
-    this.postServices.fetchPosts();
+    this.postServices.fetchPosts('GET_ALL_POSTS');
   }
 
 }

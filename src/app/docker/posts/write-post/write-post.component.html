@@ -1,7 +1,11 @@
 <textarea cols="30" rows="10" placeholder="Write something....!!!" class="post-textarea" [(ngModel)]="postMessage"></textarea>
+<p id="loaded-img-name" *ngIf="fileName">{{fileName}} <span id="del-post-img" (click)="deleteFiles()">&times;</span></p>
 <div class="post-send">
   <ul>
-    <li><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;Add Photo</li>
+    <li><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;
+      <label for="post-img">Add Photo</label>
+      <input type="file" id="post-img" name="file" (change)="getFiles($event)">
+    </li>
     <li><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Link Address</li>
     <li><img src="assets/images/post-send2.png" class="post-send-img" (click)="addPost()"></li>
   </ul>

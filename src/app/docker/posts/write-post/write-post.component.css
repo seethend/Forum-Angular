@@ -12,12 +12,39 @@
     margin-bottom: -5px;
 }
 
+#loaded-img-name{
+    color: white;
+    background: green;
+    width: max-content;
+    padding: 5px 0px 5px 25px;
+    border-radius: 20px;
+}
+
+#del-post-img{
+    cursor: pointer;
+    color: black;
+    background: white;
+    font-size: 15px;
+    padding: 0px 3px;
+    margin-left: 30px;
+    margin-right: 15px;
+    border-radius: 20px;
+}
+
 .post-send {
     width: 100%;
     height: 50px;
     background: #1e2746;
     border-radius: 0px 0px 10px 10px;
     padding: 15px 1px;
+}
+
+input[type=file] {
+    display: none;
+}
+
+label{
+    cursor: pointer;
 }
 
 ul{

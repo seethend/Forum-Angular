@@ -16,6 +16,11 @@ export class WritePostComponent implements OnInit {
 
     loggedInUser: string; // Stored logged in user name
 
+    files: FileList;
+    filestring: string;
+    fileName: string = '';
+    hasImage = false;
+
     ngOnInit() {}
 
 
@@ -28,10 +33,37 @@ export class WritePostComponent implements OnInit {
             this.loggedInUser,
             this.postMessage,
             new Date().getTime(),
-            new Date().getTime()
-            )
+            new Date().getTime(),
+            this.hasImage
+            ), this.fileName, this.filestring
         );
         this.postMessage = '';
+        this.deleteFiles();
     }
+
+    getFiles(event) {
+        console.log(event);
+        this.files = event.target.files;
+        // tslint:disable-next-line:prefer-const
+        let reader = new FileReader();
+        reader.onload = this._handleReaderLoaded.bind(this);
+        reader.readAsBinaryString(this.files[0]);
+        this.fileName = this.files[0].name;
+        this.hasImage = true;
+        console.log(this.files[0].name);
+    }
+
+    _handleReaderLoaded(readerEvt) {
+        const binaryString = readerEvt.target.result;
+        this.filestring = btoa(binaryString);  // Converting binary string data.
+        // console.log(this.filestring);
+   }
+
+   deleteFiles() {
+    this.files = null;
+    this.filestring = null;
+    this.fileName = null;
+    this.hasImage = false;
+   }
 
 }
