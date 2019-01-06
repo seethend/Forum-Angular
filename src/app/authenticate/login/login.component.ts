@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   isUsernameNull = false; // false if username field is null or else true
   isPasswordNull = false; // false if password field is null or else true
-  credentials = { username: '', password: '' }; // Credential Object used for sending to login
+  credentials = { username: 'seeth', password: 'seeth' }; // Credential Object used for sending to login
 
   constructor(private authService: AuthenticateService, private router: Router) { }
 

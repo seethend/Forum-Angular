@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {RequestOptions} from '@angular/http';
 import {Subject} from 'rxjs';
 import { User } from '../user-details/user.model';
 import { Router } from '@angular/router';
@@ -22,6 +23,10 @@ export class AuthenticateService {
   // Posts credentials object to API
   login(credentials: { username: string; password: string }) {
     return this.http.post('login', credentials, {responseType: 'text'});
+  }
+
+  saveUser(user_signup_details: {username: string, email: string, last_name: string, first_name: string, password: string, passwordrepeat: string}){
+    return this.http.post('v1/jsonsignup', user_signup_details, {responseType: 'text'});
   }
 
   // Checks whether user is logged in by accessing secured resource API URL

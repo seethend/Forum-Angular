@@ -15,30 +15,30 @@
 
         <div class="signup__container">
             <div class="container__child signup__form">
-                <form action="#">
+                <form method="post" (submit)="submitForm()">
                     <div class="form-group">
                         <label for="username">Username*</label>
-                        <input class="my-form-control" type="text" name="username" id="username" placeholder="jamesbond007" required />
+                        <input class="my-form-control" type="text" name="username" id="username" placeholder="jamesbond007" [(ngModel)]="user_signup_details.username" required />
                     </div>
                     <div class="form-group">
-                        <label for="username">Email*</label>
-                        <input class="my-form-control" type="text" name="email" id="email" placeholder="james.bond007@gmail.com" required />
+                        <label for="email">Email*</label>
+                        <input class="my-form-control" type="text" name="email" id="email" placeholder="james.bond007@gmail.com" [(ngModel)]="user_signup_details.email" required />
                     </div>
                     <div class="form-group">
-                        <label for="username">Last Name*</label>
-                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" required />
+                        <label for="lastname">Last Name*</label>
+                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" [(ngModel)]="user_signup_details.last_name" required />
                     </div>
                     <div class="form-group">
-                        <label for="username">First Name*</label>
-                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" required />
+                        <label for="firstname">First Name*</label>
+                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" [(ngModel)]="user_signup_details.first_name" required />
                     </div>
                     <div class="form-group">
-                        <label for="username">Password*</label>
-                        <input class="my-form-control" type="password" name="password" id="password" placeholder="********" required />
+                        <label for="password">Password*</label>
+                        <input class="my-form-control" type="password" name="password" id="password" placeholder="********" [(ngModel)]="user_signup_details.password" required />
                     </div>
                     <div class="form-group">
-                        <label for="username">Confirm Password*</label>
-                        <input class="my-form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" required />
+                        <label for="passwordRepeat">Confirm Password*</label>
+                        <input class="my-form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" [(ngModel)]="user_signup_details.passwordrepeat" required />
                     </div>
                     <div class="m-t-lg">
                         <ul class="list-inline">
