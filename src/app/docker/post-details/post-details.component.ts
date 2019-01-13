@@ -44,4 +44,9 @@ export class PostDetailsComponent implements OnInit {
     );
   }
 
+  getImagePath() {
+    console.log("posts/post_" + this.post.postId + ".png")
+    return "posts/post_" + this.post.postId + ".png";
+  }
+
 }

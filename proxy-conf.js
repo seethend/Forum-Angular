@@ -16,7 +16,14 @@ const PROXY_CONFIG = {
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
+  },
+  "/posts/*" : {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
+
 }
 
 module.exports = PROXY_CONFIG;
