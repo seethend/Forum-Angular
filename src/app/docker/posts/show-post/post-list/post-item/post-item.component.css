@@ -10,9 +10,9 @@
 }
 
 .list-group-item hr{
-    border: 1px solid #464646;    
-    margin-top: 45px;    
-    margin-bottom: 20px;
+    border: 1px solid #464646;
+    margin-top: 45px;
+    margin-bottom: 10px;
 }
 
 .user-name{
@@ -26,9 +26,16 @@
 }
 
 .post-teaser{
-    padding: 5px 40px;
+    padding: 5px 35px;
 }
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-  border: 1px solid #464646;
+  z-index: 2;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+.list-group-item:hover{
+  background: #1a2036;
 }

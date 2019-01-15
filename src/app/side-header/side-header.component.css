@@ -25,14 +25,19 @@ ul li{
     cursor: pointer;
     margin-bottom: 25px;
     outline: none;
+    margin-right: 16px;
+    border-radius: 3px;
 }
 
 .li-icon{
   width: 14px;
 }
 
-ul li:hover{
-    color: white;
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  z-index: 2;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
 }
 
 @media only screen and (max-width: 1050px) {

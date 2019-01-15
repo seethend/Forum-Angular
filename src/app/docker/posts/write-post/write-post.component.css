@@ -1,15 +1,15 @@
 .post-textarea{
-    width: 100%;
-    height: 150px;
-    background: #1e2642;
-    border-radius: 10px 10px 0px 0px;
-    padding: 50px 60px 50px 60px;
-    font-size: 20px;
-    color: white;
-    border: none;
-    resize: none;
-    outline: none;
-    margin-bottom: -5px;
+  width: 100%;
+  height: 50px;
+  background: #1e2642;
+  border-radius: 10px 10px 0px 0px;
+  padding: 10px 20px 0 40px;
+  font-size: 20px;
+  color: white;
+  border: none;
+  resize: none;
+  outline: none;
+  margin-bottom: -5px;
 }
 
 #loaded-img-name{
