@@ -21,7 +21,13 @@ export class WritePostComponent implements OnInit {
     fileName: string = '';
     hasImage = false;
 
+    popupCheck = false;
+
     ngOnInit() {}
+
+    popup() {
+        this.popupCheck = true;
+    }
 
 
     // Adds post by creating and sending a post object to postService

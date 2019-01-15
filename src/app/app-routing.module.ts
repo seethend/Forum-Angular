@@ -17,10 +17,12 @@ import { AboutComponent } from './profile/about/about.component';
 import { ProfilePostsComponent } from './profile/profile-posts/profile-posts.component';
 import { FriendsComponent } from './profile/friends/friends.component';
 import { PhotosComponent } from './profile/photos/photos.component';
+import { WritePostComponent } from './docker/posts/write-post/write-post.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'auth/login'},
   {path: 'posts', component: DockerComponent, children: [
+    {path: 'createpost', component: WritePostComponent},
     {path: ':id', component: PostDetailsComponent}
   ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]},
   {path: 'discussions', component: DiscussionsComponent, children: [

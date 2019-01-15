@@ -1,15 +1,23 @@
+#post-create{
+    width: 100%;
+    height: 70px;
+    background: #1e2746;
+    border-radius: 10px 10px 0px 0px;
+    padding: 16px 20px;
+    color: #a0adad;
+    margin-bottom: 5px;
+}
+
 .post-textarea{
-  width: 100%;
-  height: 50px;
-  background: #1e2642;
-  border-radius: 10px 10px 0px 0px;
-  padding: 10px 20px 0 40px;
-  font-size: 20px;
-  color: white;
-  border: none;
-  resize: none;
-  outline: none;
-  margin-bottom: -5px;
+    width: 100%;
+    height: 250px;
+    background: #1e2642;
+    padding: 60px 60px;
+    font-size: 25px;
+    color: white;
+    border: none;
+    resize: none;
+    outline: none;
 }
 
 #loaded-img-name{
@@ -33,10 +41,10 @@
 
 .post-send {
     width: 100%;
-    height: 50px;
+    height: 55px;
     background: #1e2746;
     border-radius: 0px 0px 10px 10px;
-    padding: 15px 1px;
+    padding: 20px 1px;
 }
 
 input[type=file] {

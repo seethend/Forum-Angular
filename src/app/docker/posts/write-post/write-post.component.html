@@ -1,4 +1,5 @@
-<textarea cols="30" rows="10" placeholder="Write something....!!!" class="post-textarea" [(ngModel)]="postMessage"></textarea>
+<h1 id="post-create">Create Post</h1>
+<textarea cols="30" maxlength="100" rows="10" placeholder="Write something....!!!" class="post-textarea" [(ngModel)]="postMessage" (click)="popup()"></textarea>
 <p id="loaded-img-name" *ngIf="fileName">{{fileName}} <span id="del-post-img" (click)="deleteFiles()">&times;</span></p>
 <div class="post-send">
   <ul>
