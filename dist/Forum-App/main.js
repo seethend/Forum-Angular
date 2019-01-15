@@ -132,6 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_profile_posts_profile_posts_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./profile/profile-posts/profile-posts.component */ "./src/app/profile/profile-posts/profile-posts.component.ts");
 /* harmony import */ var _profile_friends_friends_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./profile/friends/friends.component */ "./src/app/profile/friends/friends.component.ts");
 /* harmony import */ var _profile_photos_photos_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./profile/photos/photos.component */ "./src/app/profile/photos/photos.component.ts");
+/* harmony import */ var _docker_posts_write_post_write_post_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./docker/posts/write-post/write-post.component */ "./src/app/docker/posts/write-post/write-post.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -157,9 +158,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 const appRoutes = [
     { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
     { path: 'posts', component: _docker_docker_component__WEBPACK_IMPORTED_MODULE_2__["DockerComponent"], children: [
+            { path: 'createpost', component: _docker_posts_write_post_write_post_component__WEBPACK_IMPORTED_MODULE_19__["WritePostComponent"] },
             { path: ':id', component: _docker_post_details_post_details_component__WEBPACK_IMPORTED_MODULE_3__["PostDetailsComponent"] }
         ], canActivate: [_guards_authenticate_guard__WEBPACK_IMPORTED_MODULE_13__["AuthenticateGuard"]], canActivateChild: [_guards_authenticate_guard__WEBPACK_IMPORTED_MODULE_13__["AuthenticateGuard"]] },
     { path: 'discussions', component: _discussions_discussions_component__WEBPACK_IMPORTED_MODULE_7__["DiscussionsComponent"], children: [
@@ -1564,7 +1567,7 @@ DockerComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".post-details-tab{\n    background: #1e2642;\n    border-radius: 10px;\n    padding: 20px 40px;\n    height: 370px;\n    overflow: hidden;\n    max-height: 515px;\n}\n\nh3 {\n    color: #adadad;\n}\n\np.lead {\n  color: #adadad;\n  padding: 10px 20px;\n}\n\n.post-details-user-img{\n  width: 50px;\n  height: 50px;\n  border-radius: 25px;\n  margin-right: 10px;\n}\n\n.post-details-tab:hover {\n  overflow-y: scroll;\n}\n\nli{\n  display: inline;\n  color: #9e9e9e;\n  margin-right: 80px;\n  cursor: pointer;\n  padding: 10px 40px;\n  border-radius: 5px;\n}\n\nli:hover{\n    background: #dcdcdc0a;\n}\n\n.like-icon {\n    margin-right: 5px;\n    margin-bottom: 7px;\n}\n\n.comment-icon {\n    margin-right: 5px;\n}\n"
+module.exports = ".post-details-tab{\n    background: #1e2642;\n    border-radius: 10px;\n    padding: 20px 40px;\n    height: 515px;\n    margin-bottom: 0px;\n    overflow: hidden;\n}\n\nh3 {\n    color: #adadad;\n}\n\np.lead {\n  color: #adadad;\n  padding: 10px 20px;\n}\n\n.post-details-user-img{\n  width: 50px;\n  height: 50px;\n  border-radius: 25px;\n  margin-right: 10px;\n}\n\n.post-details-tab:hover {\n  overflow-y: scroll;\n}\n\n#post-img{\n    margin-left: 20px;\n    margin-bottom: 20px;\n    width: auto;\n    height: 250px;\n}\n\nli{\n  display: inline;\n  color: #9e9e9e;\n  margin-right: 80px;\n  cursor: pointer;\n  padding: 10px 40px;\n  border-radius: 5px;\n}\n\nli:hover{\n    background: #dcdcdc0a;\n}\n\n.like-icon {\n    margin-right: 5px;\n    margin-bottom: 7px;\n}\n\n.comment-icon {\n    margin-right: 5px;\n}\n"
 
 /***/ }),
 
@@ -1575,7 +1578,7 @@ module.exports = ".post-details-tab{\n    background: #1e2642;\n    border-radiu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"postLoaded\" class=\"jumbotron post-details-tab\">\n  <div class=\"pull-left\">\n    <img class=\"post-details-user-img\" src=\"assets/images/seeth.jpg\">\n  </div>\n  <h3 class=\"display-4\">{{ post.postedByUserId }}</h3>\n  <hr class=\"my-4\">\n  <p class=\"lead\">\n    {{ post.postDetails }}\n  </p>\n  <p>\n    <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n  </p>\n  <hr>\n  <ul>\n    <li><img class=\"like-icon\" src=\"https://png.icons8.com/ios/24/B9B9B9/facebook-like.png\">Like</li>\n    <li><img class=\"comment-icon\" src=\"https://png.icons8.com/windows/24/B9B9B9/topic.png\">Comment</li>\n  </ul>\n</div>\n"
+module.exports = "<div *ngIf=\"postLoaded\" class=\"jumbotron post-details-tab\">\n  <div class=\"pull-left\">\n    <img class=\"post-details-user-img\" src=\"assets/images/seeth.jpg\">\n  </div>\n  <h3 class=\"display-4\">{{ post.postedByUserId }}</h3>\n  <hr class=\"my-4\">\n  <p class=\"lead\">\n    {{ post.postDetails }}\n  </p>\n  <div *ngIf=\"post.hasImages\">\n    <img *ngIf=\"post.hasImages\" [src]=\"getImagePath()\" id=\"post-img\" width=\"200px\" height=\"200px\">\n  </div>\n  <p>\n    <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n  </p>\n  <hr>\n  <ul>\n    <li><img class=\"like-icon\" src=\"https://png.icons8.com/ios/24/B9B9B9/facebook-like.png\">Like</li>\n    <li><img class=\"comment-icon\" src=\"https://png.icons8.com/windows/24/B9B9B9/topic.png\">Comment</li>\n  </ul>\n</div>\n"
 
 /***/ }),
 
@@ -1631,6 +1634,10 @@ let PostDetailsComponent = class PostDetailsComponent {
             });
         });
     }
+    getImagePath() {
+        console.log('forum-bucket/posts/post_' + this.post.postId + '.png');
+        return 'forum-bucket/posts/post_' + this.post.postId + '.png';
+    }
 };
 PostDetailsComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1655,7 +1662,7 @@ PostDetailsComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".display-post-textarea{\r\nwidth: 100%;\r\nheight: 50px;\r\nbackground: #1e2642;\r\nborder-radius: 10px 10px 0px 0px;\r\npadding: 10px 20px 0 40px;\r\nfont-size: 20px;\r\ncolor: white;\r\nborder: none;\r\nresize: none;\r\noutline: none;\r\nmargin-bottom: -5px;\r\n}\r\n\r\n.display-post-send {\r\n    width: 100%;\r\n    height: 50px;\r\n    background: #1e2746;\r\n    border-radius: 0px 0px 10px 10px;\r\n    padding: 15px 1px;\r\n}\r\n\r\nlabel{\r\n    cursor: pointer;\r\n}\r\n\r\nul{\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\nli{\r\n    float: left;\r\n    color: #adadad;\r\n    margin-left: 90px;\r\n    cursor: pointer;\r\n}\r\n\r\nli:hover {\r\n    color: white;\r\n}\r\n\r\n.display-post-send-img{\r\n    width: 50px;\r\n    height: 50px;\r\n}\r\n\r\n.write-popup{\r\n    \r\n}"
 
 /***/ }),
 
@@ -1666,7 +1673,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <app-write-post></app-write-post>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <app-show-post></app-show-post>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\" (click)=\"popup()\">\n  <div class=\"col-md-12\">\n    <textarea disabled placeholder=\"Write something....!!!\" class=\"display-post-textarea\"></textarea>\n    <div class=\"display-post-send\">\n      <ul>\n        <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n          <label for=\"display-post-img\">Add Photo</label>\n        </li>\n        <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n        <li><img src=\"assets/images/post-send2.png\" class=\"display-post-send-img\"></li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <app-show-post></app-show-post>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1681,6 +1688,7 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <app-wri
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostsComponent", function() { return PostsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1691,9 +1699,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 let PostsComponent = class PostsComponent {
-    constructor() { }
+    constructor(route, router) {
+        this.route = route;
+        this.router = router;
+    }
     ngOnInit() {
+    }
+    popup() {
+        this.router.navigate(['createpost'], { relativeTo: this.route });
     }
 };
 PostsComponent = __decorate([
@@ -1702,7 +1717,7 @@ PostsComponent = __decorate([
         template: __webpack_require__(/*! ./posts.component.html */ "./src/app/docker/posts/posts.component.html"),
         styles: [__webpack_require__(/*! ./posts.component.css */ "./src/app/docker/posts/posts.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
 ], PostsComponent);
 
 
@@ -1849,7 +1864,7 @@ PostServices = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".list-group-item{\n    height: 130px;\n    background: transparent;\n    color: #adadad;\n    padding: 10px 60px 40px 40px;\n    border: 1px solid #464646;\n    cursor: pointer;\n    border-radius: 5px;\n    outline: none;\n}\n\n.list-group-item hr{\n    border: 1px solid #464646;    \n    margin-top: 45px;    \n    margin-bottom: 20px;\n}\n\n.user-name{\n    display: inline;\n}\n\n.user-img {\n    width: 30px;\n    height: 30px;\n    border-radius: 25px;\n}\n\n.post-teaser{\n    padding: 5px 40px;\n}\n\n.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {\n  border: 1px solid #464646;\n}\n"
+module.exports = ".list-group-item{\n    height: 130px;\n    background: transparent;\n    color: #adadad;\n    padding: 10px 60px 40px 40px;\n    border: 1px solid #464646;\n    cursor: pointer;\n    border-radius: 5px;\n    outline: none;\n}\n\n.list-group-item hr{\n    border: 1px solid #464646;\n    margin-top: 45px;\n    margin-bottom: 10px;\n}\n\n.user-name{\n    display: inline;\n}\n\n.user-img {\n    width: 30px;\n    height: 30px;\n    border-radius: 25px;\n}\n\n.post-teaser{\n    padding: 5px 35px;\n}\n\n.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {\n  z-index: 2;\n  color: #fff;\n  background-color: #337ab7;\n  border-color: #337ab7;\n}\n\n.list-group-item:hover{\n  background: #1a2036;\n}\n"
 
 /***/ }),
 
@@ -1998,7 +2013,7 @@ PostListComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".show-posts{\n    background: #1e2642;\n    height: 300px;\n    width: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    margin-bottom: 20px;\n}\n\n.posts-container{\n    padding-top: 20px;\n}\n\n.show-posts:hover {\n    overflow-y: scroll;\n}\n"
+module.exports = ".show-posts{\n    background: #101833;\n    height: 400px;\n    width: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    margin-bottom: 0;\n}\n\n.posts-container{\n    padding-top: 20px;\n}\n\n.show-posts:hover {\n    overflow-y: scroll;\n}\n"
 
 /***/ }),
 
@@ -2059,7 +2074,7 @@ ShowPostComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".post-textarea{\n    width: 100%;\n    height: 150px;\n    background: #1e2642;\n    border-radius: 10px 10px 0px 0px;\n    padding: 50px 60px 50px 60px;\n    font-size: 20px;\n    color: white;\n    border: none;\n    resize: none;\n    outline: none;\n    margin-bottom: -5px;\n}\n\n#loaded-img-name{\n    color: white;\n    background: green;\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding: 5px 0px 5px 25px;\n    border-radius: 20px;\n}\n\n#del-post-img{\n    cursor: pointer;\n    color: black;\n    background: white;\n    font-size: 15px;\n    padding: 0px 3px;\n    margin-left: 30px;\n    margin-right: 15px;\n    border-radius: 20px;\n}\n\n.post-send {\n    width: 100%;\n    height: 50px;\n    background: #1e2746;\n    border-radius: 0px 0px 10px 10px;\n    padding: 15px 1px;\n}\n\ninput[type=file] {\n    display: none;\n}\n\nlabel{\n    cursor: pointer;\n}\n\nul{\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n}\n\nli{\n    float: left;\n    color: #adadad;\n    margin-left: 90px;\n    cursor: pointer;\n}\n\nli:hover {\n    color: white;\n}\n\n.post-send-img{\n    width: 50px;\n    height: 50px;\n}\n"
+module.exports = "#post-create{\n    width: 100%;\n    height: 70px;\n    background: #1e2746;\n    border-radius: 10px 10px 0px 0px;\n    padding: 16px 20px;\n    color: #a0adad;\n    margin-bottom: 5px;\n}\n\n.post-textarea{\n    width: 100%;\n    height: 250px;\n    background: #1e2642;\n    padding: 60px 60px;\n    font-size: 25px;\n    color: white;\n    border: none;\n    resize: none;\n    outline: none;\n}\n\n#loaded-img-name{\n    color: white;\n    background: green;\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding: 5px 0px 5px 25px;\n    border-radius: 20px;\n}\n\n#del-post-img{\n    cursor: pointer;\n    color: black;\n    background: white;\n    font-size: 15px;\n    padding: 0px 3px;\n    margin-left: 30px;\n    margin-right: 15px;\n    border-radius: 20px;\n}\n\n.post-send {\n    width: 100%;\n    height: 55px;\n    background: #1e2746;\n    border-radius: 0px 0px 10px 10px;\n    padding: 20px 1px;\n}\n\ninput[type=file] {\n    display: none;\n}\n\nlabel{\n    cursor: pointer;\n}\n\nul{\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n}\n\nli{\n    float: left;\n    color: #adadad;\n    margin-left: 90px;\n    cursor: pointer;\n}\n\nli:hover {\n    color: white;\n}\n\n.post-send-img{\n    width: 50px;\n    height: 50px;\n}\n"
 
 /***/ }),
 
@@ -2070,7 +2085,7 @@ module.exports = ".post-textarea{\n    width: 100%;\n    height: 150px;\n    bac
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<textarea cols=\"30\" rows=\"10\" placeholder=\"Write something....!!!\" class=\"post-textarea\" [(ngModel)]=\"postMessage\"></textarea>\n<p id=\"loaded-img-name\" *ngIf=\"fileName\">{{fileName}} <span id=\"del-post-img\" (click)=\"deleteFiles()\">&times;</span></p>\n<div class=\"post-send\">\n  <ul>\n    <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n      <label for=\"post-img\">Add Photo</label>\n      <input type=\"file\" id=\"post-img\" name=\"file\" (change)=\"getFiles($event)\">\n    </li>\n    <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n    <li><img src=\"assets/images/post-send2.png\" class=\"post-send-img\" (click)=\"addPost()\"></li>\n  </ul>\n</div>\n"
+module.exports = "<h1 id=\"post-create\">Create Post</h1>\n<textarea cols=\"30\" maxlength=\"100\" rows=\"10\" placeholder=\"Write something....!!!\" class=\"post-textarea\" [(ngModel)]=\"postMessage\" (click)=\"popup()\"></textarea>\n<p id=\"loaded-img-name\" *ngIf=\"fileName\">{{fileName}} <span id=\"del-post-img\" (click)=\"deleteFiles()\">&times;</span></p>\n<div class=\"post-send\">\n  <ul>\n    <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n      <label for=\"post-img\">Add Photo</label>\n      <input type=\"file\" id=\"post-img\" name=\"file\" (change)=\"getFiles($event)\">\n    </li>\n    <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n    <li><img src=\"assets/images/post-send2.png\" class=\"post-send-img\" (click)=\"addPost()\"></li>\n  </ul>\n</div>"
 
 /***/ }),
 
@@ -2107,8 +2122,12 @@ let WritePostComponent = class WritePostComponent {
         this.authService = authService;
         this.fileName = '';
         this.hasImage = false;
+        this.popupCheck = false;
     }
     ngOnInit() { }
+    popup() {
+        this.popupCheck = true;
+    }
     // Adds post by creating and sending a post object to postService
     addPost() {
         this.loggedInUser = this.authService.loggedInUser.username;
@@ -2838,7 +2857,7 @@ SettingsComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".side-header{\n    height: 100%;\n    background-color: #1e2642;\n    border: none;\n}\n\n.side-header-logo{\n    width: 100px;\n    height: 100px;\n    margin-left: 50px;\n    margin-top: 20px;\n    margin-bottom: 20px;\n    cursor: pointer;\n    border-radius: 50px;\n}\n\n.list-group {\n    padding-left: 15px;\n}\n\nul li{\n    background: transparent;\n    border: none;\n    color: #adadad;\n    cursor: pointer;\n    margin-bottom: 25px;\n    outline: none;\n}\n\n.li-icon{\n  width: 14px;\n}\n\nul li:hover{\n    color: white;\n}\n\n@media only screen and (max-width: 1050px) {\n    .side-header {\n        display: none;\n    }\n}\n"
+module.exports = ".side-header{\n    height: 100%;\n    background-color: #1e2642;\n    border: none;\n}\n\n.side-header-logo{\n    width: 100px;\n    height: 100px;\n    margin-left: 50px;\n    margin-top: 20px;\n    margin-bottom: 20px;\n    cursor: pointer;\n    border-radius: 50px;\n}\n\n.list-group {\n    padding-left: 15px;\n}\n\nul li{\n    background: transparent;\n    border: none;\n    color: #adadad;\n    cursor: pointer;\n    margin-bottom: 25px;\n    outline: none;\n    margin-right: 16px;\n    border-radius: 3px;\n}\n\n.li-icon{\n  width: 14px;\n}\n\n.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {\n  z-index: 2;\n  color: #fff;\n  background-color: #337ab7;\n  border-color: #337ab7;\n}\n\n@media only screen and (max-width: 1050px) {\n    .side-header {\n        display: none;\n    }\n}\n"
 
 /***/ }),
 
