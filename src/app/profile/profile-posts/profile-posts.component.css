@@ -39,3 +39,10 @@ font-size: 20px;
     font-weight: 500;
     color: black;
 }
+
+.post-img{
+  width: 100%;
+  height: auto;
+  border: 1px groove #ffffff;
+  padding: 15px 15px;
+}

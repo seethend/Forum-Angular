@@ -30,4 +30,8 @@ export class ProfilePostsComponent implements OnInit {
     this.profileService.getAllUserPosts(); // Call API using profileService for user posts
   }
 
+  getImagePath(post: Post) {
+      return 'forum-bucket/posts/post_' + post.postId + '.png';
+  }
+
 }

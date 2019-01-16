@@ -4,6 +4,9 @@
         <p class="post-time">{{post.postCreatedOn}}</p>
         <hr class="post-hr">
         <p class="post-msg">{{post.postDetails}}</p>
+        <div *ngIf="post.hasImages">
+          <img class="post-img" [src]="getImagePath(post)" width="200px" height="200px">
+        </div>
     </div>
 </div>
 <div *ngIf="!isPostsLoaded">
