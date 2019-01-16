@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+      document.getElementById('profile-sub-div').style.display = 'none';
     }
 
     /**
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
      *
      */
     selectedBlock(block: string) {
+        document.getElementById('profile-sub-div').style.display = 'block';
         this.selectedBlockName = block;
         console.log(this.selectedBlockName);
     }
