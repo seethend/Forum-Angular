@@ -18,7 +18,7 @@ export class WritePostComponent implements OnInit {
 
     files: FileList;
     filestring: string;
-    fileName: string = '';
+    fileName = '';
     hasImage = false;
 
     popupCheck = false;
@@ -26,9 +26,14 @@ export class WritePostComponent implements OnInit {
     ngOnInit() {}
 
     popup() {
+      console.log('check up');
         this.popupCheck = true;
     }
 
+    popdown() {
+      console.log('check down');
+      this.popupCheck = false;
+    }
 
     // Adds post by creating and sending a post object to postService
     addPost() {
@@ -43,6 +48,7 @@ export class WritePostComponent implements OnInit {
             this.hasImage
             ), this.fileName, this.filestring
         );
+        this.popdown();
         this.postMessage = '';
         this.deleteFiles();
     }

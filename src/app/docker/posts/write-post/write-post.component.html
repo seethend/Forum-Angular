@@ -1,13 +1,30 @@
-<h1 id="post-create">Create Post</h1>
-<textarea cols="30" maxlength="100" rows="10" placeholder="Write something....!!!" class="post-textarea" [(ngModel)]="postMessage" (click)="popup()"></textarea>
-<p id="loaded-img-name" *ngIf="fileName">{{fileName}} <span id="del-post-img" (click)="deleteFiles()">&times;</span></p>
-<div class="post-send">
-  <ul>
-    <li><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;
-      <label for="post-img">Add Photo</label>
-      <input type="file" id="post-img" name="file" (change)="getFiles($event)">
-    </li>
-    <li><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Link Address</li>
-    <li><img src="assets/images/post-send2.png" class="post-send-img" (click)="addPost()"></li>
-  </ul>
+<div tabindex="0" id="write-post-div" (click)="popup()">
+  <textarea
+    cols="30"
+    maxlength="100"
+    rows="10"
+    placeholder="Write something....!!!"
+    class="post-textarea"
+    [(ngModel)]="postMessage"
+    [ngClass]="{'post-textarea-popup':popupCheck}"
+    (blur)="popdown()"
+  >
+  </textarea>
+  <p id="loaded-img-name" *ngIf="fileName">
+      {{fileName}}
+      <span id="del-post-img" (click)="deleteFiles()">
+        &times;
+      </span>
+  </p>
+  <div class="post-send" [ngClass]="{'post-send-popup':popupCheck}">
+    <ul>
+      <li><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;
+        <label for="post-img" (click)="popup()">Add Photo</label>
+        <input type="file" id="post-img" name="file" (change)="getFiles($event)">
+      </li>
+      <li><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Link Address</li>
+      <li><img src="assets/images/post-send2.png" class="post-send-img" [ngClass]="{'post-send-img-popup':popupCheck}" (click)="addPost()"></li>
+    </ul>
+  </div>
+
 </div>

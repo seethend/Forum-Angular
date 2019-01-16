@@ -2,7 +2,8 @@
     background: #1e2642;
     border-radius: 10px;
     padding: 20px 40px;
-    height: 515px;
+    height: auto;
+    max-height: 515px;
     margin-bottom: 0px;
     overflow: hidden;
 }
@@ -32,6 +33,7 @@ p.lead {
     margin-bottom: 20px;
     width: 430px;
     height: 250px;
+    box-shadow: 6px 5px 20px black;
 }
 
 li{
