@@ -725,7 +725,7 @@ let SignupComponent = class SignupComponent {
             alert(response);
             this.clearFields();
         }, error => {
-            console.log("Something went wrong while registering user", error);
+            console.log('Something went wrong while registering user', error);
             this.clearFields();
         });
     }
@@ -1567,7 +1567,7 @@ DockerComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".post-details-tab{\n    background: #1e2642;\n    border-radius: 10px;\n    padding: 20px 40px;\n    height: 515px;\n    margin-bottom: 0px;\n    overflow: hidden;\n}\n\nh3 {\n    color: #adadad;\n}\n\np.lead {\n  color: #adadad;\n  padding: 10px 20px;\n}\n\n.post-details-user-img{\n  width: 50px;\n  height: 50px;\n  border-radius: 25px;\n  margin-right: 10px;\n}\n\n.post-details-tab:hover {\n  overflow-y: scroll;\n}\n\n#post-img{\n    margin-left: 20px;\n    margin-bottom: 20px;\n    width: auto;\n    height: 250px;\n}\n\nli{\n  display: inline;\n  color: #9e9e9e;\n  margin-right: 80px;\n  cursor: pointer;\n  padding: 10px 40px;\n  border-radius: 5px;\n}\n\nli:hover{\n    background: #dcdcdc0a;\n}\n\n.like-icon {\n    margin-right: 5px;\n    margin-bottom: 7px;\n}\n\n.comment-icon {\n    margin-right: 5px;\n}\n"
+module.exports = ".post-details-tab{\n    background: #1e2642;\n    border-radius: 10px;\n    padding: 20px 40px;\n    height: auto;\n    max-height: 515px;\n    margin-bottom: 0px;\n    overflow: hidden;\n}\n\nh3 {\n    color: #adadad;\n}\n\np.lead {\n  color: #adadad;\n  padding: 10px 20px;\n}\n\n.post-details-user-img{\n  width: 50px;\n  height: 50px;\n  border-radius: 25px;\n  margin-right: 10px;\n}\n\n.post-details-tab:hover {\n  overflow-y: scroll;\n}\n\n#post-img{\n    margin-left: 20px;\n    margin-bottom: 20px;\n    width: 430px;\n    height: 250px;\n    box-shadow: 6px 5px 20px black;\n}\n\nli{\n  display: inline;\n  color: #9e9e9e;\n  margin-right: 80px;\n  cursor: pointer;\n  padding: 10px 40px;\n  border-radius: 5px;\n}\n\nli:hover{\n    background: #dcdcdc0a;\n}\n\n.like-icon {\n    margin-right: 5px;\n    margin-bottom: 7px;\n}\n\n.comment-icon {\n    margin-right: 5px;\n}\n"
 
 /***/ }),
 
@@ -1662,7 +1662,7 @@ PostDetailsComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".display-post-textarea{\r\nwidth: 100%;\r\nheight: 50px;\r\nbackground: #1e2642;\r\nborder-radius: 10px 10px 0px 0px;\r\npadding: 10px 20px 0 40px;\r\nfont-size: 20px;\r\ncolor: white;\r\nborder: none;\r\nresize: none;\r\noutline: none;\r\nmargin-bottom: -5px;\r\n}\r\n\r\n.display-post-send {\r\n    width: 100%;\r\n    height: 50px;\r\n    background: #1e2746;\r\n    border-radius: 0px 0px 10px 10px;\r\n    padding: 15px 1px;\r\n}\r\n\r\nlabel{\r\n    cursor: pointer;\r\n}\r\n\r\nul{\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\nli{\r\n    float: left;\r\n    color: #adadad;\r\n    margin-left: 90px;\r\n    cursor: pointer;\r\n}\r\n\r\nli:hover {\r\n    color: white;\r\n}\r\n\r\n.display-post-send-img{\r\n    width: 50px;\r\n    height: 50px;\r\n}\r\n\r\n.write-popup{\r\n    \r\n}"
+module.exports = ""
 
 /***/ }),
 
@@ -1673,7 +1673,7 @@ module.exports = ".display-post-textarea{\r\nwidth: 100%;\r\nheight: 50px;\r\nba
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" (click)=\"popup()\">\n  <div class=\"col-md-12\">\n    <textarea disabled placeholder=\"Write something....!!!\" class=\"display-post-textarea\"></textarea>\n    <div class=\"display-post-send\">\n      <ul>\n        <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n          <label for=\"display-post-img\">Add Photo</label>\n        </li>\n        <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n        <li><img src=\"assets/images/post-send2.png\" class=\"display-post-send-img\"></li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <app-show-post></app-show-post>\n  </div>\n</div>"
+module.exports = "<div class=\"row\" > <!-- (click)=\"popup()\" -->\n  <!-- <div class=\"col-md-12\">\n    <textarea disabled placeholder=\"Write something....!!!\" class=\"display-post-textarea\"></textarea>\n    <div class=\"display-post-send\">\n      <ul>\n        <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n          <label for=\"display-post-img\">Add Photo</label>\n        </li>\n        <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n        <li><img src=\"assets/images/post-send2.png\" class=\"display-post-send-img\"></li>\n      </ul>\n    </div>\n  </div> -->\n  <div class=\"col-md-12\">\n    <app-write-post></app-write-post>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <app-show-post></app-show-post>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2013,7 +2013,7 @@ PostListComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".show-posts{\n    background: #101833;\n    height: 400px;\n    width: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    margin-bottom: 0;\n}\n\n.posts-container{\n    padding-top: 20px;\n}\n\n.show-posts:hover {\n    overflow-y: scroll;\n}\n"
+module.exports = ".show-posts{\n    background: #101833;\n    height: 390px;\n    width: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    margin-bottom: 0;\n}\n\n.posts-container{\n    padding-top: 20px;\n}\n\n.show-posts:hover {\n    overflow-y: scroll;\n}\n"
 
 /***/ }),
 
@@ -2074,7 +2074,7 @@ ShowPostComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#post-create{\n    width: 100%;\n    height: 70px;\n    background: #1e2746;\n    border-radius: 10px 10px 0px 0px;\n    padding: 16px 20px;\n    color: #a0adad;\n    margin-bottom: 5px;\n}\n\n.post-textarea{\n    width: 100%;\n    height: 250px;\n    background: #1e2642;\n    padding: 60px 60px;\n    font-size: 25px;\n    color: white;\n    border: none;\n    resize: none;\n    outline: none;\n}\n\n#loaded-img-name{\n    color: white;\n    background: green;\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding: 5px 0px 5px 25px;\n    border-radius: 20px;\n}\n\n#del-post-img{\n    cursor: pointer;\n    color: black;\n    background: white;\n    font-size: 15px;\n    padding: 0px 3px;\n    margin-left: 30px;\n    margin-right: 15px;\n    border-radius: 20px;\n}\n\n.post-send {\n    width: 100%;\n    height: 55px;\n    background: #1e2746;\n    border-radius: 0px 0px 10px 10px;\n    padding: 20px 1px;\n}\n\ninput[type=file] {\n    display: none;\n}\n\nlabel{\n    cursor: pointer;\n}\n\nul{\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n}\n\nli{\n    float: left;\n    color: #adadad;\n    margin-left: 90px;\n    cursor: pointer;\n}\n\nli:hover {\n    color: white;\n}\n\n.post-send-img{\n    width: 50px;\n    height: 50px;\n}\n"
+module.exports = "#write-post-div{\n  outline: none;\n}\n\n.post-textarea{\n  width: 100%;\n  height: 70px;\n  background: #1e2642;\n  border-radius: 10px 10px 0px 0px;\n  padding: 15px 0 30px 25px;\n  font-size: 15px;\n  color: white;\n  border: none;\n  resize: none;\n  outline: none;\n  overflow: hidden;\n}\n\n.post-textarea-popup{\n  height: 200px;\n  padding: 50px 50px;\n  font-size: 24px;\n  overflow: auto;\n}\n\n#loaded-img-name{\n  color: white;\n  background: green;\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  padding: 5px 0px 5px 25px;\n  border-radius: 20px;\n}\n\n#del-post-img{\n  cursor: pointer;\n  color: black;\n  background: white;\n  font-size: 15px;\n  padding: 0px 3px;\n  margin-left: 30px;\n  margin-right: 15px;\n  border-radius: 20px;\n}\n\n.post-send {\n  width: 100%;\n  height: 35px;\n  background: #1e2746;\n  border-radius: 0px 0px 10px 10px;\n  padding: 8px 1px;\n  margin-bottom: 20px;\n}\n\n.post-send-popup{\n  height: 55px;\n  padding: 20px 1px;\n}\n\ninput[type=file] {\n  display: none;\n}\n\nlabel{\n  cursor: pointer;\n}\n\nul{\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\nli{\n  float: left;\n  color: #adadad;\n  margin-left: 90px;\n  cursor: pointer;\n}\n\nli:hover {\n  color: white;\n}\n\n.post-send-img{\n  width: 30px;\n  height: 30px;\n  margin-top: 10px;\n}\n\n.post-send-img-popup{\n  width: 50px;\n  height: 50px;\n  margin-top: 0;\n}\n"
 
 /***/ }),
 
@@ -2085,7 +2085,7 @@ module.exports = "#post-create{\n    width: 100%;\n    height: 70px;\n    backgr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 id=\"post-create\">Create Post</h1>\n<textarea cols=\"30\" maxlength=\"100\" rows=\"10\" placeholder=\"Write something....!!!\" class=\"post-textarea\" [(ngModel)]=\"postMessage\" (click)=\"popup()\"></textarea>\n<p id=\"loaded-img-name\" *ngIf=\"fileName\">{{fileName}} <span id=\"del-post-img\" (click)=\"deleteFiles()\">&times;</span></p>\n<div class=\"post-send\">\n  <ul>\n    <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n      <label for=\"post-img\">Add Photo</label>\n      <input type=\"file\" id=\"post-img\" name=\"file\" (change)=\"getFiles($event)\">\n    </li>\n    <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n    <li><img src=\"assets/images/post-send2.png\" class=\"post-send-img\" (click)=\"addPost()\"></li>\n  </ul>\n</div>"
+module.exports = "<div tabindex=\"0\" id=\"write-post-div\" (click)=\"popup()\">\n  <textarea\n    cols=\"30\"\n    maxlength=\"100\"\n    rows=\"10\"\n    placeholder=\"Write something....!!!\"\n    class=\"post-textarea\"\n    [(ngModel)]=\"postMessage\"\n    [ngClass]=\"{'post-textarea-popup':popupCheck}\"\n    (blur)=\"popdown()\"\n  >\n  </textarea>\n  <p id=\"loaded-img-name\" *ngIf=\"fileName\">\n      {{fileName}}\n      <span id=\"del-post-img\" (click)=\"deleteFiles()\">\n        &times;\n      </span>\n  </p>\n  <div class=\"post-send\" [ngClass]=\"{'post-send-popup':popupCheck}\">\n    <ul>\n      <li><span class=\"glyphicon glyphicon-picture\"></span>&nbsp;&nbsp;\n        <label for=\"post-img\" (click)=\"popup()\">Add Photo</label>\n        <input type=\"file\" id=\"post-img\" name=\"file\" (change)=\"getFiles($event)\">\n      </li>\n      <li><span class=\"glyphicon glyphicon-link\"></span>&nbsp;&nbsp;Link Address</li>\n      <li><img src=\"assets/images/post-send2.png\" class=\"post-send-img\" [ngClass]=\"{'post-send-img-popup':popupCheck}\" (click)=\"addPost()\"></li>\n    </ul>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -2126,13 +2126,19 @@ let WritePostComponent = class WritePostComponent {
     }
     ngOnInit() { }
     popup() {
+        console.log('check up');
         this.popupCheck = true;
+    }
+    popdown() {
+        console.log('check down');
+        this.popupCheck = false;
     }
     // Adds post by creating and sending a post object to postService
     addPost() {
         this.loggedInUser = this.authService.loggedInUser.username;
         console.log(this.postServices.getTotalPostCount() + 1);
         this.postServices.savePost(new _posts_model__WEBPACK_IMPORTED_MODULE_2__["Post"](null, this.loggedInUser, this.postMessage, new Date().getTime(), new Date().getTime(), this.hasImage), this.fileName, this.filestring);
+        this.popdown();
         this.postMessage = '';
         this.deleteFiles();
     }
@@ -2520,7 +2526,7 @@ PhotosComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".user-posts-container{\r\n    margin-top: 20px;\r\n}\r\n\r\n.posts-div{\r\n    width: 90%;\r\n    background: white;\r\n    padding: 20px 50px;\r\n    margin-bottom: 10px;\r\n    border-radius: 15px;\r\n    box-shadow: 5px 5px 15px grey;\r\n}\r\n\r\n.post-user{\r\n    font-size: 20px;\r\n    font-weight: 900;\r\n    color: #365899;\r\n    margin: 0px;\r\n}\r\n\r\n.post-time{\r\n    font-size: 12px;\r\n    font-weight: 400;\r\n    font-family: monospace;\r\n    margin-left: 1px;\r\n    color: slategrey;\r\n}\r\n\r\n.post-hr{\r\n    margin-bottom: 30px;\r\n    border-top: 1px #cacaca solid;\r\n    margin-left: -50px;\r\n    margin-right: -50px;\r\n}\r\n\r\n.post-msg{\r\nfont-size: 20px;\r\n    padding: 5px 15px;\r\n    font-weight: 500;\r\n    color: black;\r\n}"
+module.exports = ".user-posts-container{\r\n    margin-top: 20px;\r\n}\r\n\r\n.posts-div{\r\n    width: 90%;\r\n    background: white;\r\n    padding: 20px 50px;\r\n    margin-bottom: 10px;\r\n    border-radius: 15px;\r\n    box-shadow: 5px 5px 15px grey;\r\n}\r\n\r\n.post-user{\r\n    font-size: 20px;\r\n    font-weight: 900;\r\n    color: #365899;\r\n    margin: 0px;\r\n}\r\n\r\n.post-time{\r\n    font-size: 12px;\r\n    font-weight: 400;\r\n    font-family: monospace;\r\n    margin-left: 1px;\r\n    color: slategrey;\r\n}\r\n\r\n.post-hr{\r\n    margin-bottom: 30px;\r\n    border-top: 1px #cacaca solid;\r\n    margin-left: -50px;\r\n    margin-right: -50px;\r\n}\r\n\r\n.post-msg{\r\nfont-size: 20px;\r\n    padding: 5px 15px;\r\n    font-weight: 500;\r\n    color: black;\r\n}\r\n\r\n.post-img{\r\n  width: 100%;\r\n  height: auto;\r\n  border: 1px groove #ffffff;\r\n  border-radius: 10px;\r\n  box-shadow: 5px 5px 5px grey;\r\n}\r\n"
 
 /***/ }),
 
@@ -2531,7 +2537,7 @@ module.exports = ".user-posts-container{\r\n    margin-top: 20px;\r\n}\r\n\r\n.p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"isPostsLoaded\" class=\"user-posts-container\">\n    <div *ngFor=\"let post of usersPosts\" class=\"posts-div\">\n        <p class=\"post-user\">{{post.postedByUserId}}</p>\n        <p class=\"post-time\">{{post.postCreatedOn}}</p>\n        <hr class=\"post-hr\">\n        <p class=\"post-msg\">{{post.postDetails}}</p>\n    </div>\n</div>\n<div *ngIf=\"!isPostsLoaded\">\n    <p>No Posts to Load</p>\n</div>"
+module.exports = "<div *ngIf=\"isPostsLoaded\" class=\"user-posts-container\">\n    <div *ngFor=\"let post of usersPosts\" class=\"posts-div\">\n        <p class=\"post-user\">{{post.postedByUserId}}</p>\n        <p class=\"post-time\">{{post.postCreatedOn}}</p>\n        <hr class=\"post-hr\">\n        <p class=\"post-msg\">{{post.postDetails}}</p>\n        <div *ngIf=\"post.hasImages\">\n          <img class=\"post-img\" [src]=\"getImagePath(post)\" width=\"200px\" height=\"200px\">\n        </div>\n    </div>\n</div>\n<div *ngIf=\"!isPostsLoaded\">\n    <p>No Posts to Load</p>\n</div>\n"
 
 /***/ }),
 
@@ -2578,6 +2584,9 @@ let ProfilePostsComponent = class ProfilePostsComponent {
         });
         this.profileService.getAllUserPosts(); // Call API using profileService for user posts
     }
+    getImagePath(post) {
+        return 'forum-bucket/posts/post_' + post.postId + '.png';
+    }
 };
 ProfilePostsComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2599,7 +2608,7 @@ ProfilePostsComponent = __decorate([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#wall-paper {\r\n    height: 450px;\r\n    background-image: url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');\r\n    background-size: cover;\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n#profile-div{\r\n    position: absolute;\r\n    width: 90%;\r\n    height: 800px;\r\n    left: 5%;\r\n    top: 50%;\r\n    background: white;\r\n    border-radius: 10px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n#profile-img-div #profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    margin-top: -80px;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    border-radius: 80px;\r\n}\r\n\r\n#profile-div #user-name{\r\n    text-align: center;\r\n    font-size: xx-large;\r\n    font-family: cursive;\r\n    font-weight: bolder;\r\n}\r\n\r\n#profile-div #user-bio{\r\n    text-align: center;\r\n    font-size: medium;\r\n    font-family: sans-serif;\r\n    font-weight: 700;\r\n}\r\n\r\n#profile-div #profile-sub-div{\r\n    width: 90%;\r\n    height: 400px;\r\n    border: 1px grey solid;\r\n    border-radius: 10px;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    padding-left: 100px;\r\n    padding-top: 50px;\r\n    overflow: scroll;\r\n}\r\n\r\n.profile-blocks{\r\n    width: 100px;\r\n    height: 150px;\r\n    padding: 40px 0px;\r\n    display: inline-block;\r\n    margin-left: auto;\r\n    margin-right: 15px;\r\n    margin-bottom: 20px;\r\n    text-align: center;\r\n    border-radius: 10px;\r\n    outline: none;\r\n}\r\n\r\n.selected-block{\r\n    background: #00caaf;\r\n    color: white;\r\n    box-shadow: -2px 5px 10px 2px #d6d6d6;\r\n}\r\n\r\n#profile-posts{\r\n    margin-left: 30%;\r\n}\r\n\r\n.profile-blocks-img{\r\n    width: 50px;\r\n    height: 50px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n#profile-posts:hover, #profile-about:hover, #profile-friends:hover, #profile-photos:hover{\r\n    cursor: pointer;\r\n    background: #d27805;\r\n    color: white;\r\n    box-shadow: -5px 3px 10px 2px #777777;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "#wall-paper {\r\n    height: 450px;\r\n    background-image: url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');\r\n    background-size: cover;\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n#profile-div{\r\n    position: absolute;\r\n    width: 90%;\r\n    height: auto;\r\n    left: 5%;\r\n    top: 50%;\r\n    background: white;\r\n    border-radius: 10px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n#profile-img-div #profile-img {\r\n    width: 150px;\r\n    height: 150px;\r\n    margin-top: -80px;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    border-radius: 80px;\r\n}\r\n\r\n#profile-div #user-name{\r\n    text-align: center;\r\n    font-size: xx-large;\r\n    font-family: cursive;\r\n    font-weight: bolder;\r\n}\r\n\r\n#profile-div #user-bio{\r\n    text-align: center;\r\n    font-size: medium;\r\n    font-family: sans-serif;\r\n    font-weight: 700;\r\n}\r\n\r\n#profile-div #profile-sub-div{\r\n    width: 90%;\r\n    height: 450px;\r\n    border: 1px grey solid;\r\n    border-radius: 10px;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    margin-bottom: 15px;\r\n    padding-left: 100px;\r\n    padding-top: 50px;\r\n    overflow: scroll;\r\n}\r\n\r\n.profile-blocks{\r\n    width: 100px;\r\n    height: 150px;\r\n    padding: 40px 0px;\r\n    display: inline-block;\r\n    margin-left: auto;\r\n    margin-right: 15px;\r\n    margin-bottom: 20px;\r\n    text-align: center;\r\n    border-radius: 10px;\r\n    outline: none;\r\n}\r\n\r\n.selected-block{\r\n    background: #00caaf;\r\n    color: white;\r\n    box-shadow: -2px 5px 10px 2px #d6d6d6;\r\n}\r\n\r\n#profile-posts{\r\n    margin-left: 30%;\r\n}\r\n\r\n.profile-blocks-img{\r\n    width: 50px;\r\n    height: 50px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n#profile-posts:hover, #profile-about:hover, #profile-friends:hover, #profile-photos:hover{\r\n    cursor: pointer;\r\n    background: #d27805;\r\n    color: white;\r\n    box-shadow: -5px 3px 10px 2px #777777;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2610,7 +2619,7 @@ module.exports = "#wall-paper {\r\n    height: 450px;\r\n    background-image: u
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"contianer\">\n    <div id=\"wall-paper\"></div>\n    <div id=\"profile-div\">\n        <div id=\"profile-img-div\">\n            <img id=\"profile-img\" src=\"assets/images/seeth.jpg\">\n        </div>\n        <p id=\"user-name\">D Seethend Reddy</p>\n        <p id=\"user-bio\">Any Bio</p>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'posts'}\" id=\"profile-posts\" [routerLink]=\"['posts']\" (click)=\"selectedBlock('posts')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">Posts</p>\n        </div>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'about'}\" id=\"profile-about\" [routerLink]=\"['about']\" (click)=\"selectedBlock('about')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">About</p>\n        </div>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'friends'}\" id=\"profile-friends\" [routerLink]=\"['friends']\" (click)=\"selectedBlock('friends')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">Friends</p>\n        </div>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'photos'}\" id=\"profile-photos\" [routerLink]=\"['photos']\" (click)=\"selectedBlock('photos')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">Photos</p>\n        </div>\n        \n        <div id=\"profile-sub-div\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"contianer\">\n    <div id=\"wall-paper\"></div>\n    <div id=\"profile-div\">\n        <div id=\"profile-img-div\">\n            <img id=\"profile-img\" src=\"assets/images/seeth.jpg\">\n        </div>\n        <p id=\"user-name\">D Seethend Reddy</p>\n        <p id=\"user-bio\">Any Bio</p>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'posts'}\" id=\"profile-posts\" [routerLink]=\"['posts']\" (click)=\"selectedBlock('posts')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">Posts</p>\n        </div>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'about'}\" id=\"profile-about\" [routerLink]=\"['about']\" (click)=\"selectedBlock('about')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">About</p>\n        </div>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'friends'}\" id=\"profile-friends\" [routerLink]=\"['friends']\" (click)=\"selectedBlock('friends')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">Friends</p>\n        </div>\n        <div class=\"profile-blocks\" [ngClass]=\"{'selected-block' : selectedBlockName === 'photos'}\" id=\"profile-photos\" [routerLink]=\"['photos']\" (click)=\"selectedBlock('photos')\">\n            <img class=\"profile-blocks-img\" src=\"assets/images/logo2.jpg\">\n            <p class=\"profile-block-name\">Photos</p>\n        </div>\n\n        <div id=\"profile-sub-div\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -2640,6 +2649,7 @@ let ProfileComponent = class ProfileComponent {
         this.selectedBlockName = '';
     }
     ngOnInit() {
+        document.getElementById('profile-sub-div').style.display = 'none';
     }
     /**
      *
@@ -2647,6 +2657,7 @@ let ProfileComponent = class ProfileComponent {
      *
      */
     selectedBlock(block) {
+        document.getElementById('profile-sub-div').style.display = 'block';
         this.selectedBlockName = block;
         console.log(this.selectedBlockName);
     }
