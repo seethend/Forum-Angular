@@ -24,6 +24,8 @@ export class WriteTopicComponent implements OnInit {
     allTopicTagOptions = []; // stores all matched tags
     selectedTopicTags: {typeId: string, typeName: string}[] = []; // stores all selected tags
 
+    isTagAlreadyPresent = false; // Check if topic tags are selected twice
+    isAddingTagEmpty = false; // Check if topic tag input field is empty before adding new topic
 
     constructor(private topicService: TopicService, private router: Router) { }
 
@@ -39,109 +41,138 @@ export class WriteTopicComponent implements OnInit {
             // console.log(topicTags, this.topicTag);
             for (const tag of topicTags) {
                 let tagMatches = [];
-                tagMatches = tag.match(this.topicTagInput);
+                tagMatches = tag.toLowerCase().match(this.topicTagInput.toLowerCase());
                 if (tagMatches != null && tagMatches.length > 0) {
-                    this.allTopicTagOptions.push(tag);
+                    this.allTopicTagOptions.push(tag); // Making list to show matched list
+                    break;
                 }
             }
             // console.log(this.allTopicTagOptions);
         } else {
             this.topicTagsList.nativeElement.style.display = 'none'; // hides the matched list
         }
+        this.resetTagInputWarnings(); // Resets other warnings signs
     }
 
+    /**
+     * Resets empty tag input field signal signs
+     */
+    resetTagInputWarnings(): any {
+      this.isAddingTagEmpty = false;
+      this.isTopicTagInputNull = false;
+    }
+
+    /**
+     * Adds new topic tag from topic tag input field after validating conditions
+     * 1. Checks if field is empty
+     * 2. Checks if tag is already added
+     */
     addTopicTag() {
-        let isTagPresent = false;
+      // Reseting before checking others
+      this.isTagAlreadyPresent = false;
+      this.isAddingTagEmpty = false;
+      this.isTopicTagInputNull = false;
+
+      if (this.topicTagInput != null && this.topicTagInput.trim().length > 3) {
         for (const topicType of this.selectedTopicTags) {
-            if (topicType.typeName === this.topicTagInput) {
-                isTagPresent = true;
-            }
+          if (topicType.typeName.toLowerCase() === this.topicTagInput.toLowerCase()) {
+              this.isTagAlreadyPresent = true; // Iterates and finds if tag user wants to add is already added
+              break;
+          }
         }
-
-        if (!isTagPresent) {
-            this.selectedTopicTags.push({typeId: null, typeName: this.topicTagInput});
+      } else {
+        if (this.topicTagInput.trim().length === 0) {
+          this.isTopicTagInputNull = true; // Checks if tag input field is already empty
         }
+        this.isAddingTagEmpty = true; // Checks if tag field value length is less than 3
+      }
 
-        this.topicTagInput = '';
-        document.getElementById('topic-tags').focus();
-        this.showAllTopicTagsMatches();
-        this.checkTopicTagInputField();
+      // If validation passed add the tag to selected topics list
+      if (!this.isTagAlreadyPresent && !this.isTopicTagInputNull && !this.isAddingTagEmpty) {
+          this.selectedTopicTags.push({typeId: null, typeName: this.topicTagInput.toLowerCase()});
+          // After adding reset all signals for next tag checks
+          this.isAddingTagEmpty = false;
+          this.isTagAlreadyPresent = false;
+          this.isTopicTagInputNull = false;
+      }
+
+      this.topicTagInput = '';
+      document.getElementById('topic-tags').focus();
     }
 
-    // Triggers when user selects a particular tag and adds to selectedTopicTags
+    /**
+     * Triggers when user selects a particular tag from dropdown matched tags list and adds to selectedTopicTags list
+     *
+     * @param topicTag
+     */
     selectCurrentTag(topicTag) {
-        let isTagPresent = false;
-        for (const topicType of this.selectedTopicTags) {
-            if (topicType.typeName === topicTag) {
-                isTagPresent = true;
-            }
-        }
+      this.isTagAlreadyPresent = false;
+      for (const topicType of this.selectedTopicTags) {
+          if (topicType.typeName.toLowerCase() === topicTag.toLowerCase()) {
+              this.isTagAlreadyPresent = true; // Iterates and finds if tag user wants to add is already added
+              break;
+          }
+      }
 
-        if (!isTagPresent) {
-            this.selectedTopicTags.push({typeId: null, typeName: topicTag});
-        }
+      if (!this.isTagAlreadyPresent) {
+          this.selectedTopicTags.push({typeId: null, typeName: topicTag.toLowerCase()});
+      }
 
-        this.topicTagInput = '';
-        document.getElementById('topic-tags').focus();
-        this.showAllTopicTagsMatches();
-        this.checkTopicTagInputField();
-        // console.log(this.selectedTopicTags)
+      this.isTopicTagInputNull = false;
+
+      this.topicTagInput = '';
+      document.getElementById('topic-tags').focus();
+      this.showAllTopicTagsMatches(); // Just to hide the dropdown of matched topic tags
     }
 
-    // delete the tag from selectedTopicTags list
+    /**
+     * delete the tag from selectedTopicTags list
+     * @param selectedCurrentTag
+     */
     deleteSelectedTag(selectedCurrentTag) {
-        const index = this.selectedTopicTags.indexOf(selectedCurrentTag, 0);
-        if (index > -1) {
-            this.selectedTopicTags.splice(index, 1);
-        }
-        this.checkTopicTagInputField();
-        // console.log(selectedCurrentTag, this.selectedTopicTags)
+      const index = this.selectedTopicTags.indexOf(selectedCurrentTag, 0);
+      if (index > -1) {
+          this.selectedTopicTags.splice(index, 1);
+      }
     }
 
-    // Check if any tag is selected after every entry and removal
-    checkTopicTagInputField() {
-        if (this.selectedTopicTags.length > 0) {
-            this.isTopicTagInputNull = false;
-        } else {
-            this.isTopicTagInputNull = true;
-        }
-    }
-
-    // Saves new topic after checking all the feilds are not empty
+    /**
+     * Saves new topic after checking all the feilds are not empty
+     */
     saveTopic() {
-        if (this.topicTitleInput.length != null && this.topicTitleInput.length > 0) {
-            this.isTopicTitleInputNull = false;
+      if (this.topicTitleInput.length != null && this.topicTitleInput.length > 0) {
+          this.isTopicTitleInputNull = false;
 
-            if (this.topicBodyInput.length != null && this.topicBodyInput.length > 0) {
-                this.isTopicBodyInputNull = false;
+          if (this.topicBodyInput.length != null && this.topicBodyInput.length > 0) {
+              this.isTopicBodyInputNull = false;
 
-                if (this.selectedTopicTags.length > 0) {
-                    this.isTopicTagInputNull = false;
-                    const topic = new Topic(null, this.topicTitleInput, this.selectedTopicTags, new Date(), '1', this.topicBodyInput);
-                    console.log(topic);
-                    this.topicService.addTopic(topic);
-                    this.topicService.topicsFetched.subscribe(
-                        (areTopicsLoaded: boolean) => {
-                            if (areTopicsLoaded) {
-                                this.router.navigate(['/', 'discussions', 'topics', 'general']);
-                            } else {
-                                console.log('something went wrong while saving topic');
-                            }
-                        },
-                        error => {
-                            console.log('something went wrong while saving topic ', error);
-                        }
-                    );
-                    // console.log(this.topicTitleInput, this.topicBodyInput, this.selectedTopicTags);
-                } else {
-                    this.isTopicTagInputNull = true;
-                }
-            } else {
-                this.isTopicBodyInputNull = true;
-            }
-        } else {
-            this.isTopicTitleInputNull = true;
-        }
+              if (this.selectedTopicTags.length > 0) {
+                  this.isTopicTagInputNull = false;
+                  const topic = new Topic(null, this.topicTitleInput, this.selectedTopicTags, new Date(), '1', this.topicBodyInput);
+                  console.log(topic);
+                  this.topicService.addTopic(topic);
+                  this.topicService.topicsFetched.subscribe(
+                      (areTopicsLoaded: boolean) => {
+                          if (areTopicsLoaded) {
+                              this.router.navigate(['/', 'discussions', 'topics', 'general']);
+                          } else {
+                              console.log('something went wrong while saving topic');
+                          }
+                      },
+                      error => {
+                          console.log('something went wrong while saving topic ', error);
+                      }
+                  );
+                  // console.log(this.topicTitleInput, this.topicBodyInput, this.selectedTopicTags);
+              } else {
+                  this.isTopicTagInputNull = true;
+              }
+          } else {
+              this.isTopicBodyInputNull = true;
+          }
+      } else {
+          this.isTopicTitleInputNull = true;
+      }
     }
 
 }

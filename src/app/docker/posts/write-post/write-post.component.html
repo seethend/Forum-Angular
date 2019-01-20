@@ -8,6 +8,7 @@
     [(ngModel)]="postMessage"
     [ngClass]="{'post-textarea-popup':popupCheck}"
     (blur)="popdown()"
+    (input)="checkAllowPost()"
   >
   </textarea>
   <p id="loaded-img-name" *ngIf="fileName">
@@ -23,7 +24,13 @@
         <input type="file" id="post-img" name="file" (change)="getFiles($event)">
       </li>
       <li><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Link Address</li>
-      <li><img src="assets/images/post-send2.png" class="post-send-img" [ngClass]="{'post-send-img-popup':popupCheck}" (click)="addPost()"></li>
+      <li>
+        <img  src="assets/images/post-send2.png"
+              class="post-send-img"
+              *ngIf="allowPost"
+              [ngClass]="{'post-send-img-popup':popupCheck}"
+              (click)="addPost()">
+      </li>
     </ul>
   </div>
 

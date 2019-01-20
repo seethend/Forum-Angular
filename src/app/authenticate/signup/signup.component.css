@@ -10,6 +10,10 @@
     padding: 10px 20px;
 }
 
+.form-group{
+  margin-bottom: 10px;
+}
+
 label {
     margin-bottom: 0;
     font-size: 13px;
@@ -26,7 +30,7 @@ label {
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
-    background-image: none;    
+    background-image: none;
     border: 1px solid transparent;
     border-bottom: 1px solid #8a8686;
     border-radius: 4px;
@@ -50,11 +54,12 @@ label {
     text-transform: uppercase;
     color: #fff;
     background: #111;
+    box-shadow: 5px 5px 10px #676767;
     border-radius: 5px;
 }
 
 .signin__link {
-    font-size: 0.8rem;
+    font-size: 10px;
     font-weight: 900;
     text-decoration: underline;
     color: #337ab7;
@@ -70,4 +75,31 @@ label {
 
 .modal-footer{
     padding: 5px 25px;
+}
+
+.error-div{
+  margin-top: 5px;
+  font-size: 12px;
+  color: red;
+}
+
+.fa-red {
+  color: red;
+  margin-right: 5px;
+}
+
+.fa-green {
+  color: limegreen;
+  margin-right: 5px;
+}
+
+.error-msg {
+  display: inline-block;
+  font: 400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.error-green{
+  color: limegreen;
 }

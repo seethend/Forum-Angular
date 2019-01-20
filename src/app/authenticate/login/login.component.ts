@@ -13,11 +13,18 @@ export class LoginComponent implements OnInit {
   isPasswordNull = false; // false if password field is null or else true
   credentials = { username: 'seeth', password: 'seeth' }; // Credential Object used for sending to login
 
+  responseText = ''; // Stores response text from API
+
   constructor(private authService: AuthenticateService, private router: Router) { }
 
   ngOnInit() {
-      // This works on login component initialization to check if user already logged in
-      // If user logged in then he will be redirect to /posts
+
+    this.responseText = '';
+
+    /**
+     * This works on login component initialization to check if user already logged in
+     * If user logged in then he will be redirect to /posts
+     */
     this.authService.loginUserSubject.subscribe(
       (isUserLogged: boolean) => {
         if (isUserLogged) {
@@ -38,12 +45,18 @@ export class LoginComponent implements OnInit {
   }
 
 
+  /**
+   * User explicitly call this function by pressing login button
+   */
   login() {
     const username = this.credentials.username.trim();
     const password = this.credentials.password.trim();
+    this.responseText = '';
 
-    // Validates fields and calls login in auth service and handles the response
-    // If response is valid user will be redirect to /posts else calls logout() and clears the fields
+    /**
+     * Validates fields and calls login in auth service and handles the response
+     * If response is valid user will be redirect to /posts else calls logout() and clears the fields
+     */
     if (username != null && username.length > 0) {
       this.isUsernameNull = false;
       if (password != null && password.length > 0) {
@@ -53,6 +66,7 @@ export class LoginComponent implements OnInit {
             this.authService.token = response;
             this.authService.isUserLoggedIn = true;
             this.authService.checkUser(false);
+            this.responseText = '';
             console.log('User Logged in with ', this.credentials, 'api returned token ', this.authService.token);
             this.router.navigate(['posts'])
               .then(
@@ -65,6 +79,7 @@ export class LoginComponent implements OnInit {
           error => {
             console.log('something wrong with credentials ', this.credentials, error);
             this.authService.logout();
+            this.responseText = 'Login failed';
             this.credentials = { username: '', password: '' };
           }
         );

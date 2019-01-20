@@ -25,7 +25,14 @@ export class AuthenticateService {
     return this.http.post('login', credentials, {responseType: 'text'});
   }
 
-  saveUser(user_signup_details: {username: string, email: string, last_name: string, first_name: string, password: string, passwordrepeat: string}){
+  saveUser(user_signup_details: { username: string,
+                                  email: string,
+                                  last_name: string,
+                                  first_name: string,
+                                  password: string,
+                                  passwordrepeat: string
+                                }
+          ) {
     return this.http.post('v1/jsonsignup', user_signup_details, {responseType: 'text'});
   }
 

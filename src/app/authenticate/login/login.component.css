@@ -13,8 +13,9 @@
   margin-top: 50px;
 }
 
-.btn-success {
-  margin-left: 120px;
+.btn--login {
+  box-shadow: 2px 2px 10px #464646;
+  margin-left: 110px;
 }
 
 .btn:focus {
@@ -26,4 +27,22 @@
     font-weight: 900;
     text-decoration: underline;
     color: #337ab7;
+}
+
+.error-div{
+  margin-top: 5px;
+  font-size: 12px;
+  color: red;
+}
+
+.fa-red {
+  color: red;
+  margin-right: 5px;
+}
+
+.error-msg {
+  display: inline-block;
+  font: 400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
 }

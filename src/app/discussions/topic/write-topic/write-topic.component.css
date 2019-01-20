@@ -1,7 +1,7 @@
 .topic-main-header{
     color: #ececec;
     font-family: 'Times New Roman', Times, serif;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .topic-sub-headers{
@@ -28,6 +28,7 @@
     margin-right: 15px;
     height: 35px;
     width: 760px;
+    margin-bottom: 35px;
 }
 
 #btn-post-topic{
@@ -38,8 +39,8 @@
 
 .selected-topic-tags-list{
     position: absolute;
-    left: 30px;
-    bottom: 52px;
+    left: 20px;
+    bottom: 82px;
 }
 
 .selected-topic-tags-item{
@@ -67,6 +68,7 @@
 .topic-tags-list-group{
     display: none;
     width: 800px;
+    margin-top: -34px;
 }
 
 .topic-tags-list-group-item{
@@ -83,4 +85,36 @@
 .empty-field{
     color: red;
     font-style: italic;
+}
+
+.error-div{
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.error-div-red{
+  color: red;
+}
+
+.error-div-yellow{
+  color: yellow;
+}
+
+.fa-warning{
+  margin-right: 5px;
+}
+
+.fa-red {
+  color: red;
+}
+
+.fa-yellow{
+  color: yellow;
+}
+
+.error-msg {
+  display: inline-block;
+  font: 400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
 }

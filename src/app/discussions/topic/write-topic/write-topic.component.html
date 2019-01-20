@@ -1,30 +1,50 @@
 <h2 class="topic-main-header">Start a Topic !!!</h2>
 
 <h4 class="topic-sub-headers">Title</h4>
-<p class="empty-field" *ngIf="isTopicTitleInputNull">Should not be null</p>
+<div class="error-div error-div-red" *ngIf="isTopicTitleInputNull">
+  <i class="fa fa-warning fa-red"></i>
+  <p class="error-msg">Add a title to the topic</p>
+</div>
+<!-- <p class="empty-field" *ngIf="isTopicTitleInputNull">Should not be null</p> -->
 <input id="topic-title" class="form-control" type="text" [(ngModel)]="topicTitleInput">
 
 <h4 class="topic-sub-headers">Body</h4>
-<p class="empty-field" *ngIf="isTopicBodyInputNull">Should not be null</p>
+<div class="error-div error-div-red" *ngIf="isTopicBodyInputNull">
+  <i class="fa fa-warning fa-red"></i>
+  <p class="error-msg">write something in the body</p>
+</div>
+<!-- <p class="empty-field" *ngIf="isTopicBodyInputNull">Should not be null</p> -->
 <textarea id="topic-body" class="form-control" [(ngModel)]="topicBodyInput"></textarea>
 
 <h4 class="topic-sub-headers">Tags</h4>
 <ul class="selected-topic-tags-list">
-    <li *ngFor="let selectedCurrentTag of selectedTopicTags" 
+    <li *ngFor="let selectedCurrentTag of selectedTopicTags"
         class="selected-topic-tags-item">
-            {{selectedCurrentTag.typeName}} 
+            {{selectedCurrentTag.typeName}}
         <a class="delete-selected-topic-tags" (click)="deleteSelectedTag(selectedCurrentTag)">&times;</a>
     </li>
 </ul>
-<p class="empty-field" *ngIf="isTopicTagInputNull">Should not be null</p>
-<input  id="topic-tags" class="form-control" 
+<div class="error-div error-div-red" *ngIf="isTopicTagInputNull">
+  <i class="fa fa-warning fa-red"></i>
+  <p class="error-msg">Select tags or Add a new tag</p>
+</div>
+<div class="error-div error-div-yellow" *ngIf="isTagAlreadyPresent">
+  <i class="fa fa-warning fa-yellow"></i>
+  <p class="error-msg">Tag is already selected</p>
+</div>
+<div class="error-div error-div-yellow" *ngIf="isAddingTagEmpty">
+  <i class="fa fa-warning fa-yellow"></i>
+  <p class="error-msg">Tag name should be atleast 4 letters</p>
+</div>
+<!-- <p class="empty-field" *ngIf="isTopicTagInputNull">Should not be null</p> -->
+<input  id="topic-tags" class="form-control"
         type="text"
-        (keydown)="showAllTopicTagsMatches()" 
+        (keydown)="showAllTopicTagsMatches()"
         [(ngModel)]="topicTagInput" >
 <button class="btn btn-primary add-topic" (click)="addTopicTag()">+</button>
 
 <ul class="list-group topic-tags-list-group" #topicTagsList>
-    <li *ngFor="let topicTag of allTopicTagOptions" 
+    <li *ngFor="let topicTag of allTopicTagOptions"
         class="list-group-item topic-tags-list-group-item"
         (click)="selectCurrentTag(topicTag)">{{topicTag}}</li>
 </ul>

@@ -7,38 +7,70 @@
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" [routerLink] = "['/']">&times;</button>
-        <h4 class="modal-title">Signup</h4>
+          <button type="button" class="close" data-dismiss="modal" [routerLink] = "['/']">&times;</button>
+          <h4 class="modal-title">Signup</h4>
+          <div class="error-div" *ngIf="responseText">
+            <i *ngIf="USER_SUCCESSFULLY_REGISTERED" class="fa fa-warning fa-green"></i>
+            <i *ngIf="USER_NOT_REGISTERED || USER_ALREADY_REGISTERED" class="fa fa-warning fa-red"></i>
+            <p class="error-msg" *ngIf="USER_NOT_REGISTERED" >{{USER_NOT_REGISTERED}}</p>
+            <p class="error-msg error-green" *ngIf="USER_SUCCESSFULLY_REGISTERED" >{{USER_SUCCESSFULLY_REGISTERED}}</p>
+            <p class="error-msg" *ngIf="USER_ALREADY_REGISTERED" >{{USER_ALREADY_REGISTERED}}</p>
+          </div>
         </div>
         <div class="modal-body">
-            
+
 
         <div class="signup__container">
             <div class="container__child signup__form">
                 <form method="post" (submit)="submitForm()">
                     <div class="form-group">
                         <label for="username">Username*</label>
-                        <input class="my-form-control" type="text" name="username" id="username" placeholder="jamesbond007" [(ngModel)]="user_signup_details.username" required />
+                        <input class="my-form-control" type="text" name="username" id="username" placeholder="jamesbond007" [(ngModel)]="user_signup_details.username" requifa-red />
+                        <div class="error-div" *ngIf="usernameFail">
+                          <i class="fa fa-warning fa-red"></i>
+                          <p class="error-msg">Enter username </p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email*</label>
-                        <input class="my-form-control" type="text" name="email" id="email" placeholder="james.bond007@gmail.com" [(ngModel)]="user_signup_details.email" required />
+                        <input class="my-form-control" type="text" name="email" id="email" placeholder="james.bond007@gmail.com" [(ngModel)]="user_signup_details.email" requifa-red />
+                        <div class="error-div" *ngIf="emailFail">
+                            <i class="fa fa-warning fa-red"></i>
+                            <p class="error-msg">Enter email address</p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name*</label>
-                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" [(ngModel)]="user_signup_details.last_name" required />
+                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" [(ngModel)]="user_signup_details.last_name" requifa-red />
+                        <div class="error-div" *ngIf="last_name_fail">
+                            <i class="fa fa-warning fa-red"></i>
+                            <p class="error-msg">Enter last name</p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname">First Name*</label>
-                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" [(ngModel)]="user_signup_details.first_name" required />
+                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" [(ngModel)]="user_signup_details.first_name" requifa-red />
+                        <div class="error-div" *ngIf="first_name_fail">
+                            <i class="fa fa-warning fa-red"></i>
+                            <p class="error-msg">Enter first name</p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password">Password*</label>
-                        <input class="my-form-control" type="password" name="password" id="password" placeholder="********" [(ngModel)]="user_signup_details.password" required />
+                        <input class="my-form-control" type="password" name="password" id="password" placeholder="********" [(ngModel)]="user_signup_details.password" requifa-red />
+                        <div class="error-div" *ngIf="passwordFail || passwordValidFail">
+                            <i class="fa fa-warning fa-red"></i>
+                            <p class="error-msg" *ngIf="passwordFail">Enter password</p>
+                            <p class="error-msg" *ngIf="passwordValidFail">Password should be atleast 8 letters</p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="passwordRepeat">Confirm Password*</label>
-                        <input class="my-form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" [(ngModel)]="user_signup_details.passwordrepeat" required />
+                        <input class="my-form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" [(ngModel)]="user_signup_details.passwordrepeat" requifa-red />
+                        <div class="error-div" *ngIf="passwordrepeatFail">
+                            <i class="fa fa-warning fa-red"></i>
+                            <p class="error-msg" *ngIf="passwordrepeatFail">Passwords didn't match</p>
+                        </div>
                     </div>
                     <div class="m-t-lg">
                         <ul class="list-inline">
@@ -50,7 +82,7 @@
                             </li>
                         </ul>
                     </div>
-                </form>  
+                </form>
             </div>
         </div>
 
