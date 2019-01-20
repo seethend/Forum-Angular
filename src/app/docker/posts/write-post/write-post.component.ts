@@ -28,6 +28,17 @@ export class WritePostComponent implements OnInit {
   ngOnInit() {}
 
   /**
+   * Checks if textarea is not empty to allows user to post
+   */
+  checkAllowPost() {
+    if (this.postMessage.trim().length > 0) {
+      this.allowPost = true;
+    } else {
+      this.allowPost = false;
+    }
+  }
+
+  /**
    * Expands the write post div
   */
   popup() {
@@ -97,11 +108,11 @@ export class WritePostComponent implements OnInit {
       reader.readAsBinaryString(this.files[0]); // Taking only one file for now
       this.fileName = this.files[0].name;
       this.hasImage = true;
-      // this.allowPost = true;
+      this.allowPost = true;
     } else {
       console.log('No file selected');
       this.hasImage = false;
-      // this.allowPost = false;
+      this.allowPost = false;
     }
     // console.log(this.files[0].name);
   }
