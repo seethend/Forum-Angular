@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticateService } from '../authenticate/authenticate.service';
 import { User } from '../user-details/user.model';
 
@@ -9,7 +10,9 @@ import { User } from '../user-details/user.model';
 })
 export class AppHeaderComponent implements OnInit {
 
-    constructor(private authService: AuthenticateService) { }
+    constructor(private authService: AuthenticateService, private router: Router) { }
+
+    // @ViewChild('searchString') searchString = '';
 
     userLoggedIn: User; // Stores logged in user object
     isUserLogged = false; // flag for user logged in
@@ -33,6 +36,13 @@ export class AppHeaderComponent implements OnInit {
 
     logout() {
         this.authService.logout();
+    }
+
+    searchForum(event: KeyboardEvent, searchString: string) {
+      if (event.key.toLowerCase() === 'enter' && event.keyCode === 13) {
+        console.log(event, event.key.toLowerCase(), event.keyCode);
+        this.router.navigate(['/', 'search', searchString]);
+      }
     }
 
 }
