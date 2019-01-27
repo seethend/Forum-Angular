@@ -4,7 +4,7 @@
         <div id="profile-img-div">
             <img id="profile-img" src="assets/images/seeth.jpg">
         </div>
-        <p id="user-name">D Seethend Reddy</p>
+        <p id="user-name">{{ loggedUser.lastName }}  {{ loggedUser.firstName }}</p>
         <p id="user-bio">Any Bio</p>
         <div class="profile-blocks" [ngClass]="{'selected-block' : selectedBlockName === 'posts'}" id="profile-posts" [routerLink]="['posts']" (click)="selectedBlock('posts')">
             <img class="profile-blocks-img" src="assets/images/logo2.jpg">

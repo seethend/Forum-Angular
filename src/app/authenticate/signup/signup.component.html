@@ -41,16 +41,16 @@
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name*</label>
-                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" [(ngModel)]="user_signup_details.last_name" requifa-red />
-                        <div class="error-div" *ngIf="last_name_fail">
+                        <input class="my-form-control" type="text" name="lastname" id="lastname" placeholder="Bond" [(ngModel)]="user_signup_details.lastName" requifa-red />
+                        <div class="error-div" *ngIf="lastName_fail">
                             <i class="fa fa-warning fa-red"></i>
                             <p class="error-msg">Enter last name</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname">First Name*</label>
-                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" [(ngModel)]="user_signup_details.first_name" requifa-red />
-                        <div class="error-div" *ngIf="first_name_fail">
+                        <input class="my-form-control" type="text" name="firstname" id="firstname" placeholder="James" [(ngModel)]="user_signup_details.firstName" requifa-red />
+                        <div class="error-div" *ngIf="firstName_fail">
                             <i class="fa fa-warning fa-red"></i>
                             <p class="error-msg">Enter first name</p>
                         </div>

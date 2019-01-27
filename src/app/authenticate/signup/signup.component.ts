@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  user_signup_details = {username: '', email: '', last_name: '', first_name: '', password: '', passwordrepeat: ''};
+  user_signup_details = {username: '', email: '', lastName: '', firstName: '', password: '', passwordrepeat: ''};
 
   // Booleans to check field validations
   usernameFail = false;
   emailFail = false;
-  last_name_fail = false;
-  first_name_fail = false;
+  lastName_fail = false;
+  firstName_fail = false;
   passwordFail = false;
   passwordValidFail = false;
   passwordrepeatFail = false;
@@ -105,16 +105,16 @@ export class SignupComponent implements OnInit {
       this.emailFail = false;
     }
 
-    if (this.user_signup_details.last_name == null || this.user_signup_details.last_name.trim() === '') {
-      this.last_name_fail = true;
+    if (this.user_signup_details.lastName == null || this.user_signup_details.lastName.trim() === '') {
+      this.lastName_fail = true;
     } else {
-      this.last_name_fail = false;
+      this.lastName_fail = false;
     }
 
-    if (this.user_signup_details.first_name == null || this.user_signup_details.first_name.trim() === '') {
-      this.first_name_fail = true;
+    if (this.user_signup_details.firstName == null || this.user_signup_details.firstName.trim() === '') {
+      this.firstName_fail = true;
     } else {
-      this.first_name_fail = false;
+      this.firstName_fail = false;
     }
 
     if (this.user_signup_details.password == null || this.user_signup_details.password.trim() === '') {
@@ -136,8 +136,8 @@ export class SignupComponent implements OnInit {
     }
 
     if  (
-          this.usernameFail || this.emailFail || this.last_name_fail ||
-          this.first_name_fail || this.passwordFail || this.passwordrepeatFail ||
+          this.usernameFail || this.emailFail || this.lastName_fail ||
+          this.firstName_fail || this.passwordFail || this.passwordrepeatFail ||
           this.passwordValidFail
         ) {
       return false;
@@ -153,8 +153,8 @@ export class SignupComponent implements OnInit {
   clearFields() {
     this.user_signup_details.username = '';
     this.user_signup_details.email = '';
-    this.user_signup_details.last_name = '';
-    this.user_signup_details.first_name = '';
+    this.user_signup_details.lastName = '';
+    this.user_signup_details.firstName = '';
     this.user_signup_details.password = '';
     this.user_signup_details.passwordrepeat = '';
   }

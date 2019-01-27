@@ -27,8 +27,8 @@ export class AuthenticateService {
 
   saveUser(user_signup_details: { username: string,
                                   email: string,
-                                  last_name: string,
-                                  first_name: string,
+                                  lastName: string,
+                                  firstName: string,
                                   password: string,
                                   passwordrepeat: string
                                 }

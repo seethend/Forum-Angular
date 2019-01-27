@@ -5,9 +5,9 @@ export class User {
                 public credentialsNonExpired: boolean,
                 public email: string,
                 public enabled: boolean,
-                public first_name: string,
+                public firstName: string,
                 public id: number,
-                public last_name: string,
+                public lastName: string,
                 public password: string,
                 public username: string
 ) {}
