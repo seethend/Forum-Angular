@@ -38,6 +38,7 @@ import { FriendsComponent } from './profile/friends/friends.component';
 import { PhotosComponent } from './profile/photos/photos.component';
 import { ProfilePostsComponent } from './profile/profile-posts/profile-posts.component';
 import { ProfileService } from './profile/profile.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ProfileService } from './profile/profile.service';
     AboutComponent,
     FriendsComponent,
     PhotosComponent,
-    ProfilePostsComponent
+    ProfilePostsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -18,32 +18,42 @@ import { ProfilePostsComponent } from './profile/profile-posts/profile-posts.com
 import { FriendsComponent } from './profile/friends/friends.component';
 import { PhotosComponent } from './profile/photos/photos.component';
 import { WritePostComponent } from './docker/posts/write-post/write-post.component';
+import { SearchComponent } from './search/search.component';
 
 const appRoutes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'auth/login'},
-  {path: 'posts', component: DockerComponent, children: [
-    {path: 'createpost', component: WritePostComponent},
-    {path: ':id', component: PostDetailsComponent}
-  ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]},
-  {path: 'discussions', component: DiscussionsComponent, children: [
-    {path: '', component: TopicComponent, children: [
-      {path: 'newtopic', component: WriteTopicComponent},
-      {path: 'topic/:id', component: TopicDetailsComponent},
-      {path: 'topics', component: ShowTopicComponent, children: [
-          {path: ':topic', component: TopicListComponent}
-        ]}
-    ]}
-  ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]},
-  {path: 'profile', component: ProfileComponent, children: [
+  {
+    path: '', pathMatch: 'full', redirectTo: 'auth/login'
+  },
+  { path: 'posts', component: DockerComponent, children: [
+      {path: 'createpost', component: WritePostComponent},
+      {path: ':id', component: PostDetailsComponent}
+    ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]
+  },
+  { path: 'discussions', component: DiscussionsComponent, children: [
+      {path: '', component: TopicComponent, children: [
+        {path: 'newtopic', component: WriteTopicComponent},
+        {path: 'topic/:id', component: TopicDetailsComponent},
+        {path: 'topics', component: ShowTopicComponent, children: [
+            {path: ':topic', component: TopicListComponent}
+          ]}
+      ]}
+    ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]
+  },
+  {  path: 'profile', component: ProfileComponent, children: [
         {path: 'posts', component: ProfilePostsComponent},
         {path: 'about', component: AboutComponent},
         {path: 'friends', component: FriendsComponent},
         {path: 'photos', component: PhotosComponent}
-    ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]},
-  {path: 'auth', component: AuthenticateComponent, children: [
+    ], canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]
+  },
+  {
+    path: 'search/:searchString', component: SearchComponent, canActivate: [AuthenticateGuard], canActivateChild: [AuthenticateGuard]
+  },
+  { path: 'auth', component: AuthenticateComponent, children: [
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent}
-  ]}
+    ]
+  }
 ];
 
 @NgModule({
