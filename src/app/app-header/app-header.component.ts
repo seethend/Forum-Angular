@@ -12,7 +12,7 @@ export class AppHeaderComponent implements OnInit {
 
     constructor(private authService: AuthenticateService, private router: Router) { }
 
-    // @ViewChild('searchString') searchString = '';
+    searchString = '';
 
     userLoggedIn: User; // Stores logged in user object
     isUserLogged = false; // flag for user logged in
@@ -38,10 +38,11 @@ export class AppHeaderComponent implements OnInit {
         this.authService.logout();
     }
 
-    searchForum(event: KeyboardEvent, searchString: string) {
+    searchForum(event: KeyboardEvent) {
       if (event.key.toLowerCase() === 'enter' && event.keyCode === 13) {
-        console.log(event, event.key.toLowerCase(), event.keyCode);
-        this.router.navigate(['/', 'search', searchString]);
+        const localString = this.searchString;
+        this.searchString = '';
+        this.router.navigate(['/', 'search', localString]);
       }
     }
 

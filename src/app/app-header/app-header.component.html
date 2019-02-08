@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="glyphicon glyphicon-search"></span>
-      <input id="home-search" type="text" value="" placeholder="Search...." (keydown)="searchForum($event, searchString.value)" #searchString>
+      <input id="home-search" type="text" value="" placeholder="Search...." (keydown)="searchForum($event)" [(ngModel)]="searchString">
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right" *ngIf="!isUserLogged">
