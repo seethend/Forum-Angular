@@ -1,3 +1,41 @@
-<p>
-  search works!
-</p>
+<div class="search-container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 search-main-div">
+      <div class="search-sub-div" *ngIf="isUsersNotNull">
+        <p class="search-heading">Users</p>
+        <ul class="search-items-group">
+          <li class="search-item" *ngFor="let user of search.users">
+            <div class="user-div">
+              <img src="assets/images/logo2.jpg" class="user-profile-img">
+              <p class="user-fl">{{ user.lastName }} {{ user.firstName }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="search-sub-div" *ngIf="isPostsNotNull">
+        <p class="search-heading">Posts</p>
+        <ul class="search-items-group">
+          <li class="search-item"*ngFor="let post of search.posts">
+            <div class="post-div" [routerLink]="['/', 'posts', post.postId]">
+              <img src="assets/images/logo2.jpg" class="user-profile-img">
+              <p class="post-by-user"> {{ post.postedByUserId }} </p>
+              <p class="post-msg"> {{ post.postDetails }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="search-sub-div" *ngIf="isTopicsNotNull">
+        <p class="search-heading">Topics</p>
+        <ul class="search-items-group">
+          <li class="search-item" *ngFor="let topic of search.topics">
+            <div class="topic-div" [routerLink]="['/', 'discussions', 'topic', topic.topicId]">
+                <!-- <p class="post-by-user"> {{ topic.topicByUserId }} </p> -->
+                <p class="topic-heading"> {{ topic.topicHeading }} </p>
+                <p class="topic-by-user"> By {{ topic.topicByUserId }} </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
