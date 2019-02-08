@@ -1,6 +1,6 @@
 .topic-detail-container{
   margin: 20px;
-  height: 500px;
+  box-shadow: 25px 10px 25px black;
 }
 
 .topic-heading{

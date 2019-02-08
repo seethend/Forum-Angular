@@ -17,6 +17,7 @@ export class TopicService {
     topicsByType: Topic[] = []; // Stores topic by type
 
     topicsFetched = new Subject<boolean>();
+    singleTopicFetched = new Subject<Topic>();
 
     isTopicsLoaded = false;
 
@@ -62,12 +63,17 @@ export class TopicService {
 
     // Returns single topic based on Id
     getTopicById(topicId: string) {
-        for (const topic of this.topics) {
-            if (topic.topicId.toString() === topicId) {
-                this.singleTopic = topic;
-            }
-        }
-        return this.singleTopic;
+      for (const topic of this.topics) {
+          if (topic.topicId.toString() === topicId) {
+              this.singleTopic = topic;
+          }
+      }
+      return this.singleTopic;
+    }
+
+    getTopicFromAPI(topicId: string) {
+      const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
+      return this.http.get(this.topicsAPI + 'topic/' + topicId , {headers: httpHeaders});
     }
 
     // Returns all topics based on type

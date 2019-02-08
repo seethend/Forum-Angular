@@ -5,6 +5,7 @@ li{
     height: 100px;
     cursor: pointer;
     border: 1px groove #1e2642;
+    box-shadow: 5px 5px 70px black;
     outline: none;
 }
 
