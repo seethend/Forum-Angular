@@ -32,12 +32,11 @@ export class PostServices {
         console.log(post);
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
         this.http.post(this.postsAPI + 'save', post, {headers: httpHeaders}).subscribe(
-          (post: Post) => {
+          (localpost: Post) => {
                 this.fetchPosts('NEW_POST_ADDED');
-                if(post.hasImages && fileString != null && fileString.length > 0){
+                if (post.hasImages && fileString != null && fileString.length > 0) {
                   this.savePostImage(post.postId, fileName, fileString);
-                }
-                else{
+                } else {
                   console.error('Post Image Failed to upload');
                 }
             },
@@ -49,17 +48,19 @@ export class PostServices {
 
     }
 
-    savePostImage(postId: number, fileName: string, fileString: string){
+    savePostImage(postId: number, fileName: string, fileString: string) {
       // console.log("Image string data ", fileString)
       const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
-      this.http.post(this.postsAPI + 'imageUpload', {'postId': postId, 'fileName': fileName, 'imageStringData': fileString}, {headers: httpHeaders, responseType: 'text'}).subscribe(
-        (imagePath: string) => {
-          console.log('Image Path: ', imagePath);
-        },
-        error => {
-          console.error("Something went wrong while storing image");
-          this.authService.logout();
-        }
+      this.http.post(
+        this.postsAPI + 'imageUpload', {'postId': postId, 'fileName': fileName, 'imageStringData': fileString},
+        {headers: httpHeaders, responseType: 'text'}).subscribe(
+          (imagePath: string) => {
+            console.log('Image Path: ', imagePath);
+          },
+          error => {
+            console.error('Something went wrong while storing image');
+            this.authService.logout();
+          }
       );
     }
 
@@ -71,16 +72,15 @@ export class PostServices {
         this.http.get(this.postsAPI + 'all', {headers: httpHeaders}).subscribe(
           (posts: Post[]) => {
             this.posts = posts;
-            if(fire === 'GET_ALL_POSTS'){
+            if (fire === 'GET_ALL_POSTS') {
               this.postsFetched.next(true);
-            }
-            else if(fire === 'NEW_POST_ADDED'){
+            } else if (fire === 'NEW_POST_ADDED') {
               this.postAdded.next(this.posts.slice());
             }
           },
           error => {
             console.log('error occurred while fetching posts', error);
-            if(fire === 'GET_ALL_POSTS'){
+            if (fire === 'GET_ALL_POSTS') {
               this.postsFetched.next(false);
             }
             this.authService.logout();
