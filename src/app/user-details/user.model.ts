@@ -9,7 +9,8 @@ export class User {
                 public id: number,
                 public lastName: string,
                 public password: string,
-                public username: string
+                public username: string,
+                public userProfilePath: string
 ) {}
 
 }
