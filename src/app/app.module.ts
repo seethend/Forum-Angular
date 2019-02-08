@@ -1,3 +1,4 @@
+import { SearchService } from './search/search.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -79,7 +80,7 @@ import { SearchComponent } from './search/search.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthenticateService, AuthenticateGuard, PostServices, TopicService, ProfileService],
+  providers: [AuthenticateService, AuthenticateGuard, PostServices, TopicService, ProfileService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
