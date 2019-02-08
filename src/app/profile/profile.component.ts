@@ -1,4 +1,7 @@
+import { UserImage } from './../user-details/user-image.model';
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from './profile.service';
+import { User } from '../user-details/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -8,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
 
     selectedBlockName = '';
-    constructor() { }
+    loggedUser: User;
+    userProfilePath = '';
+
+    files: FileList; // Stores entire data of files uploaded
+    filestring: string; // Stores string representation on file
+    fileName = ''; // Stores file name
+    hasImage = false; // Check if any file uploaded
+
+    constructor(private profileService: ProfileService) { }
 
     ngOnInit() {
+      this.loggedUser = this.profileService.getAllUserDetails();
+      this.userProfilePath = this.loggedUser.userProfilePath;
       document.getElementById('profile-sub-div').style.display = 'none';
     }
 
@@ -24,4 +37,63 @@ export class ProfileComponent implements OnInit {
         this.selectedBlockName = block;
         console.log(this.selectedBlockName);
     }
+
+    /**
+     *
+     * Returns profile picture path of logged in user
+     *
+     */
+    getProfileImagePath() {
+      return this.userProfilePath;
+    }
+
+  /**
+   * Reads file uploaded
+   */
+  getFiles(event) {
+    console.log(event);
+    this.files = event.target.files;
+    const reader = new FileReader();
+    reader.onload = this._handleReaderLoaded.bind(this);
+    if (this.files[0] != null) {
+      reader.readAsBinaryString(this.files[0]); // Taking only one file for now
+      this.fileName = this.files[0].name;
+      this.hasImage = true;
+    } else {
+      console.log('No file selected');
+      this.hasImage = false;
+    }
+    console.log(this.files[0].name);
+  }
+
+  /**
+   * Converting file from binary to string
+   * @param readerEvt
+   */
+  _handleReaderLoaded(readerEvt) {
+    const binaryString = readerEvt.target.result;
+    this.filestring = btoa(binaryString);  // Converting binary string data.
+    console.log(this.filestring.substring(0, 100));
+  }
+
+  /**
+   *
+   * Upload the profile pic to the server
+   *
+   */
+  uploadProfilePic() {
+    if (this.hasImage) {
+      this.profileService.saveProfilePic(this.filestring, this.fileName).subscribe(
+        (localUserImage: UserImage) => {
+          this.userProfilePath = localUserImage.imageLocation;
+        },
+        error => {
+          console.log(error);
+          this.profileService.sayLogout();
+        }
+      );
+    } else {
+      console.log('select an image first');
+    }
+  }
 }

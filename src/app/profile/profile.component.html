@@ -2,7 +2,9 @@
     <div id="wall-paper"></div>
     <div id="profile-div">
         <div id="profile-img-div">
-            <img id="profile-img" src="assets/images/seeth.jpg">
+            <img id="profile-img" [src]="getProfileImagePath()">
+            <input type="file" id="post-img" name="file" (change)="getFiles($event)">
+            <button (click)="uploadProfilePic()">Upload</button>
         </div>
         <p id="user-name">{{ loggedUser.lastName }}  {{ loggedUser.firstName }}</p>
         <p id="user-bio">Any Bio</p>
