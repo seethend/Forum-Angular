@@ -5,6 +5,7 @@
     height: auto;
     max-height: 515px;
     margin-bottom: 0px;
+    box-shadow: 5px 5px 20px black;
     overflow: hidden;
 }
 
