@@ -34,8 +34,8 @@ export class PostServices {
         this.http.post(this.postsAPI + 'save', post, {headers: httpHeaders}).subscribe(
           (localpost: Post) => {
                 this.fetchPosts('NEW_POST_ADDED');
-                if (post.hasImages && fileString != null && fileString.length > 0) {
-                  this.savePostImage(post.postId, fileName, fileString);
+                if (localpost.hasImages && fileString != null && fileString.length > 0) {
+                  this.savePostImage(localpost.postId, fileName, fileString);
                 } else {
                   console.error('Post Image Failed to upload');
                 }
