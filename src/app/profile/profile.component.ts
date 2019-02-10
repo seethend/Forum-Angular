@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserImage } from './../user-details/user-image.model';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './profile.service';
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
     fileName = ''; // Stores file name
     hasImage = false; // Check if any file uploaded
 
-    constructor(private profileService: ProfileService) { }
+    constructor(private profileService: ProfileService, private router: Router) { }
 
     ngOnInit() {
       this.loggedUser = this.profileService.getAllUserDetails();
@@ -84,8 +85,10 @@ export class ProfileComponent implements OnInit {
   uploadProfilePic() {
     if (this.hasImage) {
       this.profileService.saveProfilePic(this.filestring, this.fileName).subscribe(
-        (localUserImage: UserImage) => {
-          this.userProfilePath = localUserImage.imageLocation;
+        (profilePicformat: string) => {
+          this.userProfilePath = '/forum-bucket/profile/' + this.loggedUser.username + '.' + profilePicformat;
+          console.log('new profile pic changed ' + this.userProfilePath);
+          this.router.navigate(['/', 'profile']);
         },
         error => {
           console.log(error);

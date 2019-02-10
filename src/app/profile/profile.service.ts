@@ -73,7 +73,7 @@ export class ProfileService {
 
       const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
 
-      return this.http.post(this.usersProfilePicApi, userImage, {headers: httpHeaders});
+      return this.http.post(this.usersProfilePicApi, userImage, {headers: httpHeaders, responseType: 'text'});
 
     }
 
