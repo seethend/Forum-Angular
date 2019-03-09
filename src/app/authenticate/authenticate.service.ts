@@ -69,7 +69,7 @@ export class AuthenticateService {
   // Sets all values to default and notifies application that user is logged out when something unexpected happends
   logout() {
     this.loginUserSubject.next(false);
-    this.appHeaderUserSubject.next(false);
+    // this.appHeaderUserSubject.next(false);
     this.isUserLoggedIn = false;
     this.token = null;
     this.router.navigate(['auth', 'login']);
