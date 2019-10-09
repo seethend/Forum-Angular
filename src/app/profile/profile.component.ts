@@ -97,6 +97,7 @@ export class ProfileComponent implements OnInit {
       );
     } else {
       console.log('select an image first');
+      alert('Please choose an image!!!');
     }
   }
 }

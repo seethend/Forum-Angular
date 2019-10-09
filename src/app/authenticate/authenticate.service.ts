@@ -61,6 +61,11 @@ export class AuthenticateService {
     }
   }
 
+  checkLoggedInUser() {
+    const httpHeaders = new HttpHeaders({'Authorization': this.token});
+    return this.http.get('v1/secured/user', {headers: httpHeaders});
+  }
+
   // Returns current logged in User details
   getLoggeduser() {
       return this.loggedInUser;
@@ -69,7 +74,7 @@ export class AuthenticateService {
   // Sets all values to default and notifies application that user is logged out when something unexpected happends
   logout() {
     this.loginUserSubject.next(false);
-    // this.appHeaderUserSubject.next(false);
+    this.appHeaderUserSubject.next(false);
     this.isUserLoggedIn = false;
     this.token = null;
     this.router.navigate(['auth', 'login']);

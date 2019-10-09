@@ -1,10 +1,11 @@
 <div class="contianer">
     <div id="wall-paper"></div>
     <div id="profile-div">
-        <div id="profile-img-div">
-            <img id="profile-img" [src]="getProfileImagePath()">
-            <input type="file" id="post-img" name="file" (change)="getFiles($event)">
-            <button (click)="uploadProfilePic()">Upload</button>
+        <div id="profile-img-div" align="center">
+            <label for="post-img"><img id="profile-img" [src]="getProfileImagePath()"></label>
+            <input type="file" id="post-img" name="file" accept="image/*" (change)="getFiles($event)">
+            <br>
+            <button type="button" class="btn btn-success" id="upload-img" (click)="uploadProfilePic()">Upload</button>
         </div>
         <p id="user-name">{{ loggedUser.lastName }}  {{ loggedUser.firstName }}</p>
         <p id="user-bio">Any Bio</p>
