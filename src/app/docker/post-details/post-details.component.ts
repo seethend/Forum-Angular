@@ -49,4 +49,18 @@ export class PostDetailsComponent implements OnInit {
     return 'forum-bucket/posts/post_' + this.post.postId + '.png';
   }
 
+  emotions(task: string) {
+    const emotionsDiv = document.getElementById('post-emotions-div');
+    if (task === 'show') {
+      emotionsDiv.style.display = 'block';
+    } else if (task === 'hide') {
+      emotionsDiv.style.display = 'none';
+    }
+
+  }
+
+  sendUserEmotion(emotion: string) {
+    console.log('User emotion : ' + emotion);
+  }
+
 }

@@ -42,7 +42,7 @@ li{
   color: #9e9e9e;
   margin-right: 80px;
   cursor: pointer;
-  padding: 10px 40px;
+  padding: 15px 20px;
   border-radius: 5px;
 }
 
@@ -57,4 +57,26 @@ li:hover{
 
 .comment-icon {
     margin-right: 5px;
+}
+
+#post-emotions-div {
+  display: none;
+  margin-left: 30px;
+  margin-top: -2px;
+  padding: 7px 9px;
+  width: 271px;
+  background-color: #8080800d;
+  border-radius: 5px;
+}
+
+#post-emotions-list {
+  display: inline-flex;
+  margin-left: -35px;
+  margin-bottom: 0;
+}
+
+.post-emotion-item {
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 5px;
 }

@@ -14,8 +14,23 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
   <hr>
-  <ul>
-    <li><img class="like-icon" src="https://png.icons8.com/ios/24/B9B9B9/facebook-like.png">Like</li>
-    <li><img class="comment-icon" src="https://png.icons8.com/windows/24/B9B9B9/topic.png">Comment</li>
-  </ul>
+  <div id="post-feedback-div">
+    <ul id="post-feedback-items">
+      <li id="like-item" (mouseover)="emotions('show')" (mouseout)="emotions('hide')" (click) = "sendUserEmotion('like')" ><img class="like-icon" src="assets/images/facebook-like.png">Like</li>
+      <li id="comment-item"><img class="comment-icon" src="assets/images/facebook-comment.png">Comment</li>
+    </ul>
+  </div>
+
+  <div id="post-emotions-div" (mouseover)="emotions('show')" (mouseout)="emotions('hide')">
+    <ul id = "post-emotions-list">
+      <li class="post-emotion-item" (click) = "sendUserEmotion('like')" ><i class="em em---1" aria-role="presentation" aria-label="THUMBS UP SIGN"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('love')" ><i class="em em-heart" aria-role="presentation" aria-label="HEAVY BLACK HEART"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('laugh')" ><i class="em em-laughing" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('face-palm')" ><i class="em em-man-facepalming" aria-role="presentation" aria-label=""></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('whatever')" ><i class="em em-man-shrugging" aria-role="presentation" aria-label=""></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('angry')" ><i class="em em-angry" aria-role="presentation" aria-label="ANGRY FACE"></i></li>
+    </ul>
+  </div>
+
+
 </div>
