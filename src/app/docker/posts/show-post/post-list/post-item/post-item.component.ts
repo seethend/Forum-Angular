@@ -1,6 +1,6 @@
+import { Post } from './../../../posts.model';
+import { CustomPostDetails } from './../../../custompostdetails.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../../../posts.model';
-import { post } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-post-item',
@@ -11,11 +11,14 @@ export class PostItemComponent implements OnInit {
 
     // Gets a post Item for every iteration from parent component
     // tslint:disable-next-line:no-input-rename
-    @Input('postItem') post: Post;
+    @Input('postItem') postDetail: CustomPostDetails;
+
+    post: Post;
 
     constructor() { }
 
     ngOnInit() {
+      this.post = this.postDetail.post;
     }
 
 }

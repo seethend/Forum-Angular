@@ -1,3 +1,4 @@
+import { CustomPostDetails } from './../posts/custompostdetails.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { PostServices } from '../posts/posts.service';
@@ -11,8 +12,13 @@ import { AuthenticateService } from 'src/app/authenticate/authenticate.service';
 })
 export class PostDetailsComponent implements OnInit {
 
+
+  customPostDetails: CustomPostDetails;
+
   post: Post;
+  postUserEmotions: string;
   postLoaded = false; // flag to avoid null exception for post in template
+  postEmotionsLoaded = false;
   id: number; // Id recieved from URL
 
   constructor(
@@ -27,11 +33,21 @@ export class PostDetailsComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.postServices.getPostById(this.id).subscribe(
-          (post: Post) => {
-            console.log(post);
+        this.postServices.getPostDetailsById(this.id).subscribe(
+          (customPostDetails: CustomPostDetails) => {
+            console.log(customPostDetails);
+            this.customPostDetails = customPostDetails;
+            this.post = customPostDetails.post;
+            this.postUserEmotions = customPostDetails.userEmotionType;
             this.postLoaded = true;
-            this.post = post;
+
+            // this.postFeedbackService.fetchPostEmotions(this.post.postId).subscribe(
+            //   (localPostEmotions: PostEmotions) => {
+            //     this.postEmotions = localPostEmotions;
+            //     console.log(localPostEmotions);
+            //     this.postEmotionsLoaded = true;
+            //   }
+            // );
           },
           error => {
             this.postLoaded = false;
@@ -46,7 +62,8 @@ export class PostDetailsComponent implements OnInit {
 
   getImagePath() {
     console.log('forum-bucket/posts/post_' + this.post.postId + '.png');
-    return 'forum-bucket/posts/post_' + this.post.postId + '.png';
+    return this.customPostDetails.postImagePath;
+    // return 'forum-bucket/posts/post_' + this.post.postId + '.png';
   }
 
   emotions(task: string) {

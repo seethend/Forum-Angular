@@ -1,3 +1,4 @@
+import { CustomPostDetails } from './custompostdetails.model';
 import { Post } from './posts.model';
 import { Subject } from 'rxjs';
 import {Injectable} from '@angular/core';
@@ -9,8 +10,10 @@ export class PostServices {
 
     postsAPI = 'v1/secured/posts/'; // Posts module API URL
 
+    postDetailsAPI = 'v1/secured/postdetails/';
+
     // Stores all posts from API in an array to use for future references
-    posts: Post[] = [
+    customPostDetails: CustomPostDetails[] = [
       /*new Post("1",
         "154",
         "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
@@ -19,7 +22,7 @@ export class PostServices {
       ),*/
     ];
     singlePost: Post;
-    postAdded = new Subject<Post[]>(); // arms to fire when a new post is added
+    postAdded = new Subject<CustomPostDetails[]>(); // arms to fire when a new post is added
     postsFetched = new Subject<boolean>(); // arms to fire when all posts are fetched
 
     constructor(private http: HttpClient, private authService: AuthenticateService) {}
@@ -69,13 +72,13 @@ export class PostServices {
     // If anything goes wrong authService.logout() is called
     fetchPosts(fire: string) {
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
-        this.http.get(this.postsAPI + 'all', {headers: httpHeaders}).subscribe(
-          (posts: Post[]) => {
-            this.posts = posts;
+        this.http.get(this.postDetailsAPI + 'all', {headers: httpHeaders}).subscribe(
+          (customPostDetails: CustomPostDetails[]) => {
+            this.customPostDetails = customPostDetails;
             if (fire === 'GET_ALL_POSTS') {
               this.postsFetched.next(true);
             } else if (fire === 'NEW_POST_ADDED') {
-              this.postAdded.next(this.posts.slice());
+              this.postAdded.next(this.customPostDetails.slice());
             }
           },
           error => {
@@ -89,19 +92,19 @@ export class PostServices {
     }
 
     // Returns all posts slice
-    getAllPosts() {
-      return this.posts.slice();
+    getAllPostDetails() {
+      return this.customPostDetails.slice();
     }
 
     // Fetches single posts based on its postId from API server
-    getPostById(id: number) {
+    getPostDetailsById(id: number) {
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
-        return this.http.get(this.postsAPI + 'post/' + id, {headers: httpHeaders});
+        return this.http.get(this.postDetailsAPI + 'post/' + id, {headers: httpHeaders});
     }
 
     // Returns total number of posts count
     getTotalPostCount() {
-      return this.posts.length;
+      return this.customPostDetails.length;
     }
 
 

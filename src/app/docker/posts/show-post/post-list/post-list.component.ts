@@ -1,3 +1,4 @@
+import { CustomPostDetails } from './../../custompostdetails.model';
 import { Component, OnInit } from '@angular/core';
 import { PostServices } from '../../posts.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +11,7 @@ import { Post } from '../../posts.model';
 })
 export class PostListComponent implements OnInit {
 
-  posts = []; // Stores all Posts fetched from post service
+  customPostDetails = []; // Stores all Posts fetched from post service
   postAddedSubscription: Subscription;
   postFetchedSubscription: Subscription;
 
@@ -22,18 +23,18 @@ export class PostListComponent implements OnInit {
     this.postFetchedSubscription = this.postServices.postsFetched.subscribe(
       (postsFetched: boolean) => {
         if (postsFetched) {
-          this.posts = this.postServices.getAllPosts();
+          this.customPostDetails = this.postServices.getAllPostDetails();
         } else {
-          this.posts = [];
+          this.customPostDetails = [];
         }
       }
     );
 
     // Works when a new post added to API. Refresh the posts array locally
     this.postAddedSubscription = this.postServices.postAdded.subscribe(
-      (posts: Post[]) => {
+      (customPostDetails: CustomPostDetails[]) => {
         // console.log("Its fired");
-        this.posts = posts;
+        this.customPostDetails = customPostDetails;
       }
     );
 

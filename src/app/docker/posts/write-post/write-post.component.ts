@@ -69,7 +69,8 @@ export class WritePostComponent implements OnInit {
           this.postMessage,
           new Date().getTime(),
           new Date().getTime(),
-          this.hasImage
+          this.hasImage,
+          0
           ), this.fileName, this.filestring
       );
     }
