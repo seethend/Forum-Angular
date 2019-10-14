@@ -1,3 +1,4 @@
+import { post } from 'selenium-webdriver/http';
 import { CustomPostDetails } from './custompostdetails.model';
 import { Post } from './posts.model';
 import { Subject } from 'rxjs';
@@ -108,5 +109,13 @@ export class PostServices {
     }
 
 
+    updateLatestValues(postId: number, updatedAfterEmotion: any) {
+      for (let i = 0; i < this.customPostDetails.length ; i++) {
+        if (this.customPostDetails[i].post.postId === postId) {
+          this.customPostDetails[i].post.postEmotions = updatedAfterEmotion.postEmotionCount;
+          this.customPostDetails[i].userEmotionType = updatedAfterEmotion.userEmotionType;
+        }
+      }
+    }
 
 }

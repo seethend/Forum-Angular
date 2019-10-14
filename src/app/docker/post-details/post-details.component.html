@@ -23,7 +23,7 @@
       <i *ngIf="postUserEmotions == 2" class="em em-heart like-icon" aria-role="presentation" aria-label="HEAVY BLACK HEART"></i><span *ngIf="postUserEmotions == 2">Love</span>
       <i *ngIf="postUserEmotions == 3" class="em em-laughing like-icon" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i><span *ngIf="postUserEmotions == 3" >Laugh</span>
       <i *ngIf="postUserEmotions == 4" class="em em-man-facepalming like-icon" aria-role="presentation" aria-label=""></i><span *ngIf="postUserEmotions == 4">Facepalm</span>
-      <i *ngIf="postUserEmotions == 5" class="em em-man-shrugging like-icon" aria-role="presentation" aria-label=""></i><span *ngIf="postUserEmotions == 5" >I Don't Care</span>
+      <i *ngIf="postUserEmotions == 5" class="em em-man-shrugging like-icon" aria-role="presentation" aria-label=""></i><span *ngIf="postUserEmotions == 5" >Whatever</span>
       <i *ngIf="postUserEmotions == 6" class="em em-angry like-icon" aria-role="presentation" aria-label="ANGRY FACE"></i><span *ngIf="postUserEmotions == 6">Angry</span>
       </li>
       <li id="comment-item"><img class="comment-icon" src="assets/images/facebook-comment.png">Comment</li>
@@ -32,12 +32,12 @@
 
   <div id="post-emotions-div" (mouseover)="emotions('show')" (mouseout)="emotions('hide')">
     <ul id = "post-emotions-list">
-      <li class="post-emotion-item" (click) = "sendUserEmotion('like')" ><i class="em em---1" aria-role="presentation" aria-label="THUMBS UP SIGN"></i></li>
-      <li class="post-emotion-item" (click) = "sendUserEmotion('love')" ><i class="em em-heart" aria-role="presentation" aria-label="HEAVY BLACK HEART"></i></li>
-      <li class="post-emotion-item" (click) = "sendUserEmotion('laugh')" ><i class="em em-laughing" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i></li>
-      <li class="post-emotion-item" (click) = "sendUserEmotion('face-palm')" ><i class="em em-man-facepalming" aria-role="presentation" aria-label=""></i></li>
-      <li class="post-emotion-item" (click) = "sendUserEmotion('whatever')" ><i class="em em-man-shrugging" aria-role="presentation" aria-label=""></i></li>
-      <li class="post-emotion-item" (click) = "sendUserEmotion('angry')" ><i class="em em-angry" aria-role="presentation" aria-label="ANGRY FACE"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('1')" ><i class="em em---1" aria-role="presentation" aria-label="THUMBS UP SIGN"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('2')" ><i class="em em-heart" aria-role="presentation" aria-label="HEAVY BLACK HEART"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('3')" ><i class="em em-laughing" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('4')" ><i class="em em-man-facepalming" aria-role="presentation" aria-label=""></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('5')" ><i class="em em-man-shrugging" aria-role="presentation" aria-label=""></i></li>
+      <li class="post-emotion-item" (click) = "sendUserEmotion('6')" ><i class="em em-angry" aria-role="presentation" aria-label="ANGRY FACE"></i></li>
     </ul>
   </div>
 

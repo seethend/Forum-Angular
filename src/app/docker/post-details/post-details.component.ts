@@ -1,3 +1,5 @@
+import { PostEmotions } from './postemotions.model';
+import { PostFeedbackService } from './post-feedback.service';
 import { CustomPostDetails } from './../posts/custompostdetails.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -21,9 +23,11 @@ export class PostDetailsComponent implements OnInit {
   postEmotionsLoaded = false;
   id: number; // Id recieved from URL
 
+
   constructor(
     private postServices: PostServices,
     private authServices: AuthenticateService,
+    private postFeedbackService: PostFeedbackService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -40,14 +44,6 @@ export class PostDetailsComponent implements OnInit {
             this.post = customPostDetails.post;
             this.postUserEmotions = customPostDetails.userEmotionType;
             this.postLoaded = true;
-
-            // this.postFeedbackService.fetchPostEmotions(this.post.postId).subscribe(
-            //   (localPostEmotions: PostEmotions) => {
-            //     this.postEmotions = localPostEmotions;
-            //     console.log(localPostEmotions);
-            //     this.postEmotionsLoaded = true;
-            //   }
-            // );
           },
           error => {
             this.postLoaded = false;
@@ -56,6 +52,22 @@ export class PostDetailsComponent implements OnInit {
             this.router.navigate(['/', 'auth', 'login']);
           }
         );
+
+
+        this.postFeedbackService.postDetailSubject.subscribe(
+          (updatedAfterEmotion: any) => {
+            this.post.postEmotions = updatedAfterEmotion.postEmotions;
+            this.postUserEmotions = updatedAfterEmotion.postUserEmotions;
+            this.postServices.updateLatestValues(this.post.postId, updatedAfterEmotion);
+          },
+          error => {
+            this.postLoaded = false;
+            console.log('There is some error while updating post ', error);
+            this.authServices.logout();
+            this.router.navigate(['/', 'auth', 'login']);
+          }
+        )
+
       }
     );
   }
@@ -76,8 +88,17 @@ export class PostDetailsComponent implements OnInit {
 
   }
 
-  sendUserEmotion(emotion: string) {
-    console.log('User emotion : ' + emotion);
+  sendUserEmotion(emotionType: string) {
+    console.log('User emotion : ' + emotionType);
+
+    const postEmotions = new PostEmotions(null,
+                                          this.authServices.getLoggeduser().id,
+                                          this.customPostDetails.post.postId,
+                                          emotionType,
+                                          new Date().getTime()
+                                          );
+
+    this.postFeedbackService.sendPostEmotion(postEmotions);
   }
 
 }
