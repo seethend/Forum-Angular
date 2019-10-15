@@ -13,12 +13,19 @@
   <p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
-  <hr>
+  <hr class="my-4">
+  <div class="emotions-comments-details">
+    <i class="em em---1 em-1" aria-role="presentation" aria-label="THUMBS UP SIGN"></i>
+    <i class="em em-heart em-2" aria-role="presentation" aria-label="HEAVY BLACK HEART"></i>
+    <i class="em em-laughing em-3" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i>
+    <p id="emotion-count">{{post.postEmotions}}</p>
+  </div>
+  <hr class="my-4">
   <div id="post-feedback-div">
     <ul id="post-feedback-items">
-      <li id="like-item" (mouseover)="emotions('show')" (mouseout)="emotions('hide')" (click) = "sendUserEmotion('like')" >
+      <li id="like-item" (mouseover)="emotions('show')" (mouseout)="emotions('hide')" (click) = "sendUserEmotion('1')" >
 
-      <img *ngIf="postUserEmotions == null" class="like-icon" src="assets/images/facebook-like.png"><span *ngIf="postUserEmotions == null" >Like</span>
+      <img *ngIf="postUserEmotions == 'None'" class="like-icon" src="assets/images/facebook-like.png"><span *ngIf="postUserEmotions == 'None'" >Like</span>
       <i *ngIf="postUserEmotions == 1" class="em em---1 like-icon" aria-role="presentation" aria-label="THUMBS UP SIGN"></i><span *ngIf="postUserEmotions == 1" >Like</span>
       <i *ngIf="postUserEmotions == 2" class="em em-heart like-icon" aria-role="presentation" aria-label="HEAVY BLACK HEART"></i><span *ngIf="postUserEmotions == 2">Love</span>
       <i *ngIf="postUserEmotions == 3" class="em em-laughing like-icon" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i><span *ngIf="postUserEmotions == 3" >Laugh</span>

@@ -9,9 +9,11 @@ export class PostFeedbackService {
 
   emotionsAPI = 'v1/secured/postemotion/';
 
+  postDetailsAPI = 'v1/secured/postdetails/';
+
   postEmotions: PostEmotions;
 
-  updatedAfterEmotion = { 'postEmotionCount': '', 'userEmotionType': ''};
+  updatedAfterEmotion = { 'emotionId': 0, 'postEmotionCount': 0, 'userEmotionType': null};
 
   postDetailSubject = new Subject<any>();
 
@@ -19,10 +21,13 @@ export class PostFeedbackService {
 
   sendPostEmotion(postEmotion: PostEmotions) {
     const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
-    this.http.post(this.emotionsAPI + 'setemotion', postEmotion, {headers: httpHeaders).subscribe(
+    this.http.post(this.emotionsAPI + 'setemotion', postEmotion, {headers: httpHeaders}).subscribe(
       (localPostEmotion: PostEmotions) => {
         this.fetchPostEmotions(localPostEmotion.emotionForPost).subscribe (
-          (response: Response) => {
+          (res: string) => {
+            const response = JSON.parse(res);
+            console.log(response);
+            this.updatedAfterEmotion.emotionId = localPostEmotion.emotionId;
             this.updatedAfterEmotion.userEmotionType = response['userEmotionType'];
             this.updatedAfterEmotion.postEmotionCount = response['postEmotionCount'];
             this.postDetailSubject.next(this.updatedAfterEmotion);
@@ -42,7 +47,7 @@ export class PostFeedbackService {
 
   fetchPostEmotions(postId: number) {
     const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
-    return this.http.get(this.emotionsAPI + 'updated/' + postId);
+    return this.http.get(this.postDetailsAPI + 'updated/' + postId, {headers: httpHeaders, responseType: 'text'});
   }
 
 

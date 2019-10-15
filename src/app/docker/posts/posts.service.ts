@@ -41,7 +41,7 @@ export class PostServices {
                 if (localpost.hasImages && fileString != null && fileString.length > 0) {
                   this.savePostImage(localpost.postId, fileName, fileString);
                 } else {
-                  console.error('Post Image Failed to upload');
+                  console.log('No Post Image to upload');
                 }
             },
           error => {

@@ -56,8 +56,10 @@ export class PostDetailsComponent implements OnInit {
 
         this.postFeedbackService.postDetailSubject.subscribe(
           (updatedAfterEmotion: any) => {
-            this.post.postEmotions = updatedAfterEmotion.postEmotions;
-            this.postUserEmotions = updatedAfterEmotion.postUserEmotions;
+            console.log('something changed here');
+            this.customPostDetails.emotionId = updatedAfterEmotion.emotionId;
+            this.post.postEmotions = updatedAfterEmotion.postEmotionCount;
+            this.postUserEmotions = updatedAfterEmotion.userEmotionType;
             this.postServices.updateLatestValues(this.post.postId, updatedAfterEmotion);
           },
           error => {
@@ -66,7 +68,7 @@ export class PostDetailsComponent implements OnInit {
             this.authServices.logout();
             this.router.navigate(['/', 'auth', 'login']);
           }
-        )
+        );
 
       }
     );
@@ -89,14 +91,26 @@ export class PostDetailsComponent implements OnInit {
   }
 
   sendUserEmotion(emotionType: string) {
-    console.log('User emotion : ' + emotionType);
+    console.log('Previous User Emotion' + this.postUserEmotions + 'Current User emotion : ' + emotionType);
+    let postEmotions: PostEmotions = null;
+    if (this.customPostDetails.emotionId === 0) {
+      postEmotions = new PostEmotions(null,
+                                      this.authServices.getLoggeduser().id,
+                                      this.customPostDetails.post.postId,
+                                      emotionType,
+                                      new Date().getTime()
+                                      );
+    } else {
+      postEmotions = new PostEmotions(this.customPostDetails.emotionId,
+                                      this.authServices.getLoggeduser().id,
+                                      this.customPostDetails.post.postId,
+                                      emotionType,
+                                      new Date().getTime()
+                                      );
+    }
 
-    const postEmotions = new PostEmotions(null,
-                                          this.authServices.getLoggeduser().id,
-                                          this.customPostDetails.post.postId,
-                                          emotionType,
-                                          new Date().getTime()
-                                          );
+    console.log('Post emotion object before sending - ');
+    console.log(postEmotions);
 
     this.postFeedbackService.sendPostEmotion(postEmotions);
   }
