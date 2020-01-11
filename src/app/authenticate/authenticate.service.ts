@@ -61,7 +61,7 @@ export class AuthenticateService {
     }
   }
 
-  checkLoggedInUser() {
+  gaurdCheck() {
     const httpHeaders = new HttpHeaders({'Authorization': this.token});
     return this.http.get('v1/secured/user', {headers: httpHeaders});
   }
