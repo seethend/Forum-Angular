@@ -11,7 +11,7 @@ export class ProfileService {
 
     constructor(private http: HttpClient, private authService: AuthenticateService) {}
 
-    usersProfilePicApi = 'v1/secured/profilepic'; // Users API URL
+    usersProfilePicApi = 'v1/secured/profilepic/'; // Users API URL
     postsApi = 'v1/secured/posts/'; // Posts API URL
     userPosts: Post[] = []; // Stores all posts by user
     isUserPostsLoaded = new Subject<boolean>(); // To fire when posts are loaded
@@ -73,10 +73,20 @@ export class ProfileService {
 
       const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
 
-      return this.http.post(this.usersProfilePicApi, userImage, {headers: httpHeaders, responseType: 'text'});
+      return this.http.post(this.usersProfilePicApi + 'save', userImage, {headers: httpHeaders, responseType: 'text'});
 
     }
 
+    
+    fetchUserProfilePicPathFromServer() {
+        const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
+
+        return this.http.get(this.usersProfilePicApi, {headers: httpHeaders, responseType: 'text'});
+    }
+
+    updateProfilePicPathLocally(updatedProfilePicPath: string) {
+        this.authService.loggedInUser.userProfilePath = updatedProfilePicPath;
+    }
     /**
      *
      * Says logout to user :)

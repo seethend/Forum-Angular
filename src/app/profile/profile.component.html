@@ -2,7 +2,7 @@
     <div id="wall-paper"></div>
     <div id="profile-div">
         <div id="profile-img-div" align="center">
-            <label for="post-img"><img id="profile-img" [src]="getProfileImagePath()"></label>
+            <label for="post-img"><img id="profile-img" [src]="userProfilePath"></label>
             <input type="file" id="post-img" name="file" accept="image/*" (change)="getFiles($event)">
             <br>
             <button type="button" class="btn btn-success" id="upload-img" (click)="uploadProfilePic()">Upload</button>

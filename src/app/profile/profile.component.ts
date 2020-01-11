@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
-import { UserImage } from './../user-details/user-image.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Compiler } from '@angular/core';
 import { ProfileService } from './profile.service';
 import { User } from '../user-details/user.model';
 
@@ -14,17 +13,34 @@ export class ProfileComponent implements OnInit {
     selectedBlockName = '';
     loggedUser: User;
     userProfilePath = '';
+    profilePicLoaded = false;
 
     files: FileList; // Stores entire data of files uploaded
     filestring: string; // Stores string representation on file
     fileName = ''; // Stores file name
     hasImage = false; // Check if any file uploaded
 
-    constructor(private profileService: ProfileService, private router: Router) { }
+    constructor(private profileService: ProfileService, private router: Router,
+                private compiler: Compiler) { }
 
     ngOnInit() {
       this.loggedUser = this.profileService.getAllUserDetails();
-      this.userProfilePath = this.loggedUser.userProfilePath;
+      this.profilePicLoaded = false;
+      if(this.loggedUser.userProfilePath == null ||
+          this.loggedUser.userProfilePath.trim() == '') {
+
+        this.profileService.fetchUserProfilePicPathFromServer().subscribe(
+          (updatedProfilePicPath: string) => {
+            console.log('updatedProfilePicPath ' || updatedProfilePicPath);
+            this.profileService.updateProfilePicPathLocally(updatedProfilePicPath);
+            this.userProfilePath = updatedProfilePicPath;
+            this.profilePicLoaded = true;
+          }
+        );
+      } else {
+        this.profilePicLoaded = true;
+        this.userProfilePath = this.loggedUser.userProfilePath;
+      }
       document.getElementById('profile-sub-div').style.display = 'none';
     }
 
@@ -86,8 +102,10 @@ export class ProfileComponent implements OnInit {
     if (this.hasImage) {
       this.profileService.saveProfilePic(this.filestring, this.fileName).subscribe(
         (profilePicformat: string) => {
+          this.compiler.clearCache();
           this.userProfilePath = '/forum-bucket/profile/' + this.loggedUser.username + '.' + profilePicformat;
           console.log('new profile pic changed ' + this.userProfilePath);
+          this.profileService.updateProfilePicPathLocally(this.userProfilePath);
           this.router.navigate(['/', 'profile']);
         },
         error => {
