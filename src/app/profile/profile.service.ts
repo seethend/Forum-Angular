@@ -77,7 +77,6 @@ export class ProfileService {
 
     }
 
-    
     fetchUserProfilePicPathFromServer() {
         const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
 

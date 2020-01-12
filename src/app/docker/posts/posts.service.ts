@@ -1,4 +1,3 @@
-import { post } from 'selenium-webdriver/http';
 import { CustomPostDetails } from './custompostdetails.model';
 import { Post } from './posts.model';
 import { Subject } from 'rxjs';
@@ -32,10 +31,10 @@ export class PostServices {
     // Saves the post received through parameter
     // On save success calls fetchPosts()
     // If anything goes wrong authService.logout() is called
-    savePost(post: Post, fileName: string, fileString: string) {
-        console.log(post);
+    savePost(newPost: Post, fileName: string, fileString: string) {
+        console.log(newPost);
         const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
-        this.http.post(this.postsAPI + 'save', post, {headers: httpHeaders}).subscribe(
+        this.http.post(this.postsAPI + 'save', newPost, {headers: httpHeaders}).subscribe(
           (localpost: Post) => {
                 this.fetchPosts('NEW_POST_ADDED');
                 if (localpost.hasImages && fileString != null && fileString.length > 0) {

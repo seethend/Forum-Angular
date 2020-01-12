@@ -26,8 +26,8 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
       this.loggedUser = this.profileService.getAllUserDetails();
       this.profilePicLoaded = false;
-      if(this.loggedUser.userProfilePath == null ||
-          this.loggedUser.userProfilePath.trim() == '') {
+      if (this.loggedUser.userProfilePath == null ||
+          this.loggedUser.userProfilePath.trim() === '') {
 
         this.profileService.fetchUserProfilePicPathFromServer().subscribe(
           (updatedProfilePicPath: string) => {

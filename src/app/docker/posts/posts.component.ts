@@ -13,7 +13,7 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
   }
 
-  popup(){
+  popup() {
     this.router.navigate(['createpost'], {relativeTo: this.route});
   }
 
