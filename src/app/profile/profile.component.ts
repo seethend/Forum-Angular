@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, Compiler } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './profile.service';
 import { User } from '../user-details/user.model';
 
@@ -20,8 +20,7 @@ export class ProfileComponent implements OnInit {
     fileName = ''; // Stores file name
     hasImage = false; // Check if any file uploaded
 
-    constructor(private profileService: ProfileService, private router: Router,
-                private compiler: Compiler) { }
+    constructor(private profileService: ProfileService, private router: Router) { }
 
     ngOnInit() {
       this.loggedUser = this.profileService.getAllUserDetails();
@@ -101,12 +100,11 @@ export class ProfileComponent implements OnInit {
   uploadProfilePic() {
     if (this.hasImage) {
       this.profileService.saveProfilePic(this.filestring, this.fileName).subscribe(
-        (profilePicformat: string) => {
-          this.compiler.clearCache();
-          this.userProfilePath = '/forum-bucket/profile/' + this.loggedUser.username + '.' + profilePicformat;
+        (fullImageName: string) => {
+          this.userProfilePath = 'forum-bucket/profile/' + fullImageName;
           console.log('new profile pic changed ' + this.userProfilePath);
           this.profileService.updateProfilePicPathLocally(this.userProfilePath);
-          this.router.navigate(['/', 'profile']);
+          this.router.navigate(['/', 'posts']);
         },
         error => {
           console.log(error);
