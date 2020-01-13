@@ -12,8 +12,9 @@ export class ProfileComponent implements OnInit {
 
     selectedBlockName = '';
     loggedUser: User;
-    userProfilePath = '';
     profilePicLoaded = false;
+
+    imageBinaryData: string;
 
     files: FileList; // Stores entire data of files uploaded
     filestring: string; // Stores string representation on file
@@ -25,21 +26,15 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
       this.loggedUser = this.profileService.getAllUserDetails();
       this.profilePicLoaded = false;
-      if (this.loggedUser.userProfilePath == null ||
-          this.loggedUser.userProfilePath.trim() === '') {
 
-        this.profileService.fetchUserProfilePicPathFromServer().subscribe(
-          (updatedProfilePicPath: string) => {
-            console.log('updatedProfilePicPath ' || updatedProfilePicPath);
-            this.profileService.updateProfilePicPathLocally(updatedProfilePicPath);
-            this.userProfilePath = updatedProfilePicPath;
-            this.profilePicLoaded = true;
-          }
-        );
-      } else {
-        this.profilePicLoaded = true;
-        this.userProfilePath = this.loggedUser.userProfilePath;
-      }
+      this.profileService.fetchUserProfilePicPathFromServer().subscribe(
+        (imageData: string) => {
+          this.imageBinaryData = 'data:image/png;base64,' + imageData;
+          console.log('Image data fetched successfully!!!');
+          this.profilePicLoaded = true;
+        }
+      );
+
       document.getElementById('profile-sub-div').style.display = 'none';
     }
 
@@ -52,15 +47,6 @@ export class ProfileComponent implements OnInit {
         document.getElementById('profile-sub-div').style.display = 'block';
         this.selectedBlockName = block;
         console.log(this.selectedBlockName);
-    }
-
-    /**
-     *
-     * Returns profile picture path of logged in user
-     *
-     */
-    getProfileImagePath() {
-      return this.userProfilePath;
     }
 
   /**
@@ -89,6 +75,8 @@ export class ProfileComponent implements OnInit {
   _handleReaderLoaded(readerEvt) {
     const binaryString = readerEvt.target.result;
     this.filestring = btoa(binaryString);  // Converting binary string data.
+    this.imageBinaryData = 'data:image/png;base64,' + this.filestring;
+    console.log('Image data loaded successfully!!!');
     console.log(this.filestring.substring(0, 100));
   }
 
@@ -100,11 +88,9 @@ export class ProfileComponent implements OnInit {
   uploadProfilePic() {
     if (this.hasImage) {
       this.profileService.saveProfilePic(this.filestring, this.fileName).subscribe(
-        (fullImageName: string) => {
-          this.userProfilePath = 'forum-bucket/profile/' + fullImageName;
-          console.log('new profile pic changed ' + this.userProfilePath);
-          this.profileService.updateProfilePicPathLocally(this.userProfilePath);
-          this.router.navigate(['/', 'posts']);
+        (imageData: string) => {
+          this.imageBinaryData = 'data:image/png;base64,' + imageData;
+          console.log('Image data saved successfully!!!');
         },
         error => {
           console.log(error);

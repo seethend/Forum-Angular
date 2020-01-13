@@ -9,7 +9,7 @@ export class UserImage {
               public lastUploadedDate: number,
               public imageLocation: string,
               public imageBackupLocation: string,
-              public imageFormat: string
+              public imageVersion: number
               ) {}
 
 }

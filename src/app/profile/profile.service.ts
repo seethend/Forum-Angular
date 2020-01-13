@@ -66,7 +66,7 @@ export class ProfileService {
       // console.log(fileNameAndFormat[1]);
 
       const userImage = new UserImage(
-        null, this.loggedInUser.id, filestring, null, new Date().getTime(), null, null, null, fileNameAndFormat[1]
+        null, this.loggedInUser.id, filestring, null, new Date().getTime(), null, null, null, 0
       );
 
       // console.log(userImage.imageFormat);
@@ -83,9 +83,6 @@ export class ProfileService {
         return this.http.get(this.usersProfilePicApi, {headers: httpHeaders, responseType: 'text'});
     }
 
-    updateProfilePicPathLocally(updatedProfilePicPath: string) {
-        this.authService.loggedInUser.userProfilePath = updatedProfilePicPath;
-    }
     /**
      *
      * Says logout to user :)

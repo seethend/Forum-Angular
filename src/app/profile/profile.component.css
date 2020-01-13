@@ -21,6 +21,9 @@
 }
 
 #profile-img-div #profile-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
     width: 150px;
     height: 150px;
     margin-top: -80px;
