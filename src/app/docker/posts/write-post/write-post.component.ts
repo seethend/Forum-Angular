@@ -50,8 +50,10 @@ export class WritePostComponent implements OnInit {
    * colapse the write post div
   */
   popdown() {
-    console.log('check down');
-    this.popupCheck = false;
+    if (this.postMessage == null || this.postMessage.trim().length === 0) {
+      console.log('check down');
+      this.popupCheck = false;
+    }
   }
 
   /**
@@ -75,9 +77,8 @@ export class WritePostComponent implements OnInit {
       );
     }
 
+    this.resetEverythingForNextPost();
     this.popdown();
-    this.postMessage = '';
-    this.deleteFiles();
   }
 
   /**
@@ -131,7 +132,8 @@ export class WritePostComponent implements OnInit {
   /**
    * Empty all variables for next post
    */
-  deleteFiles() {
+  resetEverythingForNextPost() {
+    this.postMessage = null;
     this.files = null;
     this.filestring = null;
     this.fileName = null;
