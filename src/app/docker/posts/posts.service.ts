@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthenticateService} from '../../authenticate/authenticate.service';
+import { PostImage } from './post-images.model';
 
 @Injectable()
 export class PostServices {
@@ -53,9 +54,10 @@ export class PostServices {
 
     savePostImage(postId: number, fileName: string, fileString: string) {
       // console.log("Image string data ", fileString)
+      const postImage = new PostImage(null, postId, fileString);
       const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
       this.http.post(
-        this.postsAPI + 'imageUpload', {'postId': postId, 'fileName': fileName, 'imageStringData': fileString},
+        this.postsAPI + 'imageUpload', postImage,
         {headers: httpHeaders, responseType: 'text'}).subscribe(
           (imagePath: string) => {
             console.log('Image Path: ', imagePath);

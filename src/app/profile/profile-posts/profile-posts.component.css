@@ -40,10 +40,11 @@ font-size: 20px;
     color: black;
 }
 
-.post-img{
-  width: 100%;
-  height: auto;
-  border: 1px groove #ffffff;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px grey;
+#post-img{
+  width: 450px;
+  height: 270px;
+  margin-bottom: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  box-shadow: 6px 5px 20px black;
 }

@@ -5,6 +5,6 @@ export class CustomPostDetails {
               public emotionId: number,
               public userEmotionType: string,
               public postImageId: number,
-              public postImagePath: string
+              public postImageData: string
               ) {}
 }

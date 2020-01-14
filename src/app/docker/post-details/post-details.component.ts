@@ -23,13 +23,11 @@ export class PostDetailsComponent implements OnInit {
   postEmotionsLoaded = false;
   id: number; // Id recieved from URL
 
-
   constructor(
     private postServices: PostServices,
     private authServices: AuthenticateService,
     private postFeedbackService: PostFeedbackService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     // Gets post id from URL and calls postService.getPostById(id) for post object response
@@ -49,7 +47,6 @@ export class PostDetailsComponent implements OnInit {
             this.postLoaded = false;
             console.log('There is some error while fetching post by id ', error);
             this.authServices.logout();
-            this.router.navigate(['/', 'auth', 'login']);
           }
         );
 
@@ -66,7 +63,6 @@ export class PostDetailsComponent implements OnInit {
             this.postLoaded = false;
             console.log('There is some error while updating post ', error);
             this.authServices.logout();
-            this.router.navigate(['/', 'auth', 'login']);
           }
         );
 
@@ -74,10 +70,8 @@ export class PostDetailsComponent implements OnInit {
     );
   }
 
-  getImagePath() {
-    console.log('forum-bucket/posts/post_' + this.post.postId + '.png');
-    return this.customPostDetails.postImagePath;
-    // return 'forum-bucket/posts/post_' + this.post.postId + '.png';
+  getFormattedImageData() {
+    return 'data:image/png;base64,' + this.customPostDetails.postImageData;
   }
 
   emotions(task: string) {

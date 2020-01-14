@@ -30,10 +30,11 @@ p.lead {
 }
 
 #post-img{
-    margin-left: 20px;
+    width: 450px;
+    height: 270px;
     margin-bottom: 20px;
-    width: 430px;
-    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
     box-shadow: 6px 5px 20px black;
 }
 
@@ -50,11 +51,11 @@ p.lead {
 }
 
 #emotion-count {
-  position: absolute;
+  position: relative;
   display: inline;
   margin: 0;
-  margin-top: -3px;
-  margin-left: 6px;
+  top: 3px;
+  margin-left: 4px;
   font-size: 20px;
   color: white;
 }

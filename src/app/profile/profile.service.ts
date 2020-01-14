@@ -5,6 +5,7 @@ import { AuthenticateService } from '../authenticate/authenticate.service';
 import { Post } from '../docker/posts/posts.model';
 import { Subject } from 'rxjs';
 import { User } from '../user-details/user.model';
+import { CustomPostDetails } from '../docker/posts/custompostdetails.model';
 
 @Injectable()
 export class ProfileService {
@@ -12,8 +13,8 @@ export class ProfileService {
     constructor(private http: HttpClient, private authService: AuthenticateService) {}
 
     usersProfilePicApi = 'v1/secured/profilepic/'; // Users API URL
-    postsApi = 'v1/secured/posts/'; // Posts API URL
-    userPosts: Post[] = []; // Stores all posts by user
+    postDetailsApi = 'v1/secured/postdetails/'; // Posts API URL
+    userPosts: CustomPostDetails[] = []; // Stores all posts by user
     isUserPostsLoaded = new Subject<boolean>(); // To fire when posts are loaded
 
 
@@ -26,9 +27,9 @@ export class ProfileService {
      */
     getAllUserPosts(): any {
         const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
-        this.http.get(this.postsApi + 'allusers', {headers: httpHeaders}).subscribe(
-            (posts: Post[]) => {
-                this.userPosts = posts;
+        this.http.get(this.postDetailsApi + 'all', {headers: httpHeaders}).subscribe(
+            (custPostDetails: CustomPostDetails[]) => {
+                this.userPosts = custPostDetails;
                 this.isUserPostsLoaded.next(true);
             },
             error => {

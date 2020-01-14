@@ -7,8 +7,7 @@
   <p class="lead">
     {{ post.postDetails }}
   </p>
-  <div *ngIf="post.hasImages">
-    <img *ngIf="post.hasImages" [src]="getImagePath()" id="post-img" width="200px" height="200px">
+  <div id="post-img" *ngIf="post.hasImages" [ngStyle]="{'background-image':'url('+getFormattedImageData()+')'}">
   </div>
   <p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Post } from '../../docker/posts/posts.model';
+import { CustomPostDetails } from '../../docker/posts/custompostdetails.model';
 
 @Component({
   selector: 'app-profile-posts',
@@ -11,7 +12,7 @@ export class ProfilePostsComponent implements OnInit {
 
   constructor(private profileService: ProfileService) { }
 
-  usersPosts: Post[] = []; // Stores posts models made by loggedIn user
+  userPosts: CustomPostDetails[] = []; // Stores posts models made by loggedIn user
   isPostsLoaded = false;
 
   ngOnInit() {
@@ -19,19 +20,19 @@ export class ProfilePostsComponent implements OnInit {
     this.profileService.isUserPostsLoaded.subscribe(
         (postsLoaded: boolean) => {
             if (postsLoaded) {
+                this.userPosts = this.profileService.userPosts.slice();
                 this.isPostsLoaded = true;
-                this.usersPosts = this.profileService.userPosts.slice();
             } else {
                 this.isPostsLoaded = false;
-                this.usersPosts = [];
+                this.userPosts = [];
             }
         }
     );
     this.profileService.getAllUserPosts(); // Call API using profileService for user posts
   }
 
-  getImagePath(post: Post) {
-      return 'forum-bucket/posts/post_' + post.postId + '.png';
+  getFormattedImageData(postImageData: string) {
+      return 'data:image/png;base64,' + postImageData;
   }
 
 }
