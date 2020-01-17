@@ -78,7 +78,11 @@ export class ProfileService {
 
     }
 
-    fetchUserProfilePicPathFromServer() {
+
+    /**
+     * Fetches profile pic data from server
+     */
+    fetchUserProfileData() {
         const httpHeaders = new HttpHeaders({'Authorization': this.authService.token});
 
         return this.http.get(this.usersProfilePicApi, {headers: httpHeaders, responseType: 'text'});

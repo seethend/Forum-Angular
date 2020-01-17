@@ -11,7 +11,7 @@ export class PostServices {
 
     postsAPI = 'v1/secured/posts/'; // Posts module API URL
 
-    postDetailsAPI = 'v1/secured/postdetails/';
+    postDetailsAPI = 'v1/secured/postdetails/'; // Post Detail module API URL
 
     // Stores all posts from API in an array to use for future references
     customPostDetails: CustomPostDetails[] = [
@@ -22,7 +22,7 @@ export class PostServices {
         new Date().getTime()
       ),*/
     ];
-    singlePost: Post;
+
     postAdded = new Subject<CustomPostDetails[]>(); // arms to fire when a new post is added
     postsFetched = new Subject<boolean>(); // arms to fire when all posts are fetched
 
@@ -109,7 +109,7 @@ export class PostServices {
       return this.customPostDetails.length;
     }
 
-
+    // Updates latest post emotion and count
     updateLatestValues(postId: number, updatedAfterEmotion: any) {
       for (let i = 0; i < this.customPostDetails.length ; i++) {
         if (this.customPostDetails[i].post.postId === postId) {

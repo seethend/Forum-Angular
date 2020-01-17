@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    // Gets search string from the URL and searches in server
     this.route.params.subscribe (
       (params: Params) => {
         this.searchString = params['searchString'];
@@ -44,6 +44,10 @@ export class SearchComponent implements OnInit {
     );
 
   }
+
+  /**
+   * Checks if any type is null so that it can be left out
+   */
   checkNulls(): any {
 
     if (this.search.users != null && this.search.users.length > 0) {

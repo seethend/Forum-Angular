@@ -20,7 +20,7 @@ export class PostDetailsComponent implements OnInit {
   post: Post;
   postUserEmotions: string;
   postLoaded = false; // flag to avoid null exception for post in template
-  postEmotionsLoaded = false;
+
   id: number; // Id recieved from URL
 
   constructor(
@@ -30,7 +30,7 @@ export class PostDetailsComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // Gets post id from URL and calls postService.getPostById(id) for post object response
+    // Gets post id from URL and fetch custom post details
     // If anything goes wrong authService.logout() is called
     this.route.params.subscribe(
       (params: Params) => {
@@ -50,7 +50,8 @@ export class PostDetailsComponent implements OnInit {
           }
         );
 
-
+        // Triggered when the new emotion is given to the post
+        // It also updates the already exists custom post details
         this.postFeedbackService.postDetailSubject.subscribe(
           (updatedAfterEmotion: any) => {
             console.log('something changed here');
@@ -70,10 +71,19 @@ export class PostDetailsComponent implements OnInit {
     );
   }
 
+  /**
+   * It gives the format need for image
+   */
   getFormattedImageData() {
     return 'data:image/png;base64,' + this.customPostDetails.postImageData;
   }
 
+  /**
+   *
+   * @param task
+   *
+   * Hides and shows the emotions div
+   */
   emotions(task: string) {
     const emotionsDiv = document.getElementById('post-emotions-div');
     if (task === 'show') {
@@ -84,6 +94,13 @@ export class PostDetailsComponent implements OnInit {
 
   }
 
+  /**
+   *
+   * @param emotionType
+   *
+   * creates new or updates the previous emotion of the post
+   *
+   */
   sendUserEmotion(emotionType: string) {
     console.log('Previous User Emotion' + this.postUserEmotions + 'Current User emotion : ' + emotionType);
     let postEmotions: PostEmotions = null;
@@ -106,6 +123,7 @@ export class PostDetailsComponent implements OnInit {
     console.log('Post emotion object before sending - ');
     console.log(postEmotions);
 
+    // Calls the service funtion to request the server
     this.postFeedbackService.sendPostEmotion(postEmotions);
   }
 

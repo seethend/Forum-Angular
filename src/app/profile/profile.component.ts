@@ -24,12 +24,12 @@ export class ProfileComponent implements OnInit {
     constructor(private profileService: ProfileService, private router: Router) { }
 
     ngOnInit() {
-      this.loggedUser = this.profileService.getAllUserDetails();
-      this.profilePicLoaded = false;
+      this.loggedUser = this.profileService.getAllUserDetails(); // Fetches to display user details on profile page
+      this.profilePicLoaded = false; // Flag sets profile pic not loaded
 
-      this.profileService.fetchUserProfilePicPathFromServer().subscribe(
+      this.profileService.fetchUserProfileData().subscribe(
         (imageData: string) => {
-          this.imageBinaryData = 'data:image/png;base64,' + imageData;
+          this.imageBinaryData = 'data:image/png;base64,' + imageData; // Formats image data as needed by div
           console.log('Image data fetched successfully!!!');
           this.profilePicLoaded = true;
         }

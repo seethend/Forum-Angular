@@ -61,6 +61,7 @@ export class AuthenticateService {
     }
   }
 
+  // Used by gaurd to authorize user
   gaurdCheck() {
     const httpHeaders = new HttpHeaders({'Authorization': this.token});
     return this.http.get('v1/secured/user', {headers: httpHeaders});

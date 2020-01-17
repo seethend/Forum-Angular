@@ -7,18 +7,24 @@ import { PostEmotions } from './postemotions.model';
 @Injectable()
 export class PostFeedbackService {
 
-  emotionsAPI = 'v1/secured/postemotion/';
+  emotionsAPI = 'v1/secured/postemotion/'; // Emotions API URL
 
-  postDetailsAPI = 'v1/secured/postdetails/';
+  postDetailsAPI = 'v1/secured/postdetails/'; // Custom Post Detail API URL
 
   postEmotions: PostEmotions;
 
   updatedAfterEmotion = { 'emotionId': 0, 'postEmotionCount': 0, 'userEmotionType': null};
 
-  postDetailSubject = new Subject<any>();
+  postDetailSubject = new Subject<any>(); // Used to trigger when emotion is changed for the post
 
   constructor(private http: HttpClient, private authService: AuthenticateService) {}
 
+  /**
+   *
+   * @param postEmotion
+   *
+   * Request server to save the emotion of the post and fetch details for latest values
+   */
   sendPostEmotion(postEmotion: PostEmotions) {
     const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
     this.http.post(this.emotionsAPI + 'setemotion', postEmotion, {headers: httpHeaders}).subscribe(
@@ -45,6 +51,14 @@ export class PostFeedbackService {
     );
   }
 
+
+  /**
+   *
+   * @param postId
+   *
+   * Fetch emotion type nd details of latest updated post
+   *
+   */
   fetchPostEmotions(postId: number) {
     const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
     return this.http.get(this.postDetailsAPI + 'updated/' + postId, {headers: httpHeaders, responseType: 'text'});

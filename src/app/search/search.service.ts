@@ -7,12 +7,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SearchService {
 
-  searchAPI = 'v1/secured/search/';
+  searchAPI = 'v1/secured/search/'; // Search API URL
   search: Search;
-  searchLoaded = new Subject<Search>();
+  searchLoaded = new Subject<Search>(); // Trigger to let component know Search module is loaded
 
   constructor(private http: HttpClient, private authService: AuthenticateService) {}
 
+  /**
+   *
+   * @param searchString
+   *
+   * Search in all types for the query string
+   *
+   */
   getAllMatchedModels(searchString: string) {
     const httpHeaders = new HttpHeaders({'Authorization' : this.authService.token});
     this.http.get( this.searchAPI + 'all/' + searchString, {headers: httpHeaders}).subscribe (
